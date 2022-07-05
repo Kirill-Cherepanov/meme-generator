@@ -10,10 +10,10 @@ export default function TemplateChoose() {
         <br />
         Edit your template and generate a meme.
       </h2>
-      <StyledButton primary={true} size={'L'} clickHandler={() => {}}>
+      <StyledButton buttonStyle="primary" size={'L'} clickHandler={() => {}}>
         Select meme template
       </StyledButton>
-      <StyledButton primary={false} size={'M'} clickHandler={() => {}}>
+      <StyledButton buttonStyle="secondary" size={'M'} clickHandler={() => {}}>
         Upload image
       </StyledButton>
     </div>

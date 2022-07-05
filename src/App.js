@@ -4,13 +4,37 @@ import TemplateChoose from './components/TemplateChoose';
 import Canvas from './components/Canvas';
 import ToolSidebar from './components/ToolSidebar';
 
+const templateDataExample = {
+  id: '61579',
+  name: 'One Does Not Simply',
+  url: 'https://i.imgflip.com/1bij.jpg',
+  width: 568,
+  height: 335,
+  box_count: 2
+};
+
+const selected = false;
+
+const selectedTextBoxInfoExample = {
+  x: 0,
+  y: 0,
+  width: 200,
+  height: 100
+};
+
 function App() {
   return (
     <>
       {/* <TemplateChoose /> */}
       <div className="template-editor">
-        <Canvas />
-        <ToolSidebar />
+        <Canvas
+          templateData={templateDataExample}
+          handleSelection={() => {}}
+          handleModifySidebarProps={() => {}}
+        />
+        <ToolSidebar
+          selectedTextBoxInfo={!selected ?? selectedTextBoxInfoExample}
+        />
       </div>
       {/* <footer></footer> */}
     </>
