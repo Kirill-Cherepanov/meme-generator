@@ -1,4 +1,5 @@
 import React from 'react';
+import './StyledButton.scss';
 
 const STYLES = {
   primary: 'btn--primary',
@@ -14,15 +15,19 @@ const SIZES = {
 
 export default function StyledButton({
   children,
+  className,
   buttonStyle,
-  size,
+  buttonSize,
   clickHandler
 }) {
   const styleClass = STYLES[buttonStyle];
-  const sizeClass = SIZES[size];
+  const sizeClass = SIZES[buttonSize];
 
   return (
-    <button className={`${styleClass} ${sizeClass}`} onClick={clickHandler}>
+    <button
+      className={`${styleClass} ${sizeClass} ${className}`}
+      onClick={clickHandler}
+    >
       {children}
     </button>
   );

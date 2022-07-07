@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import 'normalize.css';
 import TemplateChoose from './components/TemplateChoose';
 import PopularMemes from './components/PopularMemes';
@@ -125,14 +125,6 @@ function getTemplatesExample() {
       width: 750,
       height: 750,
       box_count: 2
-    },
-    {
-      id: '131940431',
-      name: "Gru's Plan",
-      url: 'https://i.imgflip.com/26jxvz.jpg',
-      width: 700,
-      height: 449,
-      box_count: 4
     }
   ];
 }

@@ -8,7 +8,7 @@ import TextBox from './TextBox';
 export default function Canvas({
   templateData,
   handleSelection,
-  handleModifySidebarProps
+  handleModifySidebarParams
 }) {
   const textBoxRefs = useRef([]);
   const [x, setX] = useState();
@@ -29,7 +29,7 @@ export default function Canvas({
     const y = textBoxRef.current.offsetTop;
     setX(x);
     setY(y);
-    handleModifySidebarProps();
+    handleModifySidebarParams();
   };
 
   useEffect(() => {
