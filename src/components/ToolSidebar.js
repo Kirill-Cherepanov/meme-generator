@@ -1,20 +1,38 @@
 import React from 'react';
 import StyledButton from './StyledButton';
 import TextBoxModify from './TextBoxModify';
+import './ToolSidebar.scss';
 
 export default function ToolSidebar({ selectedTextBoxInfo }) {
   return (
     <div className="tools">
-      <h2>MEME EDITOR</h2>
-      <StyledButton primary="secondary" size={'M'} clickHandler={() => {}}>
-        Change Template
-      </StyledButton>
-      <StyledButton buttonStyle="primary" size={'M'} clickHandler={() => {}}>
-        ADD TEXT
-      </StyledButton>
+      <h2 className="tools__title">MEME EDITOR</h2>
+      <div className="tools__main-buttons">
+        <StyledButton
+          buttonStyle="option"
+          buttonSize="M"
+          className="btn-template"
+          clickHandler={() => {}}
+        >
+          CHANGE TEMPLATE
+        </StyledButton>
+        <StyledButton
+          buttonStyle="option"
+          buttonSize="M"
+          className="btn-text"
+          clickHandler={() => {}}
+        >
+          ADD TEXT
+        </StyledButton>
+      </div>
       <TextBoxModify {...selectedTextBoxInfo} />
-      <StyledButton buttonStyle="primary" size={'L'} clickHandler={() => {}}>
-        Generate MEME
+      <StyledButton
+        buttonStyle="primary"
+        buttonSize="L"
+        className="btn-generate"
+        clickHandler={() => {}}
+      >
+        GENERATE MEME
       </StyledButton>
     </div>
   );

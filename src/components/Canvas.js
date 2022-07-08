@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import TextBox from './TextBox';
+import './Canvas.scss';
 
 // Should keep track of TextBox position relative to canvas and send it to ->App->ToolSidebar
 // Should keep track of TextBox width and send it to ->App->ToolSidebar
@@ -38,7 +39,7 @@ export default function Canvas({
 
   return (
     <div className="canvas">
-      <img src={templateData.url} alt="Template" />
+      <img src={templateData.url} alt="Template" className="canvas__img" />
       {textBoxes}
     </div>
   );

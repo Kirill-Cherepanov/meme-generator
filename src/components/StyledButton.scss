@@ -25,6 +25,27 @@ $Gray: #525252;
   font-weight: 600;
 }
 .btn--option {
+  color: darken($Blue, 30%);
+  cursor: pointer;
+  font-weight: bold;
+  background-color: $White;
+  border: none;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    position: absolute;
+    left: 5px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    content: '';
+    background-image: url('../icons/template.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 .btn--large {
@@ -33,8 +54,12 @@ $Gray: #525252;
   border-radius: 3px;
 }
 .btn--medium {
-  width: 200px;
   border-radius: 3px;
+  padding: 5px;
+  height: 50px;
+  width: 200px;
+  line-height: 40px;
+  padding-left: 32px;
 }
 .btn--small {
   width: 150px;

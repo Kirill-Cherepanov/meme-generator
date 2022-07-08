@@ -1,4 +1,5 @@
 import React from 'react';
+import './TextBoxModify.scss';
 
 export default function TextBoxModify({ selectedTextBoxInfo }) {
   return (

@@ -25,7 +25,7 @@ export default function StyledButton({
 
   return (
     <button
-      className={`${styleClass} ${sizeClass} ${className}`}
+      className={`${styleClass} ${sizeClass} ${className ?? ''}`}
       onClick={clickHandler}
     >
       {children}

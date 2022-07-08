@@ -1,0 +1,45 @@
+$Blue: #4285F4;
+$White: #FFFFFF;
+$Gray: #424242;
+
+.tools {
+  border-radius: 10px;
+  background-color: $Blue;
+  padding: 25px;
+  flex: 1 0 calc(50% - 60px);
+  color: $White;
+  box-shadow: 5px 5px 20px 0 darken($Blue, 30%);
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.tools__title {
+  font-size: 32px;
+  padding: 0 0 8px;
+  margin: 0 0 40px;
+  text-align: center;
+  border-bottom: 1px solid $White;
+}
+.tools__main-buttons {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  margin-bottom: 25px;
+}
+.btn-text {
+  flex: 1 1 50%;
+  &::before {
+    background-image: url('../icons/text.png');
+  }
+}
+.btn-template {
+  flex: 1 1 50%;
+}
+.btn-generate {
+  display: block;
+  margin: auto auto 0;
+  font-weight: 1000;
+  font-size: 18px;
+  color: darken($Blue, 30%);
+  background-color: $White;
+}
