@@ -1,0 +1,27 @@
+$Blue: #4285F4;
+$White: #FFFFFF;
+$Gray: #424242;
+
+.tools__modify-text-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.tools__text-box-setting {
+  padding: 0;
+  display: flex;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-style: italic;
+  margin-bottom: 5px;
+  label {
+    display: inline-block;
+    width: 130px;
+  }
+  input {
+    background-color: $White;
+    border: none;
+    border-radius: 2px;
+    width: 70px;
+  }
+}
