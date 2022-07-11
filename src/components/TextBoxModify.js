@@ -28,61 +28,64 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
   };
 
   return (
-    <ul className="tools__modify-text-box">
-      <ul className="tools__text-box-setting">
-        <label htmlFor="color">Text color</label>
-        <input type="color" className="tools__change-color" id="color" />
-      </ul>
+    <>
+      <h3 className="tools__modify-text-box-title">Modify text box</h3>
+      <ul className="tools__modify-text-box">
+        <li className="tools__text-box-setting">
+          <label htmlFor="color">Text color</label>
+          <input type="color" className="tools__change-color" id="color" />
+        </li>
 
-      <ul className="tools__text-box-setting">
-        <label htmlFor="outline">Outline color</label>
-        <input type="color" className="tools__change-outline" id="outline" />
-      </ul>
+        <li className="tools__text-box-setting">
+          <label htmlFor="outline">Outline color</label>
+          <input type="color" className="tools__change-outline" id="outline" />
+        </li>
 
-      <ul className="tools__text-box-setting">
-        <label htmlFor="X-pos">X position</label>
-        <input
-          type="number"
-          value={x}
-          onInput={checkX}
-          className="tools__change-X-pos"
-          id="X-pos"
-        />
-      </ul>
+        <li className="tools__text-box-setting">
+          <label htmlFor="X-pos">X position</label>
+          <input
+            type="number"
+            value={x}
+            onInput={checkX}
+            className="tools__change-X-pos"
+            id="X-pos"
+          />
+        </li>
 
-      <ul className="tools__text-box-setting">
-        <label htmlFor="Y-pos">Y position</label>
-        <input
-          type="number"
-          value={y}
-          onInput={checkY}
-          className="tools__change-Y-pos"
-          id="Y-pos"
-        />
-      </ul>
+        <li className="tools__text-box-setting">
+          <label htmlFor="Y-pos">Y position</label>
+          <input
+            type="number"
+            value={y}
+            onInput={checkY}
+            className="tools__change-Y-pos"
+            id="Y-pos"
+          />
+        </li>
 
-      <ul className="tools__text-box-setting">
-        <label htmlFor="height">Height</label>
-        <input
-          type="number"
-          value={height}
-          onInput={checkHeight}
-          className="tools__change-height"
-          id="height"
-        />
-      </ul>
+        <li className="tools__text-box-setting">
+          <label htmlFor="height">Height</label>
+          <input
+            type="number"
+            value={height}
+            onInput={checkHeight}
+            className="tools__change-height"
+            id="height"
+          />
+        </li>
 
-      <ul className="tools__text-box-setting">
-        <label htmlFor="width">Width</label>
-        <input
-          type="number"
-          value={width}
-          onInput={checkWidth}
-          className="tools__change-width"
-          id="width"
-        />
+        <li className="tools__text-box-setting">
+          <label htmlFor="width">Width</label>
+          <input
+            type="number"
+            value={width}
+            onInput={checkWidth}
+            className="tools__change-width"
+            id="width"
+          />
+        </li>
       </ul>
-    </ul>
+    </>
   );
 }
 

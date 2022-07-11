@@ -5,8 +5,7 @@ $Gray: #424242;
 .tools {
   border-radius: 10px;
   background-color: $Blue;
-  padding: 25px;
-  // flex-shrink: 0;
+  padding: 30px;
   width: calc(50% - 60px);
   max-width: 500px;
   color: $White;
@@ -18,7 +17,7 @@ $Gray: #424242;
 .tools__title {
   font-size: 32px;
   padding: 0 0 8px;
-  margin: 0 0 40px;
+  margin: 0 0 30px;
   text-align: center;
   border-bottom: 1px solid $White;
 }
@@ -26,7 +25,7 @@ $Gray: #424242;
   width: 100%;
   gap: 20px;
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 .btn-text {
   flex: 1 1 50%;

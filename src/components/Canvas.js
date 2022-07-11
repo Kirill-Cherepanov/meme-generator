@@ -39,8 +39,10 @@ export default function Canvas({
 
   return (
     <div className="canvas">
-      <img src={templateData.url} alt="Template" className="canvas__img" />
-      {textBoxes}
+      <div className="canvas__container">
+        <img src={templateData.url} alt="Template" className="canvas__img" />
+        {textBoxes}
+      </div>
     </div>
   );
 }

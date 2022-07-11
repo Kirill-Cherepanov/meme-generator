@@ -2,24 +2,40 @@ $Blue: #4285F4;
 $White: #FFFFFF;
 $Gray: #424242;
 
+
 .canvas {
+  padding: 25px;
+  margin: 20px;
+
   padding-inline: 20px;
-  flex: 1 0 50%;
+  width: calc(50% - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.canvas__container {
+  display: flex;
+  position: relative;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .canvas__img {
-  width: 100%;
+  object-fit: contain;
+  width:100%;
+  height: 100%;
+  height:min-content;
+  -webkit-user-drag: none;
 }
 .canvas__text-box {
   position: absolute;
-  top: 0;
-  left: 20px;
-  background-color: $White;
-  width: 250px;
-  height: 50px;
-  line-height: 50px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  font-size: 24px;
+  width: 300px;
+  font-size: 32px;
+  font-weight: bold;
+  color: $White;
+  text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
 }
