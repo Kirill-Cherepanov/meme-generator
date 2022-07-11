@@ -17,7 +17,7 @@ const params = new URLSearchParams({
   text0: 'TEXT0',
   text1: 'TEXT1',
   username: 'KissMyUSSR1',
-  password: 'U7mzJ!28PpKhpnY'
+  password: process.env.REACT_APP_PASSWORD
 });
 
 // boxs height -- font size
