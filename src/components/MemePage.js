@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 const textBoxesExample = [
   // ...
@@ -25,8 +26,13 @@ const textBoxesExample = [
   // ...
 ];
 
-export default function MemePage({ imgPath, textBoxes = textBoxesExample }) {
+export default function MemePage({
+  children,
+  imgPath,
+  textBoxes = textBoxesExample
+}) {
   const [container, setContainer] = useState(null);
+  const newWindow = useRef(window);
 
   useEffect(() => {
     let isRelevant = true;
@@ -52,7 +58,17 @@ export default function MemePage({ imgPath, textBoxes = textBoxesExample }) {
     return () => (isRelevant = false);
   }, [imgPath, textBoxes]);
 
-  return container;
+  useEffect(() => {
+    if (!container) return;
+
+    newWindow.current = window.open();
+    newWindow.current.document.body.appendChild(container);
+
+    const curWindow = newWindow.current;
+    return () => curWindow.close();
+  }, [container]);
+
+  return container && createPortal(children, container);
 }
 
 async function getMemeURL(imgPath, textBoxes) {
@@ -71,5 +87,6 @@ async function getMemeURL(imgPath, textBoxes) {
   context.font = '18px sans-serif';
   context.fillText('TEXTEXTEXT', 50, 50);
 
+  console.log(canvas.toDataURL('image/png'));
   return canvas.toDataURL('image/png');
 }
