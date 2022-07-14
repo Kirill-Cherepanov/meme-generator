@@ -5,13 +5,21 @@ import './TemplateEditor.scss';
 import MemePage from './MemePage';
 import { useRef } from 'react';
 
-export default function TemplateEditor({ template }) {
-  const [selectedTextBox, selectTextBox] = useState();
+export default function TemplateEditor({ template, closeEditor }) {
+  const [, selectTextBox] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
-  const imageRef = useRef(null);
 
+  const imageRef = useRef(null);
   const image = <MemeImage imgURL={template.url} imageRef={imageRef} />;
   const imageSize = { width: template.width, height: template.height };
+
+  const [textBoxesData, setTextBoxesData] = useState([
+    {
+      x: 0,
+      y: 0
+    }
+  ]);
+  const handleChangePos = () => {};
 
   return (
     <>
@@ -22,8 +30,9 @@ export default function TemplateEditor({ template }) {
           handleModifySidebarParams={() => {}}
         />
         <ToolSidebar
-          selectedTextBoxInfo={selectedTextBox}
-          handleGenerateButtonClick={() => setMemeGenerated(true)}
+          // selectedTextBoxInfo={selectedTextBox}
+          generateMeme={() => setMemeGenerated(true)}
+          closeEditor={closeEditor}
         />
         {memeGenerated ? (
           <MemePage

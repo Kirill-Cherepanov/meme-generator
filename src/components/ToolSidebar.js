@@ -5,7 +5,8 @@ import './ToolSidebar.scss';
 
 export default function ToolSidebar({
   selectedTextBoxInfo,
-  handleGenerateButtonClick
+  generateMeme,
+  closeEditor
 }) {
   return (
     <div className="tools">
@@ -15,7 +16,7 @@ export default function ToolSidebar({
           buttonStyle="option"
           buttonSize="M"
           className="btn-template"
-          clickHandler={() => {}}
+          clickHandler={closeEditor}
         >
           CHANGE TEMPLATE
         </StyledButton>
@@ -33,7 +34,7 @@ export default function ToolSidebar({
         buttonStyle="primary"
         buttonSize="L"
         className="btn-generate"
-        clickHandler={handleGenerateButtonClick}
+        clickHandler={generateMeme}
       >
         GENERATE MEME
       </StyledButton>

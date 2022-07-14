@@ -11,6 +11,7 @@ const API_URL = 'https://api.imgflip.com/get_memes';
 
 function App() {
   const [isPopularMemesOpen, setPopularsMemesOpen] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [template, setTemplate] = useState();
   const [memes, setMemes] = useState(getTemplatesExample());
 
@@ -18,7 +19,12 @@ function App() {
   const closePopularMemes = () => setPopularsMemesOpen(false);
   const chooseMemesHandler = (meme) => {
     setTemplate(meme);
+    setIsEditorOpen(true);
     setPopularsMemesOpen(false);
+  };
+  const closeEditor = () => {
+    setTemplate(undefined);
+    setIsEditorOpen(false);
   };
 
   // useEffect(() => {
@@ -32,8 +38,8 @@ function App() {
 
   return (
     <>
-      {template ? (
-        <TemplateEditor template={template} />
+      {isEditorOpen ? (
+        <TemplateEditor template={template} closeEditor={closeEditor} />
       ) : (
         <TemplateChoose openPopularMemes={openPopularMemes} />
       )}
