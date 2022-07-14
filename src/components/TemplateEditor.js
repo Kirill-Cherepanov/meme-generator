@@ -11,6 +11,7 @@ export default function TemplateEditor({ template }) {
   const imageRef = useRef(null);
 
   const image = <MemeImage imgURL={template.url} imageRef={imageRef} />;
+  const imageSize = { width: template.width, height: template.height };
 
   return (
     <>
@@ -24,7 +25,13 @@ export default function TemplateEditor({ template }) {
           selectedTextBoxInfo={selectedTextBox}
           handleGenerateButtonClick={() => setMemeGenerated(true)}
         />
-        {memeGenerated ? <MemePage image={imageRef.current} /> : undefined}
+        {memeGenerated ? (
+          <MemePage
+            image={imageRef.current}
+            imageSize={imageSize}
+            handleCloseButtonClick={() => setMemeGenerated(false)}
+          />
+        ) : undefined}
       </div>
     </>
   );
