@@ -1,0 +1,33 @@
+footer {
+  padding: 24px 20px;
+}
+footer ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+footer ul li:first-of-type {
+  color: var(--secondary-color);
+  font-weight: 800;
+  font-size: 40px;
+  font-style: italic;
+}
+li.footer-item a img {
+  height: 48px;
+  padding: 0 8px;
+}
+
+/* Selection modification */
+.me *::selection,  .education-and-languages *::selection {
+  background-color: var(--primary-color);
+}
+.my-abilities *::selection, footer *::selection {
+  background-color: var(--third-color);
+}
+img {
+  -moz-user-select: none;
+  -o-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

@@ -4,6 +4,7 @@ import 'normalize.css';
 import TemplateChoose from './components/TemplateChoose';
 import PopularMemes from './components/PopularMemes';
 import TemplateEditor from './components/TemplateEditor';
+import Footer from './components/Footer';
 
 const AMOUNT_OF_FETCHED_MEMES = 10;
 const API_URL = 'https://api.imgflip.com/get_memes';
@@ -45,7 +46,7 @@ function App() {
         />
       ) : undefined}
 
-      {/* <Footer />*/}
+      <Footer />
     </>
   );
 }
