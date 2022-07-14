@@ -7,7 +7,7 @@ import './Canvas.scss';
 // Should not be allowed to exit the canvas
 
 export default function Canvas({
-  templateData,
+  image,
   handleSelection,
   handleModifySidebarParams
 }) {
@@ -20,14 +20,14 @@ export default function Canvas({
   const [x, setX] = useState();
   const [y, setY] = useState();
 
-  const textBoxes = Array(templateData.box_count)
-    .fill(0)
-    .map((item, index) => (
-      <TextBox
-        key={index}
-        innerRef={(element) => textBoxRefs.current.push(element)}
-      />
-    ));
+  // const textBoxes = Array(templateData.box_count)
+  //   .fill(0)
+  //   .map((item, index) => (
+  //     <TextBox
+  //       key={index}
+  //       innerRef={(element) => textBoxRefs.current.push(element)}
+  //     />
+  //   ));
 
   const setPosition = (textBoxRef) => {
     // it might be index of textBoxRefs intead of textBoxRef
@@ -45,8 +45,8 @@ export default function Canvas({
   return (
     <div className="canvas">
       <div className="canvas__container">
-        <img src={templateData.url} alt="Template" className="canvas__img" />
-        {textBoxes}
+        {image}
+        {/* {textBoxes} */}
       </div>
     </div>
   );
