@@ -12,6 +12,8 @@ $Gray: #424242;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  overflow: hidden;
 }
 .canvas__container {
   display: flex;

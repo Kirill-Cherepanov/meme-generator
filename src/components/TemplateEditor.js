@@ -17,9 +17,16 @@ export default function TemplateEditor({ template, closeEditor }) {
 
   const [textBoxesData, setTextBoxesData] = useState([
     {
+      text: 'WRITE YOUR TEXT HERE',
       x: 0,
       y: 0,
-      height: 50
+      height: 50,
+      width: 400,
+      color: '#FFFFFF',
+      outlineColor: '#000000',
+      backgroundColor: 'transparent',
+      fontSize: '32px',
+      fontFamily: 'Roboto'
     }
   ]);
 

@@ -43,7 +43,13 @@ export default function TextBoxModify({ selectedIndex }) {
       <ul className="tools__modify-text-box">
         <li className="tools__text-box-setting">
           <label htmlFor="color">Text color</label>
-          <input type="color" className="tools__change-color" id="color" />
+          <input
+            type="color"
+            value="#FFFFFF"
+            onInput={() => {}}
+            className="tools__change-color"
+            id="color"
+          />
         </li>
 
         <li className="tools__text-box-setting">

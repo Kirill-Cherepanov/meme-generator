@@ -29,7 +29,18 @@ export default function ToolSidebar({
           className="btn-text"
           clickHandler={() => {
             const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-            newTextBoxesData[textBoxesData.length] = { x: 0, y: 0, height: 50 };
+            newTextBoxesData[textBoxesData.length] = {
+              text: 'WRITE YOUR TEXT HERE',
+              x: 0,
+              y: 0,
+              height: 50,
+              width: 400,
+              color: '#FFFFFF',
+              outlineColor: '#000000',
+              backgroundColor: 'transparent',
+              fontSize: '32px',
+              fontFamily: 'Roboto'
+            };
             setTextBoxesData(newTextBoxesData);
           }}
         >
