@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import Canvas from './Canvas';
 import ToolSidebar from './ToolSidebar';
 import './TemplateEditor.scss';
 import MemePage from './MemePage';
 import { useRef } from 'react';
 
+export const TextBoxContext = createContext([]);
+
 export default function TemplateEditor({ template, closeEditor }) {
-  const [, selectTextBox] = useState();
+  const [selectedTextBox, setSelectedTextBox] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
 
   const imageRef = useRef(null);
@@ -16,33 +18,33 @@ export default function TemplateEditor({ template, closeEditor }) {
   const [textBoxesData, setTextBoxesData] = useState([
     {
       x: 0,
-      y: 0
+      y: 0,
+      height: 50
     }
   ]);
-  const handleChangePos = () => {};
 
   return (
-    <>
+    <TextBoxContext.Provider value={{ textBoxesData, setTextBoxesData }}>
       <div className="template-editor">
         <Canvas
           image={image}
-          handleSelection={selectTextBox}
+          handleSelection={setSelectedTextBox}
           handleModifySidebarParams={() => {}}
         />
         <ToolSidebar
-          // selectedTextBoxInfo={selectedTextBox}
+          selectedTextBox={selectedTextBox}
           generateMeme={() => setMemeGenerated(true)}
           closeEditor={closeEditor}
         />
-        {memeGenerated ? (
+        {memeGenerated && (
           <MemePage
             image={imageRef.current}
             imageSize={imageSize}
             handleCloseButtonClick={() => setMemeGenerated(false)}
           />
-        ) : undefined}
+        )}
       </div>
-    </>
+    </TextBoxContext.Provider>
   );
 }
 

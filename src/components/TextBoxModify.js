@@ -1,30 +1,40 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './TextBoxModify.scss';
+import { TextBoxContext } from './TemplateEditor';
 
 const MAX_POS = 9999;
 const MAX_SIZE = 9999;
 
-export default function TextBoxModify({ selectedTextBoxInfo }) {
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
-  const [width, setWidth] = useState(200);
-  const [height, setHeight] = useState(100);
+export default function TextBoxModify({ selectedIndex }) {
+  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+  const selectedTextBox = textBoxesData[selectedIndex];
 
+  const updateData = () => {
+    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+    newTextBoxesData[selectedIndex] = selectedTextBox;
+    setTextBoxesData(newTextBoxesData);
+  };
   const checkX = (e) => {
-    if (e.target.value > MAX_POS) return (e.target.value = x);
-    setX(e.target.value);
+    if (e.target.value > MAX_POS) return (e.target.value = selectedTextBox.x);
+    selectedTextBox.x = Number(e.target.value);
+    updateData();
   };
   const checkY = (e) => {
-    if (e.target.value > MAX_POS) return (e.target.value = y);
-    setY(e.target.value);
+    if (e.target.value > MAX_POS) return (e.target.value = selectedTextBox.y);
+    selectedTextBox.y = Number(e.target.value);
+    updateData();
   };
   const checkWidth = (e) => {
-    if (e.target.value > MAX_SIZE) return (e.target.value = width);
-    setWidth(e.target.value);
+    if (e.target.value > MAX_SIZE)
+      return (e.target.value = selectedTextBox.width);
+    selectedTextBox.width = Number(e.target.value);
+    updateData();
   };
   const checkHeight = (e) => {
-    if (e.target.value > MAX_SIZE) return (e.target.value = height);
-    setHeight(e.target.value);
+    if (e.target.value > MAX_SIZE)
+      return (e.target.value = selectedTextBox.height);
+    selectedTextBox.height = Number(e.target.value);
+    updateData();
   };
 
   return (
@@ -45,7 +55,7 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
           <label htmlFor="X-pos">X position</label>
           <input
             type="number"
-            value={x}
+            value={selectedTextBox.x}
             onInput={checkX}
             className="tools__change-X-pos"
             id="X-pos"
@@ -56,7 +66,7 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
           <label htmlFor="Y-pos">Y position</label>
           <input
             type="number"
-            value={y}
+            value={selectedTextBox.y}
             onInput={checkY}
             className="tools__change-Y-pos"
             id="Y-pos"
@@ -67,7 +77,7 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
           <label htmlFor="height">Height</label>
           <input
             type="number"
-            value={height}
+            value={selectedTextBox.height}
             onInput={checkHeight}
             className="tools__change-height"
             id="height"
@@ -78,7 +88,7 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
           <label htmlFor="width">Width</label>
           <input
             type="number"
-            value={width}
+            value={selectedTextBox.width}
             onInput={checkWidth}
             className="tools__change-width"
             id="width"
@@ -88,8 +98,3 @@ export default function TextBoxModify({ selectedTextBoxInfo }) {
     </>
   );
 }
-
-//   Change color
-//   Change outline color
-//   Position (it'll be dragable it will show the position here)
-//   Width, height

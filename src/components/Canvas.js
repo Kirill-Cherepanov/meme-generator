@@ -1,37 +1,52 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Rnd } from 'react-rnd';
 import './Canvas.scss';
+import { TextBoxContext } from './TemplateEditor';
 
-// Should keep track of TextBox position relative to canvas and send it to ->App->ToolSidebar
-// Should keep track of TextBox width and send it to ->App->ToolSidebar
-// Should not be allowed to exit the canvas
+export default function Canvas({ image, handleSelection }) {
+  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+  // console.log(textBoxesData);
 
-export default function Canvas({
-  image,
-  handleSelection,
-  handleChangePos,
-  handleModifySidebarParams
-}) {
-  // const [x, setX] = useState();
-  // const [y, setY] = useState();
-
-  // const setPosition = (textBoxRef) => {
-  //   // it might be index of textBoxRefs intead of textBoxRef
-  //   const x = textBoxRef.current.offsetLeft;
-  //   const y = textBoxRef.current.offsetTop;
-  //   setX(x);
-  //   setY(y);
-  //   handleModifySidebarParams();
-  // };
-
-  const textBoxes = (
-    <Rnd className="canvas__text-box" contentEditable={true}>
-      WRITE YOUR TEXT HERE
-    </Rnd>
-  );
-  useEffect(() => {
-    // on dragging or resizing setPosition()
-  }, []);
+  const textBoxes = textBoxesData.map((textBoxData, index) => {
+    return (
+      <Rnd
+        key={index} // We are using index because data is dynamic
+        className="canvas__text-box"
+        contentEditable={true}
+        suppressContentEditableWarning={true} // Убрать если будут баги!
+        position={{
+          x: textBoxData.x,
+          y: textBoxData.y
+        }}
+        size={{
+          width: textBoxData.width,
+          height: textBoxData.height
+        }}
+        onDragStart={(e, d) => {
+          handleSelection(index);
+        }}
+        onResizeStart={(e, d) => {
+          handleSelection(index);
+        }}
+        onDrag={(e, d) => {
+          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+          newTextBoxesData[index].x = d.x;
+          newTextBoxesData[index].y = d.y;
+          setTextBoxesData(newTextBoxesData);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+          newTextBoxesData[index].width = ref.offsetWidth;
+          newTextBoxesData[index].height = ref.offsetHeight;
+          newTextBoxesData[index].x = position.x;
+          newTextBoxesData[index].y = position.y;
+          setTextBoxesData(newTextBoxesData);
+        }}
+      >
+        WRITE YOUR TEXT HERE
+      </Rnd>
+    );
+  });
 
   return (
     <div className="canvas">

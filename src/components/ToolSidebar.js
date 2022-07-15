@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import StyledButton from './StyledButton';
 import TextBoxModify from './TextBoxModify';
 import './ToolSidebar.scss';
+import { TextBoxContext } from './TemplateEditor';
 
 export default function ToolSidebar({
-  selectedTextBoxInfo,
+  selectedTextBox,
   generateMeme,
   closeEditor
 }) {
+  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+
   return (
     <div className="tools">
       <h2 className="tools__title">MEME EDITOR</h2>
@@ -24,12 +27,18 @@ export default function ToolSidebar({
           buttonStyle="option"
           buttonSize="M"
           className="btn-text"
-          clickHandler={() => {}}
+          clickHandler={() => {
+            const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+            newTextBoxesData[textBoxesData.length] = { x: 0, y: 0, height: 50 };
+            setTextBoxesData(newTextBoxesData);
+          }}
         >
           ADD TEXT
         </StyledButton>
       </div>
-      <TextBoxModify {...selectedTextBoxInfo} />
+      {selectedTextBox !== undefined && (
+        <TextBoxModify selectedIndex={selectedTextBox} />
+      )}
       <StyledButton
         buttonStyle="primary"
         buttonSize="L"
