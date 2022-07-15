@@ -2,39 +2,41 @@ import React, { useContext } from 'react';
 import './TextBoxModify.scss';
 import { TextBoxContext } from './TemplateEditor';
 
-const MAX_POS = 9999;
-const MAX_SIZE = 9999;
+// const MAX_POS = 9999;
+// const MAX_SIZE = 9999;
+// const MAX_FONT_SIZE = 1024;
+
+function isNumeric(str) {
+  if (typeof str != 'string') return false;
+  return !isNaN(str) && !isNaN(parseFloat(str));
+}
+
+const MAX_VALUES = {
+  x: 9999,
+  y: 9999,
+  height: 9999,
+  width: 9999,
+  fontSize: 1024
+};
 
 export default function TextBoxModify({ selectedIndex }) {
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
   const selectedTextBox = textBoxesData[selectedIndex];
 
-  const updateData = () => {
+  const updateValue = (e) => {
+    const type = e.target.dataset.type;
+    const value = isNumeric(e.target.value)
+      ? Number(e.target.value)
+      : e.target.value;
+
+    if (MAX_VALUES[type] !== undefined && MAX_VALUES[type] < value) {
+      e.target.value = selectedTextBox[type];
+      return;
+    }
+
     const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-    newTextBoxesData[selectedIndex] = selectedTextBox;
+    newTextBoxesData[selectedIndex][type] = value;
     setTextBoxesData(newTextBoxesData);
-  };
-  const checkX = (e) => {
-    if (e.target.value > MAX_POS) return (e.target.value = selectedTextBox.x);
-    selectedTextBox.x = Number(e.target.value);
-    updateData();
-  };
-  const checkY = (e) => {
-    if (e.target.value > MAX_POS) return (e.target.value = selectedTextBox.y);
-    selectedTextBox.y = Number(e.target.value);
-    updateData();
-  };
-  const checkWidth = (e) => {
-    if (e.target.value > MAX_SIZE)
-      return (e.target.value = selectedTextBox.width);
-    selectedTextBox.width = Number(e.target.value);
-    updateData();
-  };
-  const checkHeight = (e) => {
-    if (e.target.value > MAX_SIZE)
-      return (e.target.value = selectedTextBox.height);
-    selectedTextBox.height = Number(e.target.value);
-    updateData();
   };
 
   return (
@@ -45,8 +47,9 @@ export default function TextBoxModify({ selectedIndex }) {
           <label htmlFor="color">Text color</label>
           <input
             type="color"
-            value="#FFFFFF"
-            onInput={() => {}}
+            data-type="color"
+            value={selectedTextBox.color}
+            onInput={updateValue}
             className="tools__change-color"
             id="color"
           />
@@ -54,15 +57,23 @@ export default function TextBoxModify({ selectedIndex }) {
 
         <li className="tools__text-box-setting">
           <label htmlFor="outline">Outline color</label>
-          <input type="color" className="tools__change-outline" id="outline" />
+          <input
+            type="color"
+            data-type="outlineColor"
+            value={selectedTextBox.outlineColor}
+            onInput={updateValue}
+            className="tools__change-outline"
+            id="outline"
+          />
         </li>
 
         <li className="tools__text-box-setting">
           <label htmlFor="X-pos">X position</label>
           <input
             type="number"
+            data-type="x"
             value={selectedTextBox.x}
-            onInput={checkX}
+            onInput={updateValue}
             className="tools__change-X-pos"
             id="X-pos"
           />
@@ -72,8 +83,9 @@ export default function TextBoxModify({ selectedIndex }) {
           <label htmlFor="Y-pos">Y position</label>
           <input
             type="number"
+            data-type="y"
             value={selectedTextBox.y}
-            onInput={checkY}
+            onInput={updateValue}
             className="tools__change-Y-pos"
             id="Y-pos"
           />
@@ -83,8 +95,9 @@ export default function TextBoxModify({ selectedIndex }) {
           <label htmlFor="height">Height</label>
           <input
             type="number"
+            data-type="height"
             value={selectedTextBox.height}
-            onInput={checkHeight}
+            onInput={updateValue}
             className="tools__change-height"
             id="height"
           />
@@ -94,10 +107,62 @@ export default function TextBoxModify({ selectedIndex }) {
           <label htmlFor="width">Width</label>
           <input
             type="number"
+            data-type="width"
             value={selectedTextBox.width}
-            onInput={checkWidth}
+            onInput={updateValue}
             className="tools__change-width"
             id="width"
+          />
+        </li>
+
+        <li className="tools__text-box-setting">
+          <label htmlFor="font-size">Font size (px)</label>
+          <input
+            type="number"
+            data-type="fontSize"
+            value={selectedTextBox.fontSize}
+            onInput={updateValue}
+            className="tools__change-width"
+            id="font-size"
+          />
+        </li>
+
+        <li className="tools__text-box-setting">
+          <label htmlFor="font-family">Font family</label>
+          <input
+            type="text"
+            data-type="fontFamily"
+            value={selectedTextBox.fontFamily}
+            onInput={updateValue}
+            className="tools__change-width"
+            id="font-family"
+          />
+        </li>
+
+        <li className="tools__text-box-setting">
+          <label htmlFor="background-color">Background color</label>
+          <input
+            type="color"
+            data-type="backgroundColor"
+            value={selectedTextBox.backgroundColor}
+            onInput={updateValue}
+            className="tools__change-width"
+            id="background-color"
+          />
+        </li>
+
+        <li className="tools__text-box-setting">
+          <label htmlFor="background-opacity">Background opacity</label>
+          <input
+            type="range"
+            data-type="backgroundOpacity"
+            value={selectedTextBox.backgroundOpacity}
+            onInput={updateValue}
+            min="0"
+            max="1"
+            step="0.01"
+            className="tools__change-width"
+            id="background-opacity"
           />
         </li>
       </ul>

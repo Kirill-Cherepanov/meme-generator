@@ -19,6 +19,19 @@ export default function TextBox({ index, handleSelection }) {
     <Rnd
       className="canvas__text-box"
       bounds="parent"
+      style={{
+        color: textBoxData.color,
+
+        textShadow: `${textBoxData.outlineColor} -1px 0px, ${textBoxData.outlineColor} 0px 1px, ${textBoxData.outlineColor} 1px 0px, ${textBoxData.outlineColor} 0px -1px`,
+
+        backgroundColor:
+          `rgba(${hexToRgb(textBoxData.backgroundColor)}, ` +
+          `${textBoxData.backgroundOpacity})`,
+
+        fontSize: `${textBoxData.fontSize}px`,
+
+        fontFamily: textBoxData.fontFamily
+      }}
       position={{
         x: textBoxData.x,
         y: textBoxData.y
@@ -69,6 +82,16 @@ export default function TextBox({ index, handleSelection }) {
         {textBoxData.text}
       </span>
     </Rnd>
+  );
+}
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!result) return;
+  return (
+    `${parseInt(result[1], 16)}, ` +
+    `${parseInt(result[2], 16)}, ` +
+    `${parseInt(result[3], 16)}`
   );
 }
 

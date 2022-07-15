@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import StyledButton from './StyledButton';
 import TextBoxModify from './TextBoxModify';
 import './ToolSidebar.scss';
-import { TextBoxContext } from './TemplateEditor';
+import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from './TemplateEditor';
 
 export default function ToolSidebar({
   selectedTextBox,
@@ -29,18 +29,7 @@ export default function ToolSidebar({
           className="btn-text"
           clickHandler={() => {
             const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-            newTextBoxesData[textBoxesData.length] = {
-              text: 'WRITE YOUR TEXT HERE',
-              x: 0,
-              y: 0,
-              height: 50,
-              width: 400,
-              color: '#FFFFFF',
-              outlineColor: '#000000',
-              backgroundColor: 'transparent',
-              fontSize: '32px',
-              fontFamily: 'Roboto'
-            };
+            newTextBoxesData[textBoxesData.length] = DEFAULT_TEXT_BOXES_DATA;
             setTextBoxesData(newTextBoxesData);
           }}
         >
