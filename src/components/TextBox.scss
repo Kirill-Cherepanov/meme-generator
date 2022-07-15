@@ -1,0 +1,35 @@
+$Blue: #4285F4;
+$White: #FFFFFF;
+$Gray: #424242;
+
+.canvas__text-box {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 300px;
+
+  font-size: 32px;
+  font-weight: bold;
+  color: $White;
+  text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
+
+  &:hover .canvas__editable-text,
+  .canvas__editable-text:focus {
+    margin: -1px;
+    width: calc(100% + 2px);
+    outline: none;
+    border: 1px solid $Gray;
+    outline: 1px solid $White;
+  }
+}
+.canvas__editable-text {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  &:focus {
+    outline: none;
+  }
+}

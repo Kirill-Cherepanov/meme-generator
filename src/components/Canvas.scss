@@ -2,7 +2,6 @@ $Blue: #4285F4;
 $White: #FFFFFF;
 $Gray: #424242;
 
-
 .canvas {
   padding: 25px;
   margin: 20px;
@@ -28,17 +27,4 @@ $Gray: #424242;
   height: 100%;
   height:min-content;
   -webkit-user-drag: none;
-}
-.canvas__text-box {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 300px;
-
-  font-size: 32px;
-  font-weight: bold;
-  color: $White;
-  text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
 }

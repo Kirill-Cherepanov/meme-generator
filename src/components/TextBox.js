@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { TextBoxContext } from './TemplateEditor';
 import { Rnd } from 'react-rnd';
+import './TextBox.scss';
 
 export default function TextBox({ index, handleSelection }) {
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
@@ -10,16 +11,13 @@ export default function TextBox({ index, handleSelection }) {
   const caretPos = useRef();
 
   useEffect(() => {
-    setCaret(contentRef.current.resizableElement.current, caretPos.current);
-    contentRef.current.resizableElement.current.focus();
+    setCaret(contentRef.current, caretPos.current);
+    contentRef.current.focus();
   }, [textBoxData.text]);
 
   return (
     <Rnd
-      ref={contentRef}
       className="canvas__text-box"
-      contentEditable={true}
-      suppressContentEditableWarning={true}
       bounds="parent"
       position={{
         x: textBoxData.x,
@@ -49,21 +47,33 @@ export default function TextBox({ index, handleSelection }) {
         newTextBoxesData[index].y = position.y;
         setTextBoxesData(newTextBoxesData);
       }}
-      onInput={(e) => {
-        caretPos.current = getCaret(
-          contentRef.current.resizableElement.current
-        );
-
-        const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-        newTextBoxesData[index].text = e.target.textContent;
-        setTextBoxesData(newTextBoxesData);
-      }}
     >
-      {textBoxData.text}
+      <span
+        ref={contentRef}
+        className="canvas__editable-text"
+        contentEditable={true}
+        suppressContentEditableWarning={true}
+        onInput={(e) => {
+          caretPos.current = getCaret(contentRef.current);
+
+          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+
+          if (!e.target.textContent) {
+            e.target.textContent = ' ';
+            newTextBoxesData[index].text = e.target.textContent;
+          } else newTextBoxesData[index].text = e.target.textContent;
+
+          setTextBoxesData(newTextBoxesData);
+        }}
+      >
+        {textBoxData.text}
+      </span>
     </Rnd>
   );
 }
 
+// There was a bug when onInput inside Rnd caret was constantly put at the end of text
+// This is the fix for it
 function getCaret(el) {
   let caretAt = 0;
   const sel = window.getSelection();
