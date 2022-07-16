@@ -6,39 +6,47 @@ import vkIcon from '../icons/icon-vk.png';
 
 export default function Footer() {
   return (
-    <footer>
-      <ul>
-        <li className="footer-item">2022</li>
-        <li className="footer-item">Kirill Cherepanov</li>
-        <li className="footer-item">
-          <span className="footer-item">
+    <footer className="footer">
+      <ul className="footer__container">
+        <li className="footer__item footer__year">2022</li>
+        <li className="footer__item footer__name">Kirill Cherepanov</li>
+        <li className="footer__item footer__links">
+          <span className="footer__icon">
             <a
-              className="footer-vk"
+              className="footer__vk"
               href="https://vk.com/kcherepanov1/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={vkIcon} alt="icon-vk.png" />
+              <img src={vkIcon} className="footer_link-img" alt="icon-vk.png" />
             </a>
           </span>
-          <span className="footer-item">
+          <span className="footer__icon">
             <a
-              className="footer-gh"
+              className="footer__gh"
               href="https://github.com/kissMyUSSR/"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={ghIcon} alt="icon-github.png" />
+              <img
+                src={ghIcon}
+                className="footer_link-img"
+                alt="icon-github.png"
+              />
             </a>
           </span>
-          <span className="footer-item">
+          <span className="footer__icon">
             <a
-              className="footer-ds"
+              className="footer__ds"
               href="https://discordapp.com/users/292300959265062922"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={dsIcon} alt="icon discord" />
+              <img
+                src={dsIcon}
+                className="footer_link-img"
+                alt="icon discord"
+              />
             </a>
           </span>
         </li>

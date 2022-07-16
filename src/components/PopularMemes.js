@@ -26,10 +26,16 @@ export default function PopularMemes({
 
   return (
     <div className="template-menu">
-      <h2 className="template-menu__title">Select meme template</h2>
-      <button className="template-menu__close-menu" onClick={closeMenuHandler}>
-        &times;
-      </button>
+      <div className="template-menu__header">
+        <h2 className="template-menu__title">Select meme template</h2>
+        <button
+          className="template-menu__close-menu"
+          onClick={closeMenuHandler}
+        >
+          &times;
+        </button>
+      </div>
+
       <div className="template-menu__meme-container">{memeElements}</div>
     </div>
   );

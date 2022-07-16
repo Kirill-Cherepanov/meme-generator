@@ -1,34 +1,32 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #525252;
+@use '../main.scss' as m;
 
 .btn--primary {
-  background-color: $Blue;
-  color: $White;
+  background-color: m.$MainColor;
+  color: m.$SecondaryColor;
   border: none;
   transition: background-color 0.5s ease-out;
   cursor: pointer;
   &:hover {
-    background-color: lighten($Blue, 15%);
+    background-color: lighten(m.$MainColor, 15%);
   }
   font-weight: 600;
 }
 .btn--secondary {
-  background-color: $Gray;
-  color: $White;
+  background-color: m.$ThirdColor;
+  color: m.$SecondaryColor;
   border: none;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
   &:hover {
-    background-color: lighten($Gray, 15%);
+    background-color: lighten(m.$ThirdColor, 15%);
   }
   font-weight: 600;
 }
 .btn--option {
-  color: darken($Blue, 30%);
+  color: darken(m.$MainColor, 30%);
   cursor: pointer;
   font-weight: bold;
-  background-color: $White;
+  background-color: m.$SecondaryColor;
   border: none;
   position: relative;
   display: inline-flex;

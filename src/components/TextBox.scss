@@ -1,6 +1,4 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #424242;
+@use '../main.scss' as m;
 
 .canvas__text-box {
   position: absolute;
@@ -11,7 +9,7 @@ $Gray: #424242;
   width: 300px;
 
   font-size: 32px;
-  color: $White;
+  color: m.$SecondaryColor;
   // text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
 
   &:hover .canvas__editable-text,
@@ -19,8 +17,8 @@ $Gray: #424242;
     margin: -1px;
     width: calc(100% + 2px);
     outline: none;
-    border: 1px solid $Gray;
-    outline: 1px solid $White;
+    border: 1px solid m.$ThirdColor;
+    outline: 1px solid m.$SecondaryColor;
   }
 }
 .canvas__editable-text {

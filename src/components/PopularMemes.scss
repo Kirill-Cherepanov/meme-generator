@@ -1,20 +1,19 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #525252;
+@use '../main.scss' as m;
 
 .template-menu {
-  padding: 20px;
-  width: 80%;
-  height: 90%;
-  overflow-y: scroll;
   position: absolute;
+  padding: 20px;
+  padding-top: 0;
+  width: 80%;
+  height: 80%;
   top: 5%;
   left: 10%;
   z-index: 1;
   margin-block: auto;
-  background-color: $Gray;
-  color: $White;
+  background-color: m.$ThirdColor;
+  color: m.$SecondaryColor;
   border-radius: 5px;
+  overflow-y: scroll;
   
   &::-webkit-scrollbar {
     width: 10px;
@@ -22,17 +21,26 @@ $Gray: #525252;
   }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
-    background: $Gray;
+    background: m.$ThirdColor;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: $White;
+    background-color: m.$SecondaryColor;
     box-shadow: inset 0 0 1px 1px #646464;
   }
 }
 
+.template-menu__header {
+  padding: 15px;
+  background-color: m.$ThirdColor;
+  z-index: 1;
+  height: 60px;
+  width: calc(80% - 40px);
+  position: fixed;
+}
+
 .template-menu__title {
-  margin-top: 0;
+  margin: 0;
   text-align: center;
   font-size: 30px;
 }
@@ -45,18 +53,19 @@ $Gray: #525252;
   width: 35px;
   height: 35px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 13px;
+  right: 0;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease-out;
   &:hover {
-    background-color: $Gray;
-    color: $White;
+    background-color: m.$ThirdColor;
+    color: m.$SecondaryColor;
   }
 }
 
 .template-menu__meme-container {
+  margin-top: 80px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -65,7 +74,7 @@ $Gray: #525252;
 }
 
 .template-menu__meme {
-  background-color: darken($Gray, 1.5%);
+  background-color: darken(m.$ThirdColor, 1.5%);
   padding: 15px 10px;
   width: 100%;
   margin: 0;
@@ -76,8 +85,7 @@ $Gray: #525252;
   transition: all 0.3s ease-out;
   border-radius: 5px;
   &:hover {
-    background-color: lighten($Gray, 10%);
-    box-shadow: 0 0 3px 3px lighten($Gray, 10%);
+    background-color: lighten(m.$ThirdColor, 10%);
     transform: scale(1.05);
   }
 }

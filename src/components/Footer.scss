@@ -1,33 +1,35 @@
-footer {
-  padding: 24px 20px;
+.footer {
+  width: 100%;
+  padding: 24px 36px;
 }
-footer ul {
+.footer__container {
+  margin: 0;
+  padding: 0;
   list-style-type: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
-footer ul li:first-of-type {
-  color: var(--secondary-color);
+.footer__item {
+  flex-basis: 200px;
+  flex-grow: 1;
+  text-align: center;
+}
+.footer__name {
+  font-size: 22px;
+  font-style: italic;
+  
+}
+.footer__year {
   font-weight: 800;
   font-size: 40px;
   font-style: italic;
+  text-align: left;
 }
-li.footer-item a img {
+.footer__links {
+  text-align: right;
+}
+.footer_link-img{
   height: 48px;
   padding: 0 8px;
-}
-
-/* Selection modification */
-.me *::selection,  .education-and-languages *::selection {
-  background-color: var(--primary-color);
-}
-.my-abilities *::selection, footer *::selection {
-  background-color: var(--third-color);
-}
-img {
-  -moz-user-select: none;
-  -o-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }

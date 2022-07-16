@@ -1,15 +1,13 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #424242;
+@use '../main.scss' as m;
 
 .tools {
   border-radius: 10px;
-  background-color: $Blue;
+  background-color: m.$MainColor;
   padding: 30px;
   width: calc(50% - 60px);
   max-width: 500px;
-  color: $White;
-  box-shadow: 5px 5px 20px 0 darken($Blue, 30%);
+  color: m.$SecondaryColor;
+  box-shadow: 5px 5px 20px 0 darken(m.$MainColor, 30%);
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -19,7 +17,7 @@ $Gray: #424242;
   padding: 0 0 8px;
   margin: 0 0 30px;
   text-align: center;
-  border-bottom: 1px solid $White;
+  border-bottom: 1px solid m.$SecondaryColor;
 }
 .tools__main-buttons {
   width: 100%;
@@ -41,6 +39,6 @@ $Gray: #424242;
   margin: auto auto 0;
   font-weight: 1000;
   font-size: 18px;
-  color: darken($Blue, 30%);
-  background-color: $White;
+  color: darken(m.$MainColor, 30%);
+  background-color: m.$SecondaryColor;
 }

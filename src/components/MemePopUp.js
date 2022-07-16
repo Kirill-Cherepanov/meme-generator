@@ -4,8 +4,17 @@ import StyledButton from './StyledButton';
 import { TextBoxContext } from './TemplateEditor';
 import './MemePopUp.scss';
 
-const fillTextIntoCanvas = (context, textBoxData, text, y) => {
-  let { x, width, color, outlineColor, fontSize, fontFamily } = textBoxData;
+const fillBackgroundIntoCanvas = (context, textBoxData) => {
+  let { x, y, width, height, backgroundColor, backgroundOpacity } = textBoxData;
+
+  context.fillStyle = backgroundColor;
+  context.globalAlpha = backgroundOpacity;
+  context.fillRect(x, y, width, height);
+  context.globalAlpha = 1.0;
+};
+
+const fillTextIntoCanvas = (context, boxData, text, y) => {
+  let { x, width, color, outlineColor, fontSize, fontFamily } = boxData;
 
   // Need to add 5 to x and y due to specifics of Rnd component.
   // It adds a div for resizing on top with height of 10px
@@ -19,20 +28,13 @@ const fillTextIntoCanvas = (context, textBoxData, text, y) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign#result
   context.textAlign = 'center';
   x += width / 2;
-
   context.textBaseline = 'top';
 
-  const outlineWidth = 1; // It's constant for now
-  const font = fontSize + 'px ' + fontFamily;
-
-  context.shadowColor = outlineColor;
+  context.font = fontSize + 'px ' + fontFamily;
   context.lineWidth = 2; // 1 was almost non-existent smh
+  context.shadowColor = outlineColor;
   context.strokeText(text, x, y);
-
-  context.lineWidth = outlineWidth;
   context.fillStyle = color;
-  context.lineStyle = outlineColor;
-  context.font = font;
   context.fillText(text, x, y);
 };
 
@@ -63,6 +65,9 @@ export default function MemePage({ image, handleCloseButtonClick }) {
         backgroundOpacity: textBoxData.backgroundOpacity,
         backgroundColor: textBoxData.backgroundColor
       };
+
+      fillBackgroundIntoCanvas(context, textBoxData);
+
       const boundFillTextIntoCanvas = fillTextIntoCanvas.bind(
         this,
         context,
@@ -131,9 +136,10 @@ function addText(context, textBoxData, fillTextIntoCanvas) {
           lineHeight,
           fillTextIntoCanvas
         );
+
         y = newY;
-        currentLine = newLine + ' ';
-        isFirstInLine = true;
+        currentLine = newLine ? newLine + ' ' : '';
+        isFirstInLine = !newLine;
       } else if (context.measureText(currentLine + ' ' + word).width > width) {
         fillTextIntoCanvas(currentLine, y);
         y += lineHeight;
@@ -172,5 +178,5 @@ function printHugeWord(
     }
   }
 
-  return { newY: y + lineHeight, newLine: word };
+  return { newY: y, newLine: word };
 }

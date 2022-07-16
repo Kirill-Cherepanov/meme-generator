@@ -1,6 +1,4 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #525252;
+@use '../main.scss' as m;
 
 .starting {
   display: flex;
@@ -8,12 +6,13 @@ $Gray: #525252;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
 }
 .starting__title {
   font-weight: 700;
   font-size: 48px;
-  margin-block: 20px;
+  margin-bottom: 20px;
+  margin-top: 112px;
 }
 .starting__desc {
   font-weight: 300;

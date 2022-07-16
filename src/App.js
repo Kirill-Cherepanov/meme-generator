@@ -41,7 +41,10 @@ function App() {
       {isEditorOpen ? (
         <TemplateEditor template={template} closeEditor={closeEditor} />
       ) : (
-        <TemplateChoose openPopularMemes={openPopularMemes} />
+        <>
+          <TemplateChoose openPopularMemes={openPopularMemes} />
+          <Footer />
+        </>
       )}
 
       {isPopularMemesOpen ? (
@@ -51,8 +54,6 @@ function App() {
           closeMenuHandler={closePopularMemes}
         />
       ) : undefined}
-
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
-$Blue: #4285F4;
-$White: #FFFFFF;
-$Gray: #424242;
+@use '../main.scss' as m;
 
 .tools__modify-text-box-title {
   margin: 10px 0 0;
@@ -24,7 +22,7 @@ $Gray: #424242;
     width: 130px;
   }
   input {
-    background-color: $White;
+    background-color: m.$SecondaryColor;
     border: none;
     border-radius: 2px;
     width: 70px;
