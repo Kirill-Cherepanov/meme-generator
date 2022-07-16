@@ -11,9 +11,8 @@ $Gray: #424242;
   width: 300px;
 
   font-size: 32px;
-  font-weight: bold;
   color: $White;
-  text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
+  // text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
 
   &:hover .canvas__editable-text,
   .canvas__editable-text:focus {
@@ -25,6 +24,7 @@ $Gray: #424242;
   }
 }
 .canvas__editable-text {
+  white-space: break-spaces;
   display: inline-block;
   width: 100%;
   height: 100%;

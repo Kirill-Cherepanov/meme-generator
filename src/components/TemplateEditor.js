@@ -2,13 +2,13 @@ import React, { useState, createContext } from 'react';
 import Canvas from './Canvas';
 import ToolSidebar from './ToolSidebar';
 import './TemplateEditor.scss';
-import MemePage from './MemePage';
+import MemePopUp from './MemePopUp';
 import { useRef } from 'react';
 
 export const DEFAULT_TEXT_BOXES_DATA = {
   text: 'WRITE YOUR TEXT HERE',
-  x: 0,
   y: 0,
+  x: 0,
   height: 50,
   width: 365,
   color: '#FFFFFF',
@@ -27,7 +27,6 @@ export default function TemplateEditor({ template, closeEditor }) {
 
   const imageRef = useRef(null);
   const image = <MemeImage imgURL={template.url} imageRef={imageRef} />;
-  const imageSize = { width: template.width, height: template.height };
 
   const [textBoxesData, setTextBoxesData] = useState([DEFAULT_TEXT_BOXES_DATA]);
 
@@ -45,9 +44,8 @@ export default function TemplateEditor({ template, closeEditor }) {
           closeEditor={closeEditor}
         />
         {memeGenerated && (
-          <MemePage
+          <MemePopUp
             image={imageRef.current}
-            imageSize={imageSize}
             handleCloseButtonClick={() => setMemeGenerated(false)}
           />
         )}

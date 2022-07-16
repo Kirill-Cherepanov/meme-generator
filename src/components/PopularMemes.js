@@ -2,15 +2,6 @@ import React from 'react';
 import './PopularMemes.scss';
 import StyledButton from './StyledButton';
 
-// const templateDataExample = {
-//   id: '61579',
-//   name: 'One Does Not Simply',
-//   url: 'https://i.imgflip.com/1bij.jpg',
-//   width: 568,
-//   height: 335,
-//   box_count: 2
-// };
-
 export default function PopularMemes({
   memes,
   chooseMemesHandler,

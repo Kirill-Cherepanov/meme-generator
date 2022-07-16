@@ -13,17 +13,20 @@ $Gray: #525252;
 .starting__title {
   font-weight: 700;
   font-size: 48px;
-  margin-block: 15px;
+  margin-block: 20px;
 }
 .starting__desc {
   font-weight: 300;
-  font-style: italic;
   margin-block: 0px;
   font-size: 24px;
   text-align: center;
   margin-bottom: 35px;
 }
 .starting__buttons {
+  font-size: 18px;
   display: flex;
   gap: 50px;
+  button {
+    padding: 0;
+  }
 }

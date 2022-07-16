@@ -10,13 +10,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 20px;
 }
 
 .rendered-meme {
+  width: 600px;
 }
 
 .meme__buttons {
-
+  margin-top: 20px;
 }
 
 .meme__download {

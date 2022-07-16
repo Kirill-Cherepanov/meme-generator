@@ -70,12 +70,10 @@ export default function TextBox({ index, handleSelection }) {
           caretPos.current = getCaret(contentRef.current);
 
           const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-
-          if (!e.target.textContent) {
-            e.target.textContent = ' ';
-            newTextBoxesData[index].text = e.target.textContent;
-          } else newTextBoxesData[index].text = e.target.textContent;
-
+          if (!e.target.innerText) {
+            e.target.innerText = ' ';
+          }
+          newTextBoxesData[index].text = e.target.innerText;
           setTextBoxesData(newTextBoxesData);
         }}
       >
