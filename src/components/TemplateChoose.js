@@ -33,7 +33,3 @@ export default function TemplateChoose({
     </div>
   );
 }
-
-// # TemplateChoose
-//   Upload a new template
-//   Choose from popular templates

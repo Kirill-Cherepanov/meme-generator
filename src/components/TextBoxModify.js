@@ -1,10 +1,7 @@
 import React, { useContext } from 'react';
 import './TextBoxModify.scss';
 import { TextBoxContext } from './TemplateEditor';
-
-// const MAX_POS = 9999;
-// const MAX_SIZE = 9999;
-// const MAX_FONT_SIZE = 1024;
+import StyledButton from './StyledButton';
 
 function isNumeric(str) {
   if (typeof str != 'string') return false;
@@ -22,6 +19,12 @@ const MAX_VALUES = {
 export default function TextBoxModify({ selectedIndex }) {
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
   const selectedTextBox = textBoxesData[selectedIndex];
+
+  const deleteText = () => {
+    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+    newTextBoxesData[selectedIndex] = null;
+    setTextBoxesData(newTextBoxesData);
+  };
 
   const updateValue = (e) => {
     const type = e.target.dataset.type;
@@ -165,6 +168,15 @@ export default function TextBoxModify({ selectedIndex }) {
             id="background-opacity"
           />
         </li>
+
+        <StyledButton
+          buttonStyle="secondary"
+          buttonSize="M"
+          className="btn-delete"
+          clickHandler={deleteText}
+        >
+          DELETE TEXT
+        </StyledButton>
       </ul>
     </>
   );

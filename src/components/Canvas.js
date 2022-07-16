@@ -8,7 +8,9 @@ export default function Canvas({ image, handleSelection }) {
 
   const textBoxes = textBoxesData.map((textBoxData, index) => {
     return (
-      <TextBox key={index} index={index} handleSelection={handleSelection} />
+      textBoxData && (
+        <TextBox key={index} index={index} handleSelection={handleSelection} />
+      )
     );
   });
 

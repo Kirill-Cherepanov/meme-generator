@@ -5,7 +5,7 @@ import './ToolSidebar.scss';
 import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from './TemplateEditor';
 
 export default function ToolSidebar({
-  selectedTextBox,
+  selectedTextBoxIndex,
   generateMeme,
   closeEditor
 }) {
@@ -36,9 +36,10 @@ export default function ToolSidebar({
           ADD TEXT
         </StyledButton>
       </div>
-      {selectedTextBox !== undefined && (
-        <TextBoxModify selectedIndex={selectedTextBox} />
-      )}
+      {selectedTextBoxIndex !== undefined &&
+        textBoxesData[selectedTextBoxIndex] !== null && (
+          <TextBoxModify selectedIndex={selectedTextBoxIndex} />
+        )}
       <StyledButton
         buttonStyle="primary"
         buttonSize="L"
@@ -50,10 +51,3 @@ export default function ToolSidebar({
     </div>
   );
 }
-
-// # ToolSidebar (retractable on mobile)
-//   Change template
-//   Add text 20 is max (1)
-//   Generate meme
-//   After clicking on a text box TextBoxModify is added to the ToolSidebar
-// ? Set margins (Didn't find this option in API. Could be that we need to set negative x, y in (1))

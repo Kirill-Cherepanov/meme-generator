@@ -22,7 +22,7 @@ export const DEFAULT_TEXT_BOXES_DATA = {
 export const TextBoxContext = createContext([]);
 
 export default function TemplateEditor({ template, closeEditor }) {
-  const [selectedTextBox, setSelectedTextBox] = useState();
+  const [selectedTextBoxIndex, setSelectedTextBoxIndex] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
 
   const imageRef = useRef(null);
@@ -36,11 +36,11 @@ export default function TemplateEditor({ template, closeEditor }) {
       <div className="template-editor">
         <Canvas
           image={image}
-          handleSelection={setSelectedTextBox}
+          handleSelection={setSelectedTextBoxIndex}
           handleModifySidebarParams={() => {}}
         />
         <ToolSidebar
-          selectedTextBox={selectedTextBox}
+          selectedTextBoxIndex={selectedTextBoxIndex}
           generateMeme={() => setMemeGenerated(true)}
           closeEditor={closeEditor}
         />
