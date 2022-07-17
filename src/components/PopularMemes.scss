@@ -4,25 +4,39 @@
   position: absolute;
   padding: 20px;
   padding-top: 0;
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 85%;
   top: 5%;
-  left: 10%;
+  left: 5%;
   z-index: 1;
   margin-block: auto;
   background-color: m.$ThirdColor;
   color: m.$SecondaryColor;
   border-radius: 5px;
   overflow-y: scroll;
-  
+
+  @media (min-width: 600px) {
+    height: 80%;
+  }
+
+  @media (min-width: 768px) {
+    width: 80%;
+    left: 10%;
+  }
+  @media (min-width: 1024px) {
+    height: calc(95% - 100px);
+  }
+
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
+
   &::-webkit-scrollbar-track {
     border-radius: 10px;
     background: m.$ThirdColor;
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: m.$SecondaryColor;
@@ -34,43 +48,85 @@
   padding: 15px;
   background-color: m.$ThirdColor;
   z-index: 1;
-  height: 60px;
-  width: calc(80% - 40px);
+  height: 50px;
   position: fixed;
+  width: calc(90% - 10px);
+  left: 5%;
+
+  @media (min-width: 420px) {
+    height: 60px;
+  }
+
+  @media (min-width: 768px) {
+    left: 10%;
+    width: calc(80% - 10px);
+  }
 }
 
 .template-menu__title {
   margin: 0;
   text-align: center;
-  font-size: 30px;
+  font-size: 22px;
+
+  @media (min-width: 420px) {
+    font-size: 26px;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 30px;
+  }
 }
 
 .template-menu__close-menu {
-  font-size: 30px;
+  font-size: 25px;
+  width: 29px;
+  height: 29px;
   padding: 0;
   margin: 0;
   border: 0;
-  width: 35px;
-  height: 35px;
   position: absolute;
-  top: 13px;
-  right: 0;
+  top: 12px;
+  right: 5px;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease-out;
+
+  @media (min-width: 420px) {
+    font-size: 30px;
+    width: 35px;
+    height: 35px;
+    top: 10px;
+  }
+
+  @media (min-width: 600px) {
+    top: 13px;
+  }
+
   &:hover {
     background-color: m.$ThirdColor;
     color: m.$SecondaryColor;
   }
+  
 }
 
 .template-menu__meme-container {
-  margin-top: 80px;
+  margin-top: 60px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 20px;
-  row-gap: 30px
+  row-gap: 30px;
+
+  @media (min-width: 420px) {
+    margin-top: 80px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  row-gap: 30px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .template-menu__meme {
@@ -84,6 +140,7 @@
   align-items: center;
   transition: all 0.3s ease-out;
   border-radius: 5px;
+
   &:hover {
     background-color: lighten(m.$ThirdColor, 10%);
     transform: scale(1.05);

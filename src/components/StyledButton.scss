@@ -47,17 +47,28 @@
 }
 
 .btn--large {
-  width: 250px;
-  height: 50px;
+  width: 160px;
+  height: 40px;
+  font-size: 13px;
   border-radius: 3px;
+  @media (min-width: 420px) {
+    width: 190px;
+    font-size: 14px;
+  }
+  @media (min-width: 600px) {
+    font-size: 18px;
+    width: 250px;
+    height: 50px;
+  }
+  @media (min-width: 768px) {
+  }
 }
 .btn--medium {
-  border-radius: 3px;
-  padding: 5px;
-  height: 50px;
   width: 200px;
-  line-height: 40px;
-  padding-left: 32px;
+  height: 50px;
+  border-radius: 3px;
+  @media (min-width: 768px) {
+  }
 }
 .btn--small {
   width: 150px;

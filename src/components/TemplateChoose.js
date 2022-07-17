@@ -24,7 +24,7 @@ export default function TemplateChoose({
         </StyledButton>
         <StyledButton
           buttonStyle="secondary"
-          buttonSize={'M'}
+          buttonSize={'L'}
           clickHandler={uploadImageHandler}
         >
           Upload image
