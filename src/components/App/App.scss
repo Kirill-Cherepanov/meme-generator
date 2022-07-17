@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  color: m.$SecondaryColor;
+  background-color: m.$MainColor;
+}
+
 #root {
   font-family: m.$FontFamily;
   color: m.$ThirdColor;

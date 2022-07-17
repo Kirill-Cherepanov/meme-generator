@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledButton from '../App/StyledButton';
+import GlowingButton from '../App/GlowingButton';
 import './PopularMemes.scss';
 
 export default function PopularMemes({
@@ -12,14 +12,12 @@ export default function PopularMemes({
       <figure className="template-menu__meme" key={index}>
         <figcaption className="template-menu__caption">{meme.name}</figcaption>
         <img src={meme.url} alt="meme" className="template-menu__img" />
-        <StyledButton
-          buttonStyle="primary"
-          buttonSize="S"
+        <GlowingButton
           className="template-menu__choose-meme-btn"
           clickHandler={() => chooseMemesHandler(meme)}
         >
           USE THIS TEMPLATE
-        </StyledButton>
+        </GlowingButton>
       </figure>
     );
   });
