@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function DropDownMenu() {
-  return <div>DropDownMenu</div>;
+export default function DropDownMenu({ children }) {
+  return <div className="drop-down-menu"></div>;
 }

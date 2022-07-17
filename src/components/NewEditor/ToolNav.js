@@ -1,21 +1,26 @@
-import React, { useState, useContext } from 'react';
-import { TextBoxContext } from '../Editor/TemplateEditor';
-import TextBar from './TextBar';
-import DropDownMenu from './DropDownMenu';
+import React from 'react';
 
-export default function ToolSidebar({
-  selectedTextBoxIndex,
-  generateMeme,
-  closeEditor
-}) {
-  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
-  const [chosen, setchosen] = useState();
-
+export default function ToolNav({ setChosenBar }) {
   return (
-    <div className="tool-bar tool-nav">
-      <button className="tool tool-nav__home">Home</button>
-      <button className="tool tool-nav__image">Image</button>
-      <button className="tool tool-nav__text">Text</button>
+    <div className="tool-bar nav-bar">
+      <button
+        className="tool nav-bar__home"
+        onClick={() => setChosenBar('home')}
+      >
+        Home
+      </button>
+      <button
+        className="tool nav-bar__image"
+        onClick={() => setChosenBar('image')}
+      >
+        Image
+      </button>
+      <button
+        className="tool nav-bar__text"
+        onClick={() => setChosenBar('text')}
+      >
+        Text
+      </button>
     </div>
   );
 }
