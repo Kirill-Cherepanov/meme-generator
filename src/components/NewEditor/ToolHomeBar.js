@@ -3,7 +3,7 @@ import React from 'react';
 export default function ToolHomeBar({ returnToNav }) {
   return (
     <div className="tool-bar home-bar">
-      <button className="tool tool__return" onClick={returnToNav}>
+      <button className="tool tool--return" onClick={returnToNav}>
         Return
       </button>
       <button className="tool home-bar__template">Change Template</button>

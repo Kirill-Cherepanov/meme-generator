@@ -3,6 +3,7 @@ import ToolTextBar from './ToolTextBar';
 import DropDownMenu from './DropDownMenu';
 import ToolNav from './ToolNav';
 import ToolHomeBar from './ToolHomeBar';
+import './ToolBar.scss';
 
 export default function ToolSidebar({
   selectedTextBoxIndex,

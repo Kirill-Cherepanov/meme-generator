@@ -3,7 +3,7 @@ import React from 'react';
 export default function TextBar({ returnToNav }) {
   return (
     <div className="tool-bar text-bar">
-      <button className="tool tool__return" onClick={returnToNav}>
+      <button className="tool tool--return" onClick={returnToNav}>
         Back
       </button>
       <button className="tool text-bar__font">B</button>

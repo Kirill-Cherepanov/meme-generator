@@ -1,5 +1,9 @@
-$MainColor: #4285F4;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,100;1,300;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
+
+$MainColor: red;
 $SecondaryColor: #FFFFFF;
 $ThirdColor: #424242;
 
-$FontFamily: 'Roboto', sans-serif;
+// $FontFamily: 'Roboto', sans-serif;
+$FontFamily: "Josefin Sans", sans-serif;

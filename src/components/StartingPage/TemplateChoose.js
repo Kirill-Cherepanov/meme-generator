@@ -1,5 +1,6 @@
 import React from 'react';
 import StyledButton from '../App/StyledButton';
+import BlobButton from '../App/BlobButton';
 import './TemplateChoose.scss';
 
 export default function TemplateChoose({
@@ -15,13 +16,19 @@ export default function TemplateChoose({
         Edit your template and generate a meme.
       </h2>
       <div className="starting__buttons">
-        <StyledButton
+        <BlobButton
+          className={'starting__popular-memes-btn'}
+          clickHandler={openPopularMemes}
+        >
+          Popular meme templates
+        </BlobButton>
+        {/* <StyledButton
           buttonStyle="primary"
           buttonSize={'L'}
           clickHandler={openPopularMemes}
         >
           Popular meme templates
-        </StyledButton>
+        </StyledButton> */}
         <StyledButton
           buttonStyle="secondary"
           buttonSize={'L'}
