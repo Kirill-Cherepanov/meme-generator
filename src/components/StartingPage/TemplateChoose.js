@@ -1,6 +1,6 @@
 import React from 'react';
-import StyledButton from '../App/StyledButton';
 import BlobButton from '../App/BlobButton';
+import AnimatedButton from '../App/AnimatedButton';
 import './TemplateChoose.scss';
 
 export default function TemplateChoose({
@@ -17,25 +17,17 @@ export default function TemplateChoose({
       </h2>
       <div className="starting__buttons">
         <BlobButton
-          className={'starting__popular-memes-btn'}
+          className="starting__popular-memes-btn"
           clickHandler={openPopularMemes}
         >
           Popular meme templates
         </BlobButton>
-        {/* <StyledButton
-          buttonStyle="primary"
-          buttonSize={'L'}
-          clickHandler={openPopularMemes}
-        >
-          Popular meme templates
-        </StyledButton> */}
-        <StyledButton
-          buttonStyle="secondary"
-          buttonSize={'L'}
+        <AnimatedButton
+          className="starting__upload-btn"
           clickHandler={uploadImageHandler}
         >
           Upload image
-        </StyledButton>
+        </AnimatedButton>
       </div>
     </div>
   );
