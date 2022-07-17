@@ -1,4 +1,4 @@
-@use '../main.scss' as m;
+@use '../App/main.scss' as m;
 
 .starting {
   display: flex;
@@ -8,41 +8,48 @@
   width: 100%;
   flex-grow: 1;
 }
+
 .starting__title {
   text-align: center;
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 10px;
   margin-top: 112px;
+
   @media (min-width: 600px) {
     margin-bottom: 20px;
     font-size: 48px;
   }
-  @media (min-width: 768px) {
-  }
+
+  @media (min-width: 768px) {}
 }
+
 .starting__desc {
   font-weight: 300;
   margin-block: 0px;
   text-align: center;
   font-size: 16px;
   margin-bottom: 20px;
+
   @media (min-width: 600px) {
     margin-bottom: 35px;
     font-size: 20px;
   }
+
   @media (min-width: 768px) {
     font-size: 24px;
   }
 }
+
 .starting__buttons {
   width: 100%;
   display: flex;
   justify-content: space-around;
+
   @media (min-width: 600px) {
     justify-content: center;
     gap: 50px;
   }
-  @media (min-width: 768px) {
-  }
+
+  @media (min-width: 768px) {}
 }

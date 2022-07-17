@@ -1,8 +1,8 @@
 import React from 'react';
+import ghIcon from '../../icons/icon-gh.png';
+import dsIcon from '../../icons/icon-ds.png';
+import vkIcon from '../../icons/icon-vk.png';
 import './Footer.scss';
-import ghIcon from '../icons/icon-gh.png';
-import dsIcon from '../icons/icon-ds.png';
-import vkIcon from '../icons/icon-vk.png';
 
 export default function Footer() {
   return (

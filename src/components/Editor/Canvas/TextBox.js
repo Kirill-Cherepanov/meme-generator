@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useContext } from 'react';
-import { TextBoxContext } from './TemplateEditor';
 import { Rnd } from 'react-rnd';
+import { TextBoxContext } from '../TemplateEditor';
 import './TextBox.scss';
 
 export default function TextBox({ index, handleSelection }) {

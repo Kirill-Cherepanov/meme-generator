@@ -1,4 +1,4 @@
-@use '../main.scss' as m;
+@use './main.scss' as m;
 
 .btn--primary {
   background-color: m.$MainColor;
@@ -6,22 +6,28 @@
   border: none;
   transition: background-color 0.5s ease-out;
   cursor: pointer;
+
   &:hover {
     background-color: lighten(m.$MainColor, 15%);
   }
+
   font-weight: 600;
 }
+
 .btn--secondary {
   background-color: m.$ThirdColor;
   color: m.$SecondaryColor;
   border: none;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
+
   &:hover {
     background-color: lighten(m.$ThirdColor, 15%);
   }
+
   font-weight: 600;
 }
+
 .btn--option {
   color: darken(m.$MainColor, 30%);
   cursor: pointer;
@@ -32,6 +38,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
   &::before {
     position: absolute;
     left: 5px;
@@ -39,7 +46,7 @@
     width: 32px;
     height: 32px;
     content: '';
-    background-image: url('../icons/template.png');
+    background-image: url('../../icons/template.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,25 +58,29 @@
   height: 40px;
   font-size: 13px;
   border-radius: 3px;
+
   @media (min-width: 420px) {
     width: 190px;
     font-size: 14px;
   }
+
   @media (min-width: 600px) {
     font-size: 18px;
     width: 250px;
     height: 50px;
   }
-  @media (min-width: 768px) {
-  }
+
+  @media (min-width: 768px) {}
 }
+
 .btn--medium {
   width: 200px;
   height: 50px;
   border-radius: 3px;
-  @media (min-width: 768px) {
-  }
+
+  @media (min-width: 768px) {}
 }
+
 .btn--small {
   width: 150px;
   border-radius: 3px;

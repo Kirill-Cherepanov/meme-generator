@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TextBoxContext } from './TemplateEditor';
+import { TextBoxContext } from '../TemplateEditor';
 import TextBox from './TextBox';
 import './Canvas.scss';
 

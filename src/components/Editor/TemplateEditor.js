@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
-import Canvas from './Canvas';
-import ToolSidebar from './ToolSidebar';
+import Canvas from './Canvas/Canvas';
+import ToolBar from './ToolBar/ToolBar';
 import './TemplateEditor.scss';
 import MemePopUp from './MemePopUp';
 import { useRef } from 'react';
@@ -33,22 +33,22 @@ export default function TemplateEditor({ template, closeEditor }) {
   return (
     <TextBoxContext.Provider value={{ textBoxesData, setTextBoxesData }}>
       <div className="template-editor">
-        <Canvas
+        {/* <Canvas
           image={image}
           handleSelection={setSelectedTextBoxIndex}
           handleModifySidebarParams={() => {}}
-        />
-        <ToolSidebar
+        /> */}
+        <ToolBar
           selectedTextBoxIndex={selectedTextBoxIndex}
           generateMeme={() => setMemeGenerated(true)}
           closeEditor={closeEditor}
         />
-        {memeGenerated && (
+        {/* {memeGenerated && (
           <MemePopUp
             image={imageRef.current}
             handleCloseButtonClick={() => setMemeGenerated(false)}
           />
-        )}
+        )} */}
       </div>
     </TextBoxContext.Provider>
   );

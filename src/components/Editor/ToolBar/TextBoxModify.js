@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import { TextBoxContext } from '../TemplateEditor';
+import StyledButton from '../../App/StyledButton';
 import './TextBoxModify.scss';
-import { TextBoxContext } from './TemplateEditor';
-import StyledButton from './StyledButton';
 
 function isNumeric(str) {
   if (typeof str != 'string') return false;

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import StyledButton from './StyledButton';
+import StyledButton from '../../App/StyledButton';
 import TextBoxModify from './TextBoxModify';
-import './ToolSidebar.scss';
-import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from './TemplateEditor';
+import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from '../TemplateEditor';
+import './ToolBar.scss';
 
 export default function ToolSidebar({
   selectedTextBoxIndex,

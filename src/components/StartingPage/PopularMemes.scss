@@ -1,4 +1,4 @@
-@use '../main.scss' as m;
+@use '../App/main.scss' as m;
 
 .template-menu {
   position: absolute;
@@ -123,8 +123,6 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  row-gap: 30px;
-
   @media (min-width: 600px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -134,13 +132,18 @@
   background-color: darken(m.$ThirdColor, 1.5%);
   padding: 15px 10px;
   width: 100%;
+  max-height: calc(95vh - 140px);
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease-out;
   border-radius: 5px;
+
+  @media (min-width: 600px) {
+    max-height: calc(95vh - 200px);
+  }
 
   &:hover {
     background-color: lighten(m.$ThirdColor, 10%);
@@ -150,13 +153,15 @@
 
 .template-menu__caption {
   display: block;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .template-menu__img {
-  width: 100%;
+  max-width: 100%;
+  max-height: calc(100% - 37px - 15px * 2 - 15px - 10px);
   margin-bottom: 15px;
 }
 

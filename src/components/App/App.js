@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import TemplateChoose from '../StartingPage/TemplateChoose';
+import Footer from '../StartingPage/Footer';
+import PopularMemes from '../StartingPage/PopularMemes';
+import TemplateEditor from '../Editor/TemplateEditor';
 import './App.scss';
 import 'normalize.css';
-import TemplateChoose from './components/TemplateChoose';
-import PopularMemes from './components/PopularMemes';
-import TemplateEditor from './components/TemplateEditor';
-import Footer from './components/Footer';
 
 const AMOUNT_OF_FETCHED_MEMES = 10;
 const API_URL = 'https://api.imgflip.com/get_memes';

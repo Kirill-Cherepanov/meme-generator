@@ -1,4 +1,4 @@
-@use '../main.scss' as m;
+@use '../../App/main.scss' as m;
 
 .canvas {
   padding: 25px;
@@ -12,6 +12,7 @@
 
   overflow: hidden;
 }
+
 .canvas__container {
   display: flex;
   position: relative;
@@ -19,10 +20,11 @@
   justify-content: center;
   align-items: center;
 }
+
 .canvas__img {
   object-fit: contain;
-  width:100%;
+  width: 100%;
   height: 100%;
-  height:min-content;
+  height: min-content;
   -webkit-user-drag: none;
 }

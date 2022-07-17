@@ -1,6 +1,6 @@
 import React from 'react';
+import StyledButton from '../App/StyledButton';
 import './PopularMemes.scss';
-import StyledButton from './StyledButton';
 
 export default function PopularMemes({
   memes,

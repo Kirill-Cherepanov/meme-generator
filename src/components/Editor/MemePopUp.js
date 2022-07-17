@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext } from 'react';
 import { createPortal } from 'react-dom';
-import StyledButton from './StyledButton';
+import StyledButton from '../App/StyledButton';
 import { TextBoxContext } from './TemplateEditor';
 import './MemePopUp.scss';
 
