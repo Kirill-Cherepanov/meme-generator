@@ -5,7 +5,7 @@
   padding: 20px;
   padding-top: 0;
   width: 90%;
-  height: 85%;
+  height: calc(95% - 55px);
   top: 5%;
   left: 5%;
   z-index: 1;
@@ -23,6 +23,7 @@
     width: 80%;
     left: 10%;
   }
+
   @media (min-width: 1024px) {
     height: calc(95% - 100px);
   }
@@ -106,7 +107,7 @@
     background-color: m.$ThirdColor;
     color: m.$SecondaryColor;
   }
-  
+
 }
 
 .template-menu__meme-container {

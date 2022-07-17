@@ -10,7 +10,6 @@
 
   font-size: 32px;
   color: m.$SecondaryColor;
-  // text-shadow: black -1px 0px, black 0px 1px, black 1px 0px, black 0px -1px;
 
   &:hover .canvas__editable-text,
   .canvas__editable-text:focus {
@@ -21,12 +20,14 @@
     outline: 1px solid m.$SecondaryColor;
   }
 }
+
 .canvas__editable-text {
   white-space: break-spaces;
   display: inline-block;
   width: 100%;
   height: 100%;
   border-radius: 3px;
+
   &:focus {
     outline: none;
   }
