@@ -22,7 +22,10 @@ export const DEFAULT_TEXT_BOXES_DATA = {
 
 export const TextBoxContext = createContext([]);
 
-export default function TemplateEditor({ template, closeEditor }) {
+export default function TemplateEditor({
+  template,
+  closeEditor: closeEditor_
+}) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
 
@@ -43,7 +46,16 @@ export default function TemplateEditor({ template, closeEditor }) {
     />
   );
 
-  const [textBoxesData, setTextBoxesData] = useState([DEFAULT_TEXT_BOXES_DATA]);
+  const [textBoxesData, setTextBoxesData] = useState(
+    JSON.parse(sessionStorage.getItem(template.url)) || [
+      DEFAULT_TEXT_BOXES_DATA
+    ]
+  );
+
+  const closeEditor = () => {
+    sessionStorage.setItem(template.url, JSON.stringify(textBoxesData));
+    closeEditor_();
+  };
 
   return (
     <TextBoxContext.Provider value={{ textBoxesData, setTextBoxesData }}>

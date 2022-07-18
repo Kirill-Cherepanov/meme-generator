@@ -10,7 +10,7 @@ export default function ToolHomeBar({
 }) {
   const { setTextBoxesData } = useContext(TextBoxContext);
   const resetData = () => {
-    setTextBoxesData({});
+    setTextBoxesData([]);
     setSelectedTextBoxIndex(undefined);
   };
 

@@ -4,6 +4,7 @@ import DropDownConfirm from './DropDownConfirm';
 import DropDownButtons from './DropDownButtons';
 import DropDownRange from './DropDownRange';
 import useDropDownData from './useDropDownData';
+import DropDownList from './DropDownList';
 import './DropDownMenu.scss';
 
 const createDropDownComponent = (el, index, props) => {
@@ -16,8 +17,11 @@ const createDropDownComponent = (el, index, props) => {
       return <DropDownRange key={index} {...props}></DropDownRange>;
     case 'confirm':
       return <DropDownConfirm key={index} {...props}></DropDownConfirm>;
+    case 'list':
+      return <DropDownList key={index} {...props}></DropDownList>;
     default:
-      throw Error('No drop down component by name: ' + el);
+      return 'Nothing found';
+    // throw Error('No drop down component by name: ' + el);
   }
 };
 

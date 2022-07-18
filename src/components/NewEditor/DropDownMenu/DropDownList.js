@@ -2,19 +2,22 @@ import React from 'react';
 
 export default function DropDownList({ label, items, value, inputHandler }) {
   const optionElements = items.map((item, index) => {
-    return <option key={index}>{item}</option>;
+    return (
+      <button
+        key={index}
+        value={item}
+        onClick={inputHandler}
+        className="drop-down-menu__list-option"
+      >
+        {item}
+      </button>
+    );
   });
 
   return (
     <div className="drop-down-menu__element drop-down-menu__list">
       <label>{label}</label>
-      <select
-        class="chosen-select"
-        data-placeholder={label}
-        onChange={inputHandler}
-      >
-        {optionElements}
-      </select>
+      <div class="drop-down-menu__list-options">{optionElements}</div>
     </div>
   );
 }
