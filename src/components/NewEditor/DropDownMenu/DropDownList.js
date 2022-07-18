@@ -17,7 +17,7 @@ export default function DropDownList({ label, items, value, inputHandler }) {
   return (
     <div className="drop-down-menu__element drop-down-menu__list">
       <label>{label}</label>
-      <div class="drop-down-menu__list-options">{optionElements}</div>
+      <div className="drop-down-menu__list-options">{optionElements}</div>
     </div>
   );
 }

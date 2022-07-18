@@ -14,10 +14,19 @@ export const DEFAULT_TEXT_BOXES_DATA = {
   width: 365,
   color: '#FFFFFF',
   outlineColor: '#000000',
+  opacity: 100,
   backgroundColor: '#FFFFFF',
   backgroundOpacity: 0,
   fontSize: 32,
-  fontFamily: 'Roboto'
+  fontFamily: 'Roboto',
+  textMods: {
+    bold: false,
+    italic: false,
+    underlined: false,
+    crossed: false
+  },
+  alignment: 'center',
+  rotate: 90
 };
 
 export const TextBoxContext = createContext([]);

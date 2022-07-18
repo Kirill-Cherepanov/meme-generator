@@ -24,13 +24,25 @@ export default function TextBox({ index, handleSelection }) {
 
         textShadow: `${textBoxData.outlineColor} -1px 0px, ${textBoxData.outlineColor} 0px 1px, ${textBoxData.outlineColor} 1px 0px, ${textBoxData.outlineColor} 0px -1px`,
 
+        opacity: textBoxData.opacity / 100,
+
         backgroundColor:
           `rgba(${hexToRgb(textBoxData.backgroundColor)}, ` +
-          `${textBoxData.backgroundOpacity})`,
+          `${textBoxData.backgroundOpacity / 100})`,
 
         fontSize: `${textBoxData.fontSize}px`,
 
-        fontFamily: textBoxData.fontFamily
+        fontFamily: textBoxData.fontFamily,
+
+        textDecoration:
+          (textBoxData.textMods.underlined && 'underline') ||
+          (textBoxData.textMods.crossed && 'line-through'),
+
+        fontStyle: textBoxData.textMods.italic && 'italic',
+
+        fontWeight: textBoxData.textMods.bold && 'bold',
+
+        textAlign: textBoxData.alignment
       }}
       position={{
         x: textBoxData.x,

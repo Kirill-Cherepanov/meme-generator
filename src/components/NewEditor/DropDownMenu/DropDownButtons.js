@@ -5,11 +5,12 @@ export default function DropDownButtons({ label, buttons }) {
     return (
       <button
         key={index}
+        value={buttonData.value}
         data-src={buttonData.path}
         onClick={buttonData.inputHandler}
         className="drop-down-menu__buttons-btn"
       >
-        BUTTON
+        {buttonData.isActive ? 'active' : 'disabled'}
       </button>
     );
   });

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TextBoxContext } from '../Editor/TemplateEditor';
+import { DEFAULT_TEXT_BOXES_DATA } from '../Editor/TemplateEditor';
 
 export default function ToolTextBar({
   returnToNav,
@@ -9,8 +10,15 @@ export default function ToolTextBar({
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
 
   const deleteText = () => {
+    if (selectedIndex === undefined) return;
     const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
     newTextBoxesData[selectedIndex] = null;
+    setTextBoxesData(newTextBoxesData);
+  };
+
+  const addtext = () => {
+    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+    newTextBoxesData[textBoxesData.length] = DEFAULT_TEXT_BOXES_DATA;
     setTextBoxesData(newTextBoxesData);
   };
 
@@ -23,6 +31,9 @@ export default function ToolTextBar({
     <div className="tool-bar text-bar">
       <button className="tool tool--return" onClick={returnToNav}>
         Back
+      </button>
+      <button className="tool tool--return" onClick={addtext}>
+        Add
       </button>
       <button
         className="tool text-bar__font"
@@ -69,7 +80,7 @@ export default function ToolTextBar({
       <button
         className="tool text-bar__delete"
         data-type="delete"
-        onClick={handleSetDropMenuProps}
+        onClick={deleteText}
       >
         Delete
       </button>

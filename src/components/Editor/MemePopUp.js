@@ -5,16 +5,29 @@ import { TextBoxContext } from './TemplateEditor';
 import './MemePopUp.scss';
 
 const fillBackgroundIntoCanvas = (context, textBoxData) => {
-  let { x, y, width, height, backgroundColor, backgroundOpacity } = textBoxData;
+  let { x, y, width, height, backgroundColor, backgroundOpacity, opacity } =
+    textBoxData;
 
   context.fillStyle = backgroundColor;
-  context.globalAlpha = backgroundOpacity;
+  context.globalAlpha = (backgroundOpacity / 100) * (opacity / 100);
   context.fillRect(x, y, width, height);
-  context.globalAlpha = 1.0;
+  context.globalAlpha = opacity;
 };
 
 const fillTextIntoCanvas = (context, boxData, text, y) => {
-  let { x, width, color, outlineColor, fontSize, fontFamily } = boxData;
+  let {
+    x,
+    width,
+    color,
+    outlineColor,
+    fontSize,
+    fontFamily,
+    textMods,
+    opacity,
+    alignment
+  } = boxData;
+
+  context.globalAlpha = opacity / 100;
 
   // Need to add 5 to x and y due to specifics of Rnd component.
   // It adds a div for resizing on top with height of 10px
@@ -26,16 +39,77 @@ const fillTextIntoCanvas = (context, boxData, text, y) => {
 
   // .textAlign is quirky so we have to adjust for it. For more:
   // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign#result
-  context.textAlign = 'center';
-  x += width / 2;
-  context.textBaseline = 'top';
 
-  context.font = fontSize + 'px ' + fontFamily;
+  context.textAlign = alignment;
+  context.textBaseline = 'top';
+  context.font =
+    (textMods.bold ? 'bold ' : '') +
+    (textMods.italic ? 'italic ' : '') +
+    (fontSize + 'px ' + fontFamily);
+
+  const metrics = context.measureText(text);
+  const actualWidth = metrics.width;
+  const lineHeight =
+    metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+  let textStartX;
+
+  const switchAlignment = {
+    left: () => {
+      textStartX = x;
+    },
+    center: () => {
+      x += width / 2;
+      textStartX = x - actualWidth / 2;
+    },
+    right: () => {
+      x += width;
+      textStartX = x - actualWidth;
+    }
+  };
+
+  switchAlignment[alignment]();
+
   context.lineWidth = 2; // 1 was almost non-existent smh
   context.shadowColor = outlineColor;
   context.strokeText(text, x, y);
+
   context.fillStyle = color;
   context.fillText(text, x, y);
+
+  context.lineWidth = 1;
+  context.strokeStyle = outlineColor;
+
+  if (textMods.underlined) {
+    context.fillRect(
+      textStartX,
+      y + lineHeight + 3,
+      actualWidth,
+      lineHeight / 6
+    );
+
+    context.strokeRect(
+      textStartX,
+      y + lineHeight + 3,
+      actualWidth,
+      lineHeight / 6
+    );
+  }
+
+  if (textMods.crossed) {
+    context.fillRect(
+      textStartX,
+      y + lineHeight / 2,
+      actualWidth,
+      lineHeight / 6
+    );
+
+    context.strokeRect(
+      textStartX,
+      y + lineHeight / 2,
+      actualWidth,
+      lineHeight / 6
+    );
+  }
 };
 
 export default function MemePage({ image, handleCloseButtonClick }) {
@@ -54,6 +128,8 @@ export default function MemePage({ image, handleCloseButtonClick }) {
     context.drawImage(image, 0, 0, imageSize.width, imageSize.height);
 
     textBoxesData.forEach((textBoxData) => {
+      if (textBoxData === null) return;
+
       const boxData = {
         x: textBoxData.x,
         width: textBoxData.width,
@@ -63,7 +139,10 @@ export default function MemePage({ image, handleCloseButtonClick }) {
         fontSize: textBoxData.fontSize,
         fontFamily: textBoxData.fontFamily,
         backgroundOpacity: textBoxData.backgroundOpacity,
-        backgroundColor: textBoxData.backgroundColor
+        backgroundColor: textBoxData.backgroundColor,
+        textMods: textBoxData.textMods,
+        opacity: textBoxData.opacity,
+        alignment: textBoxData.alignment
       };
 
       fillBackgroundIntoCanvas(context, textBoxData);

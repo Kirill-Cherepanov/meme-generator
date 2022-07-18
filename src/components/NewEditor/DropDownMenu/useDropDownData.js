@@ -9,6 +9,7 @@ function isNumeric(str) {
 export default function useDropDownData(selectedIndex, image) {
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
   const textBoxData = textBoxesData[selectedIndex];
+  // console.log(textBoxData);
 
   const [maxValues, setMaxValues] = useState();
   useEffect(() => {
@@ -20,7 +21,9 @@ export default function useDropDownData(selectedIndex, image) {
         y: imageHeight,
         width: imageWidth,
         height: imageHeight,
-        fontSize: imageWidth / 4
+        fontSize: imageWidth / 4,
+        opacity: 100,
+        backgroundOpacity: 100
       });
     };
     updateMaxValues();
@@ -42,6 +45,21 @@ export default function useDropDownData(selectedIndex, image) {
 
     const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
     newTextBoxesData[selectedIndex][type] = value;
+    setTextBoxesData(newTextBoxesData);
+  };
+
+  const toggleTextModifiers = (type) => {
+    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+
+    if (type === 'underlined' && !textBoxData.textMods.underlined) {
+      newTextBoxesData[selectedIndex].textMods.crossed = false;
+    }
+    if (type === 'crossed' && !textBoxData.textMods.crossed) {
+      newTextBoxesData[selectedIndex].textMods.underlined = false;
+    }
+
+    newTextBoxesData[selectedIndex].textMods[type] =
+      !textBoxData.textMods[type];
     setTextBoxesData(newTextBoxesData);
   };
 
@@ -72,9 +90,26 @@ export default function useDropDownData(selectedIndex, image) {
         {
           label: 'Text Modifiers',
           buttons: [
-            { path: '../../../icons/template.png', inputHandler: () => {} },
-            { path: '../../../icons/template.png', inputHandler: () => {} },
-            { path: '../../../icons/template.png', inputHandler: () => {} }
+            {
+              path: '../../../icons/template.png',
+              isActive: textBoxData.textMods.bold,
+              inputHandler: () => toggleTextModifiers('bold')
+            },
+            {
+              path: '../../../icons/template.png',
+              isActive: textBoxData.textMods.italic,
+              inputHandler: () => toggleTextModifiers('italic')
+            },
+            {
+              path: '../../../icons/template.png',
+              isActive: textBoxData.textMods.underlined,
+              inputHandler: () => toggleTextModifiers('underlined')
+            },
+            {
+              path: '../../../icons/template.png',
+              isActive: textBoxData.textMods.crossed,
+              inputHandler: () => toggleTextModifiers('crossed')
+            }
           ]
         }
       ]
@@ -100,7 +135,7 @@ export default function useDropDownData(selectedIndex, image) {
         {
           label: 'Background Color',
           value: textBoxData.backgroundColor,
-          inputHandler: (e) => updateValue(e, 'outlineColor')
+          inputHandler: (e) => updateValue(e, 'backgroundColor')
         }
       ],
       range: [
@@ -121,9 +156,9 @@ export default function useDropDownData(selectedIndex, image) {
           label: 'Opacity',
           min: 0,
           max: 100,
-          numberLabel: '%'
-          // value: textBoxData.backgroundOpacity,
-          // inputHandler: (e) => updateValue(e, 'backgroundOpacity')
+          numberLabel: '%',
+          value: textBoxData.opacity,
+          inputHandler: (e) => updateValue(e, 'opacity')
         }
       ]
     },
@@ -133,10 +168,24 @@ export default function useDropDownData(selectedIndex, image) {
         {
           label: 'Text Alignment',
           buttons: [
-            { path: '../../../icons/template.png', inputHandler: () => {} },
-            { path: '../../../icons/template.png', inputHandler: () => {} },
-            { path: '../../../icons/template.png', inputHandler: () => {} },
-            { path: '../../../icons/template.png', inputHandler: () => {} }
+            {
+              path: '../../../icons/template.png',
+              value: 'left',
+              isActive: textBoxData.alignment === 'left',
+              inputHandler: (e) => updateValue(e, 'alignment')
+            },
+            {
+              path: '../../../icons/template.png',
+              value: 'center',
+              isActive: textBoxData.alignment === 'center',
+              inputHandler: (e) => updateValue(e, 'alignment')
+            },
+            {
+              path: '../../../icons/template.png',
+              value: 'right',
+              isActive: textBoxData.alignment === 'right',
+              inputHandler: (e) => updateValue(e, 'alignment')
+            }
           ]
         }
       ]
