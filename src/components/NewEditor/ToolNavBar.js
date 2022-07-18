@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ToolNav({ setChosenBar }) {
+export default function ToolNavBar({ setChosenBar }) {
   return (
     <div className="tool-bar nav-bar">
       <button

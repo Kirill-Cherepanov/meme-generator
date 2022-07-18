@@ -4,7 +4,7 @@ import TextBoxModify from './TextBoxModify';
 import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from '../TemplateEditor';
 import './ToolBar.scss';
 
-export default function ToolSidebar({
+export default function ToolBar({
   selectedTextBoxIndex,
   generateMeme,
   closeEditor

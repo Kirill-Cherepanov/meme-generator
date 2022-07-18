@@ -93,6 +93,7 @@
   transition: all 0.2s ease-out;
   font-family: sans-serif;
 
+
   @media (min-width: 420px) {
     font-size: 30px;
     width: 35px;
@@ -162,7 +163,7 @@
 
 .template-menu__img {
   max-width: 100%;
-  max-height: calc(100% - 37px - 15px * 2 - 15px - 10px);
+  max-height: calc(100% - 37px - 15px * 2 - 15px - 10px - 50px);
   margin-bottom: 15px;
 }
 

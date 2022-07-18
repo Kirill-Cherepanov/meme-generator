@@ -1,0 +1,14 @@
+@use '../../App/main.scss' as m;
+
+.drop-down-menu {
+  position: absolute;
+  z-index: 1;
+  top: 55px;
+  width: 200px;
+  height: 200px;
+  background-color: darken(m.$SecondaryColor, 10%);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.4);
+}

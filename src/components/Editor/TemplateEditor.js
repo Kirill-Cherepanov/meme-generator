@@ -26,37 +26,49 @@ export default function TemplateEditor({ template, closeEditor }) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
 
+  // We need to update imageRef when component is rendered
+  // This is the first solution I came up with
+  const updateComponent = useState(0)[1];
+
   const imageRef = useRef(null);
-  const image = <MemeImage imgURL={template.url} imageRef={imageRef} />;
+  const image = (
+    <img
+      src={template.url}
+      ref={(ref) => {
+        updateComponent(1);
+        imageRef.current = ref;
+      }}
+      alt="Template"
+      className="canvas__img"
+    />
+  );
 
   const [textBoxesData, setTextBoxesData] = useState([DEFAULT_TEXT_BOXES_DATA]);
 
   return (
     <TextBoxContext.Provider value={{ textBoxesData, setTextBoxesData }}>
       <div className="template-editor">
-        {/* <Canvas
+        <ToolBar
+          selectedTextBoxIndexState={[
+            selectedTextBoxIndex,
+            setSelectedTextBoxIndex
+          ]}
+          generateMeme={() => setMemeGenerated(true)}
+          closeEditor={closeEditor}
+          image={imageRef.current}
+        />
+        <Canvas
           image={image}
           handleSelection={setSelectedTextBoxIndex}
           handleModifySidebarParams={() => {}}
-        /> */}
-        <ToolBar
-          selectedTextBoxIndex={selectedTextBoxIndex}
-          generateMeme={() => setMemeGenerated(true)}
-          closeEditor={closeEditor}
         />
-        {/* {memeGenerated && (
+        {memeGenerated && (
           <MemePopUp
             image={imageRef.current}
             handleCloseButtonClick={() => setMemeGenerated(false)}
           />
-        )} */}
+        )}
       </div>
     </TextBoxContext.Provider>
-  );
-}
-
-function MemeImage({ imgURL, imageRef }) {
-  return (
-    <img src={imgURL} ref={imageRef} alt="Template" className="canvas__img" />
   );
 }
