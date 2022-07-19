@@ -1,3 +1,5 @@
+@use '../App/main.scss' as m;
+
 .footer {
   width: 100%;
   padding: 6px 24px;
@@ -76,6 +78,12 @@
 .footer_link-img {
   padding: 0 5px;
   height: 36px;
+  fill: m.$ThirdColor;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    fill: m.$MainColor;
+  }
 
   @media (min-width: 420px) {
     height: 40px;

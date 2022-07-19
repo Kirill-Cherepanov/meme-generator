@@ -92,6 +92,7 @@
   cursor: pointer;
   transition: all 0.2s ease-out;
   font-family: sans-serif;
+  background-color: m.$SecondaryColor;
 
 
   @media (min-width: 420px) {
@@ -149,6 +150,8 @@
 
   &:hover {
     background-color: lighten(m.$ThirdColor, 10%);
+    box-shadow: 6px 6px 6px 0 darken(m.$ThirdColor, 5%);
+    // border: 3px solid darken(m.$ThirdColor, 10%);
     transform: scale(1.05);
   }
 }

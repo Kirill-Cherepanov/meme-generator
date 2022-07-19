@@ -25,8 +25,7 @@ export const DEFAULT_TEXT_BOXES_DATA = {
     underlined: false,
     crossed: false
   },
-  alignment: 'center',
-  rotate: 90
+  alignment: 'center'
 };
 
 export const TextBoxContext = createContext([]);
@@ -41,7 +40,6 @@ export default function TemplateEditor({
   // We need to update imageRef when component is rendered
   // This is the first solution I came up with
   const updateComponent = useState(0)[1];
-
   const imageRef = useRef(null);
   const image = (
     <img
@@ -80,7 +78,10 @@ export default function TemplateEditor({
         />
         <Canvas
           image={image}
-          handleSelection={setSelectedTextBoxIndex}
+          selectedTextBoxIndexState={[
+            selectedTextBoxIndex,
+            setSelectedTextBoxIndex
+          ]}
           handleModifySidebarParams={() => {}}
         />
         {memeGenerated && (

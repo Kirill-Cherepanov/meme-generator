@@ -3,7 +3,9 @@ import { Rnd } from 'react-rnd';
 import { TextBoxContext } from '../TemplateEditor';
 import './TextBox.scss';
 
-export default function TextBox({ index, handleSelection }) {
+export default function TextBox({ index, selectedTextBoxIndexState }) {
+  const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
+    selectedTextBoxIndexState;
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
   const textBoxData = textBoxesData[index];
 
@@ -17,7 +19,9 @@ export default function TextBox({ index, handleSelection }) {
 
   return (
     <Rnd
-      className="canvas__text-box"
+      className={
+        'canvas__text-box ' + (index === selectedTextBoxIndex && 'active')
+      }
       bounds="parent"
       style={{
         color: textBoxData.color,
@@ -53,10 +57,10 @@ export default function TextBox({ index, handleSelection }) {
         height: textBoxData.height
       }}
       onDragStart={() => {
-        handleSelection(index);
+        setSelectedTextBoxIndex(index);
       }}
       onResizeStart={() => {
-        handleSelection(index);
+        setSelectedTextBoxIndex(index);
       }}
       onDrag={(e, d) => {
         const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));

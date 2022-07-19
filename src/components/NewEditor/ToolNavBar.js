@@ -2,25 +2,36 @@ import React from 'react';
 
 export default function ToolNavBar({ setChosenBar }) {
   return (
-    <div className="tool-bar nav-bar">
-      <button
-        className="tool nav-bar__home"
-        onClick={() => setChosenBar('home')}
-      >
-        Home
-      </button>
-      <button
-        className="tool nav-bar__image"
-        onClick={() => setChosenBar('image')}
-      >
-        Image
-      </button>
-      <button
-        className="tool nav-bar__text"
-        onClick={() => setChosenBar('text')}
-      >
-        Text
-      </button>
-    </div>
+    <ul className="tool-bar nav-bar">
+      <li className="tool-li">
+        <button
+          className="tool nav-bar__home"
+          onClick={() => setChosenBar('home')}
+        >
+          <span className="tool-icon nav-bar__icon"></span>
+          <span className="tool-title nav-bar__title">Home</span>
+        </button>
+      </li>
+
+      <li className="tool-li">
+        <button
+          className="tool nav-bar__image"
+          onClick={() => setChosenBar('image')}
+        >
+          <span className="tool-icon image__icon"></span>
+          <span className="tool-title image__title">Image</span>
+        </button>
+      </li>
+
+      <li className="tool-li">
+        <button
+          className="tool nav-bar__text"
+          onClick={() => setChosenBar('text')}
+        >
+          <span className="tool-icon text__icon"></span>
+          <span className="tool-title text__title">Text</span>
+        </button>
+      </li>
+    </ul>
   );
 }

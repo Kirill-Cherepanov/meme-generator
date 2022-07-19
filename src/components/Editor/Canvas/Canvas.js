@@ -3,13 +3,17 @@ import { TextBoxContext } from '../TemplateEditor';
 import TextBox from './TextBox';
 import './Canvas.scss';
 
-export default function Canvas({ image, handleSelection }) {
+export default function Canvas({ image, selectedTextBoxIndexState }) {
   const { textBoxesData } = useContext(TextBoxContext);
 
   const textBoxes = textBoxesData.map((textBoxData, index) => {
     return (
       textBoxData && (
-        <TextBox key={index} index={index} handleSelection={handleSelection} />
+        <TextBox
+          key={index}
+          index={index}
+          selectedTextBoxIndexState={selectedTextBoxIndexState}
+        />
       )
     );
   });

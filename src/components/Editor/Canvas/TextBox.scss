@@ -11,8 +11,7 @@
   font-size: 32px;
   color: m.$SecondaryColor;
 
-  &:hover .canvas__editable-text,
-  .canvas__editable-text:focus {
+  &.active .canvas__editable-text {
     margin: -1px;
     width: calc(100% + 2px);
     outline: none;
