@@ -17,12 +17,15 @@
     height: 115px;
   }
 
-  @media (min-width: 600px) {}
+  @media (min-width: 600px) {
+    max-width: 240px;
+    height: auto;
+    top: 75px;
+  }
 
   @media (min-width: 900px) {
-    top: 55px;
-    width: 200px;
-    height: 200px;
+    top: 85px;
+    min-height: 150px;
   }
 }
 

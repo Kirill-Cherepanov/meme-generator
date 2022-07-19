@@ -1,7 +1,7 @@
 @use '../../App/main.scss' as m;
 
 .canvas {
-  padding: 25px;
+  padding: 15px 10px 10px;
 
   padding-inline: 20px;
   max-height: 100%;
@@ -12,6 +12,12 @@
   margin-block: auto;
 
   overflow: hidden;
+
+  // @media (min-width: 450px) {}
+
+  // @media (min-width: 600px) {}
+
+  // @media (min-width: 900px) {}
 }
 
 .canvas__container {

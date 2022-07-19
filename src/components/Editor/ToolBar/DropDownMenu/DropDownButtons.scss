@@ -19,14 +19,18 @@
 }
 
 .drop-down-menu__buttons-btn {
-  padding: 0;
   background-color: darken(m.$SecondaryColor, 10%);
   border: none;
-  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 5px;
+
+  @media (min-width: 450px) {
+    margin-top: 5px;
+    padding: 6px;
+  }
 
   &.active {
     box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 40%);
@@ -34,5 +38,9 @@
 }
 
 .drop-down-menu__buttons-icon {
-  width: 18px;
+  height: 18px;
+
+  @media (min-width: 450px) {
+    height: 20px;
+  }
 }
