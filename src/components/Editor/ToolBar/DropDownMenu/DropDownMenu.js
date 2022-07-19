@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rnd } from 'react-rnd';
 import DropDownColor from './DropDownColor';
 import DropDownButtons from './DropDownButtons';
 import DropDownRange from './DropDownRange';
@@ -21,7 +22,13 @@ const createDropDownComponent = (el, index, props) => {
   }
 };
 
-export default function DropDownMenu({ dropMenuState, selectedIndex, image }) {
+export default function DropDownMenu({
+  dropMenuState,
+  selectedIndex,
+  image,
+  dropDownMenuPosState
+}) {
+  const [dropDownMenuPos, setDropDownMenuPos] = dropDownMenuPosState;
   const [dropMenuType, setDropMenuType] = dropMenuState;
   const dropDownData = useDropDownData(selectedIndex, image)[dropMenuType];
 
@@ -38,12 +45,22 @@ export default function DropDownMenu({ dropMenuState, selectedIndex, image }) {
   );
 
   return (
-    <div className="drop-down-menu">
+    <Rnd
+      position={{ x: dropDownMenuPos.x, y: dropDownMenuPos.y }}
+      onDragStop={(e, d) => {
+        setDropDownMenuPos({ x: d.x, y: d.y });
+      }}
+      bounds="window"
+      className="drop-down-menu"
+      enableResizing={false}
+      cancel='input[type="range"]'
+      style={{ display: 'flex' }}
+    >
       {dropDownComponents}
       <button
         className="drop-down-menu__close-btn"
         onClick={() => setDropMenuType(undefined)}
       />
-    </div>
+    </Rnd>
   );
 }

@@ -6,9 +6,9 @@
   align-items: center;
   flex-grow: 1;
 
-  @media (min-width: 450px) {}
 
   label {
+    cursor: pointer;
     display: inline-block;
     min-width: 110px;
     margin-right: 10px;
@@ -18,5 +18,6 @@
 }
 
 .drop-down-menu__color-input {
+  cursor: pointer;
   border: 1px solid m.$ThirdColor;
 }

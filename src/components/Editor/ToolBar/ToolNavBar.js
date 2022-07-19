@@ -37,7 +37,7 @@ export default function ToolHomeBar({
             alt=""
             className="tool-icon image__icon"
           ></img>
-          <span className="tool-title image__title">Image</span>
+          <span className="tool-title image__title">Filters</span>
         </button>
       </li>
 
@@ -54,14 +54,14 @@ export default function ToolHomeBar({
       <li className="tool-li">
         <button className="tool home-bar__reset" onClick={resetData}>
           <img src={resetIcon} alt="" className="tool-icon reset__icon" />
-          <span className="tool-title reset__title">Reset Changes</span>
+          <span className="tool-title reset__title">Reset</span>
         </button>
       </li>
 
       <li className="tool-li">
         <button className="tool home-bar__generate" onClick={generateMeme}>
           <img src={generateIcon} alt="" className="tool-icon generate__icon" />
-          <span className="tool-title generate__title">Generate Meme</span>
+          <span className="tool-title generate__title">Generate</span>
         </button>
       </li>
     </ul>

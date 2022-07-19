@@ -42,6 +42,7 @@ export default function TemplateEditor({
   const image = (
     <img
       src={template.url}
+      crossOrigin="anonymous"
       ref={(ref) => {
         updateComponent(1);
         imageRef.current = ref;
@@ -50,6 +51,8 @@ export default function TemplateEditor({
       className="canvas__img"
     />
   );
+
+  const [downloadMeme, setDownloadMeme] = useState(() => () => {});
 
   const [textBoxesData, setTextBoxesData] = useState(
     JSON.parse(sessionStorage.getItem(template.url)) || [
@@ -70,9 +73,11 @@ export default function TemplateEditor({
             selectedTextBoxIndex,
             setSelectedTextBoxIndex
           ]}
+          image={imageRef.current}
           generateMeme={() => setMemeGenerated(true)}
           closeEditor={closeEditor}
-          image={imageRef.current}
+          closePopUp={() => setMemeGenerated(false)}
+          downloadMeme={downloadMeme}
         />
         <Canvas
           image={image}
@@ -85,7 +90,7 @@ export default function TemplateEditor({
         {memeGenerated && (
           <MemePopUp
             image={imageRef.current}
-            handleCloseButtonClick={() => setMemeGenerated(false)}
+            setDownloadMeme={setDownloadMeme}
           />
         )}
       </div>

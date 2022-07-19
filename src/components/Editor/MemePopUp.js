@@ -1,6 +1,5 @@
 import { useEffect, useRef, useContext } from 'react';
 import { createPortal } from 'react-dom';
-import StyledButton from '../App/StyledButton';
 import { TextBoxContext } from './TemplateEditor';
 import './MemePopUp.scss';
 
@@ -112,7 +111,7 @@ const fillTextIntoCanvas = (context, boxData, text, y) => {
   }
 };
 
-export default function MemePage({ image, handleCloseButtonClick }) {
+export default function MemePage({ image, setDownloadMeme }) {
   const { textBoxesData: textBoxesData_ } = useContext(TextBoxContext);
   const textBoxesData = JSON.parse(JSON.stringify(textBoxesData_));
 
@@ -154,32 +153,32 @@ export default function MemePage({ image, handleCloseButtonClick }) {
       );
       addText(context, textBoxData, boundFillTextIntoCanvas);
     });
-  }, [image, imageSize.height, imageSize.width, textBoxesData]);
+
+    setDownloadMeme(() => {
+      return () => {
+        const link = document.createElement('a');
+        link.download = 'meme.png';
+        link.href = canvas.current.toDataURL();
+        link.click();
+      };
+    });
+  }, [
+    image,
+    imageSize.height,
+    imageSize.width,
+    setDownloadMeme,
+    textBoxesData
+  ]);
 
   return createPortal(
-    <div className="meme">
-      <canvas
-        id="rendered-meme"
-        ref={canvas}
-        width={imageSize.width}
-        height={imageSize.height}
-      />
-      <div className="meme__buttons">
-        <StyledButton
-          className="meme__download"
-          buttonStyle="primary"
-          buttonSize="L"
-        >
-          DOWNLOAD
-        </StyledButton>
-        <StyledButton
-          className="meme__close"
-          buttonStyle="secondary"
-          buttonSize="L"
-          clickHandler={handleCloseButtonClick}
-        >
-          CLOSE
-        </StyledButton>
+    <div className="meme-container">
+      <div className="meme-wrapper">
+        <canvas
+          id="rendered-meme"
+          ref={canvas}
+          width={imageSize.width}
+          height={imageSize.height}
+        />
       </div>
     </div>,
     document.getElementById('meme')

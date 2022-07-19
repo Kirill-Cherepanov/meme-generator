@@ -36,6 +36,7 @@ export default function ToolTextBar({
 
   const addtext = () => {
     setTextBoxesData((textBoxesData) => {
+      setSelectedIndex(textBoxesData.length);
       return [...textBoxesData, DEFAULT_TEXT_BOXES_DATA];
     });
   };
