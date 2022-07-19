@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
-import { TextBoxContext } from '../Editor/TemplateEditor';
-import { DEFAULT_TEXT_BOXES_DATA } from '../Editor/TemplateEditor';
-import returnIcon from '../../icons/return.png';
-import addIcon from '../../icons/add.png';
-import fontFamilyIcon from '../../icons/font-family.png';
-import textModsIcon from '../../icons/text-mods.jpg';
-import textColorIcon from '../../icons/text-color.png';
-import bgColorIcon from '../../icons/bg-color.png';
-import opacityIcon from '../../icons/opacity.png';
-import alignmentIcon from '../../icons/alignment.png';
-import deleteIcon from '../../icons/delete.png';
+import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from '../TemplateEditor';
+import returnIcon from '../../../icons/return.png';
+import addIcon from '../../../icons/add.png';
+import fontFamilyIcon from '../../../icons/font-family.png';
+import textModsIcon from '../../../icons/text-mods.jpg';
+import textColorIcon from '../../../icons/text-color.png';
+import bgColorIcon from '../../../icons/bg-color.png';
+import opacityIcon from '../../../icons/opacity.png';
+import alignmentIcon from '../../../icons/alignment.png';
+import deleteIcon from '../../../icons/delete.png';
 
 import './ToolTextBar.scss';
 

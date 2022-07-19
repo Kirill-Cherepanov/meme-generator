@@ -1,53 +1,54 @@
-import React, { useContext } from 'react';
-import StyledButton from '../../App/StyledButton';
-import TextBoxModify from './TextBoxModify';
-import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from '../TemplateEditor';
+import React, { useState } from 'react';
+import ToolTextBar from './ToolTextBar';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
+import ToolNavBar from './ToolNavBar';
+import ToolHomeBar from './ToolHomeBar';
 import './ToolBar.scss';
 
-export default function ToolBar({
-  selectedTextBoxIndex,
+export default function ToolSidebar({
+  selectedTextBoxIndexState,
   generateMeme,
-  closeEditor
+  closeEditor,
+  image
 }) {
-  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+  const [chosenBar, setChosenBar] = useState('nav');
+  const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
+    selectedTextBoxIndexState;
+  const [dropMenuType, setDropMenuType] = useState();
+
+  const switchBar = {
+    nav: <ToolNavBar setChosenBar={setChosenBar} />,
+    home: (
+      <ToolHomeBar
+        returnToNav={() => setChosenBar('nav')}
+        closeEditor={closeEditor}
+        setSelectedTextBoxIndex={setSelectedTextBoxIndex}
+        generateMeme={generateMeme}
+      />
+    ),
+    image: <ToolNavBar setChosenBar={setChosenBar} />,
+    text: (
+      <ToolTextBar
+        returnToNav={() => {
+          setChosenBar('nav');
+          if (dropMenuType !== undefined) setDropMenuType(undefined);
+        }}
+        selectedTextBoxIndexState={selectedTextBoxIndexState}
+        setDropMenuType={setDropMenuType}
+      />
+    )
+  };
 
   return (
-    <div className="tools">
-      <h2 className="tools__title">MEME EDITOR</h2>
-      <div className="tools__main-buttons">
-        <StyledButton
-          buttonStyle="option"
-          buttonSize="M"
-          className="btn-template"
-          clickHandler={closeEditor}
-        >
-          CHANGE TEMPLATE
-        </StyledButton>
-        <StyledButton
-          buttonStyle="option"
-          buttonSize="M"
-          className="btn-text"
-          clickHandler={() => {
-            const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-            newTextBoxesData[textBoxesData.length] = DEFAULT_TEXT_BOXES_DATA;
-            setTextBoxesData(newTextBoxesData);
-          }}
-        >
-          ADD TEXT
-        </StyledButton>
-      </div>
-      {selectedTextBoxIndex !== undefined &&
-        textBoxesData[selectedTextBoxIndex] !== null && (
-          <TextBoxModify selectedIndex={selectedTextBoxIndex} />
-        )}
-      <StyledButton
-        buttonStyle="primary"
-        buttonSize="L"
-        className="btn-generate"
-        clickHandler={generateMeme}
-      >
-        GENERATE MEME
-      </StyledButton>
-    </div>
+    <>
+      {switchBar[chosenBar]}
+      {dropMenuType && (
+        <DropDownMenu
+          dropMenuState={[dropMenuType, setDropMenuType]}
+          selectedIndex={selectedTextBoxIndex}
+          image={image}
+        ></DropDownMenu>
+      )}
+    </>
   );
 }

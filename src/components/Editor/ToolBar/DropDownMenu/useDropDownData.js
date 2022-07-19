@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { TextBoxContext } from '../../Editor/TemplateEditor';
+import { TextBoxContext } from '../../TemplateEditor';
 
 function isNumeric(str) {
   if (typeof str != 'string') return false;

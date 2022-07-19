@@ -1,10 +1,9 @@
-import React from 'react';
 import { useContext } from 'react';
-import { TextBoxContext } from '../Editor/TemplateEditor';
-import returnIcon from '../../icons/return.png';
-import templateIcon from '../../icons/template.png';
-import resetIcon from '../../icons/reset.png';
-import generateIcon from '../../icons/generate.png';
+import { TextBoxContext } from '../TemplateEditor';
+import returnIcon from '../../../icons/return.png';
+import templateIcon from '../../../icons/template.png';
+import resetIcon from '../../../icons/reset.png';
+import generateIcon from '../../../icons/generate.png';
 
 export default function ToolHomeBar({
   returnToNav,

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, createContext } from 'react';
+import React, { useState, useRef, createContext } from 'react';
 import Canvas from './Canvas/Canvas';
-import ToolBar from '../NewEditor/ToolBar';
-import './TemplateEditor.scss';
+import ToolBar from './ToolBar/ToolBar';
 import MemePopUp from './MemePopUp';
+import './TemplateEditor.scss';
 
 export const DEFAULT_TEXT_BOXES_DATA = {
   text: 'WRITE YOUR TEXT HERE',

@@ -1,7 +1,7 @@
 import React from 'react';
-import homeIcon from '../../icons/home.png';
-import imageFilterIcon from '../../icons/image-filter.png';
-import textIcon from '../../icons/text.png';
+import homeIcon from '../../../icons/home.png';
+import imageFilterIcon from '../../../icons/image-filter.png';
+import textIcon from '../../../icons/text.png';
 
 export default function ToolNavBar({ setChosenBar }) {
   return (
