@@ -46,7 +46,12 @@ export default function ToolTextBar({
   };
 
   return (
-    <ul className="tool-bar text-bar">
+    <ul
+      className={
+        'tool-bar text-bar' +
+        (selectedIndex !== undefined ? ' index-selected' : '')
+      }
+    >
       <div className="tool-bar-row">
         <li className="tool-li">
           <button className="tool tool--return" onClick={returnToNav}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import DropDownColor from './DropDownColor';
-import DropDownConfirm from './DropDownConfirm';
 import DropDownButtons from './DropDownButtons';
 import DropDownRange from './DropDownRange';
 import useDropDownData from './useDropDownData';
@@ -15,8 +14,6 @@ const createDropDownComponent = (el, index, props) => {
       return <DropDownButtons key={index} {...props}></DropDownButtons>;
     case 'range':
       return <DropDownRange key={index} {...props}></DropDownRange>;
-    case 'confirm':
-      return <DropDownConfirm key={index} {...props}></DropDownConfirm>;
     case 'list':
       return <DropDownList key={index} {...props}></DropDownList>;
     default:
@@ -46,9 +43,7 @@ export default function DropDownMenu({ dropMenuState, selectedIndex, image }) {
       <button
         className="drop-down-menu__close-btn"
         onClick={() => setDropMenuType(undefined)}
-      >
-        X
-      </button>
+      />
     </div>
   );
 }

@@ -1,8 +1,66 @@
 .tool-bar.text-bar {
   flex-direction: column;
+  gap: 0;
+
+  .tool-bar-row {
+    gap: 0;
+  }
+
+  .tool {
+    display: none;
+  }
+
+  .tool-bar-row:first-of-type .tool-li:first-of-type {
+    margin-right: 15px;
+  }
+
+  .tool-bar-row:first-of-type .tool-li:first-of-type .tool,
+  .tool-bar-row:first-of-type .tool-li:nth-of-type(2) .tool {
+    display: flex;
+  }
+
+
+  &.index-selected {
+    gap: 10px;
+
+    @media (min-width: 450px) {
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      gap: 10px;
+    }
+
+    @media (min-width: 900px) {
+      gap: 25px;
+    }
+
+    .tool-bar-row {
+      gap: 10px;
+
+      @media (min-width: 450px) {
+        gap: 10px;
+      }
+
+      @media (min-width: 600px) {
+        gap: 10px;
+      }
+
+      @media (min-width: 900px) {
+        gap: 25px;
+      }
+    }
+
+    .tool {
+      display: flex;
+    }
+
+    .tool-bar-row:first-of-type .tool-li:first-of-type {
+      margin-right: 0;
+    }
+  }
 
   @media (min-width: 600px) {
     flex-direction: row;
-
   }
 }

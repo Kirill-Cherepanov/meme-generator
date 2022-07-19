@@ -1,0 +1,30 @@
+@use '../../../App/main.scss' as m;
+
+.drop-down-menu__list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+
+  label {
+    display: none;
+  }
+}
+
+.drop-down-menu__list-options {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.drop-down-menu__list-option {
+  cursor: pointer;
+  font-size: 14px;
+  flex-basis: 30%;
+  border: 1px solid m.$ThirdColor;
+  flex-shrink: 0;
+  background-color: #fff;
+
+  &.active {
+    color: #fff;
+    background-color: desaturate(m.$MainColor, 40%);
+  }
+}

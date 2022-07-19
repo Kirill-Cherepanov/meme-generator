@@ -1,4 +1,5 @@
 import React from 'react';
+import './DropDownList.scss';
 
 export default function DropDownList({ label, items, value, inputHandler }) {
   const optionElements = items.map((item, index) => {
@@ -7,7 +8,9 @@ export default function DropDownList({ label, items, value, inputHandler }) {
         key={index}
         value={item}
         onClick={inputHandler}
-        className="drop-down-menu__list-option"
+        className={
+          'drop-down-menu__list-option' + (value === item ? ' active' : '')
+        }
       >
         {item}
       </button>

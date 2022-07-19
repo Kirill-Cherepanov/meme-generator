@@ -1,0 +1,38 @@
+@use '../../../App/main.scss' as m;
+
+.drop-down-menu__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+
+  label {
+    margin-bottom: 10px;
+  }
+}
+
+.drop-down-menu__buttons-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.drop-down-menu__buttons-btn {
+  padding: 0;
+  background-color: darken(m.$SecondaryColor, 10%);
+  border: none;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &.active {
+    box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 40%);
+  }
+}
+
+.drop-down-menu__buttons-icon {
+  width: 18px;
+}

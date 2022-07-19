@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ToolTextBar from './ToolTextBar';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 import ToolNavBar from './ToolNavBar';
-import ToolHomeBar from './ToolHomeBar';
 import './ToolBar.scss';
 
 export default function ToolSidebar({
@@ -17,16 +16,22 @@ export default function ToolSidebar({
   const [dropMenuType, setDropMenuType] = useState();
 
   const switchBar = {
-    nav: <ToolNavBar setChosenBar={setChosenBar} />,
-    home: (
-      <ToolHomeBar
-        returnToNav={() => setChosenBar('nav')}
+    nav: (
+      <ToolNavBar
         closeEditor={closeEditor}
         setSelectedTextBoxIndex={setSelectedTextBoxIndex}
         generateMeme={generateMeme}
+        setChosenBar={setChosenBar}
       />
     ),
-    image: <ToolNavBar setChosenBar={setChosenBar} />,
+    image: (
+      <ToolNavBar
+        closeEditor={closeEditor}
+        setSelectedTextBoxIndex={setSelectedTextBoxIndex}
+        generateMeme={generateMeme}
+        setChosenBar={setChosenBar}
+      />
+    ),
     text: (
       <ToolTextBar
         returnToNav={() => {

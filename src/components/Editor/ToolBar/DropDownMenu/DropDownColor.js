@@ -1,4 +1,5 @@
 import React from 'react';
+import './DropDownColor.scss';
 
 export default function DropDownColor({ label, value, inputHandler }) {
   return (

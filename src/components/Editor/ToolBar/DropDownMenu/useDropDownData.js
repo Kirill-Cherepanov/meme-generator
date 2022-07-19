@@ -1,5 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import { TextBoxContext } from '../../TemplateEditor';
+import boldIcon from '../../../../icons/bold.png';
+import italicIcon from '../../../../icons/italic.png';
+import underlinedIcon from '../../../../icons/underlined.png';
+import crossedIcon from '../../../../icons/crossed.png';
+import leftAlignIcon from '../../../../icons/left-align.png';
+import centerAlignIcon from '../../../../icons/center-align.png';
+import rightAlignIcon from '../../../../icons/right-align.png';
 
 function isNumeric(str) {
   if (typeof str != 'string') return false;
@@ -33,12 +40,12 @@ export default function useDropDownData(selectedIndex, image) {
   }, [image]);
 
   const updateValue = (e, type) => {
-    const value = isNumeric(e.target.value)
-      ? Number(e.target.value)
-      : e.target.value;
+    const value = isNumeric(e.currentTarget.value)
+      ? Number(e.currentTarget.value)
+      : e.currentTarget.value;
 
     if (maxValues[type] !== undefined && maxValues[type] < value) {
-      e.target.value = textBoxData[type];
+      e.currentTarget.value = textBoxData[type];
       return;
     }
 
@@ -70,7 +77,7 @@ export default function useDropDownData(selectedIndex, image) {
         {
           label: 'Font Size',
           min: 0,
-          max: 128,
+          max: maxValues ? maxValues.fontSize : 128,
           numberLabel: 'px',
           value: textBoxData.fontSize,
           inputHandler: (e) => updateValue(e, 'fontSize')
@@ -92,22 +99,22 @@ export default function useDropDownData(selectedIndex, image) {
           label: 'Text Modifiers',
           buttons: [
             {
-              path: '../../../icons/template.png',
+              path: boldIcon,
               isActive: textBoxData.textMods.bold,
               inputHandler: () => toggleTextModifiers('bold')
             },
             {
-              path: '../../../icons/template.png',
+              path: italicIcon,
               isActive: textBoxData.textMods.italic,
               inputHandler: () => toggleTextModifiers('italic')
             },
             {
-              path: '../../../icons/template.png',
+              path: underlinedIcon,
               isActive: textBoxData.textMods.underlined,
               inputHandler: () => toggleTextModifiers('underlined')
             },
             {
-              path: '../../../icons/template.png',
+              path: crossedIcon,
               isActive: textBoxData.textMods.crossed,
               inputHandler: () => toggleTextModifiers('crossed')
             }
@@ -170,19 +177,19 @@ export default function useDropDownData(selectedIndex, image) {
           label: 'Text Alignment',
           buttons: [
             {
-              path: '../../../icons/template.png',
+              path: leftAlignIcon,
               value: 'left',
               isActive: textBoxData.alignment === 'left',
               inputHandler: (e) => updateValue(e, 'alignment')
             },
             {
-              path: '../../../icons/template.png',
+              path: centerAlignIcon,
               value: 'center',
               isActive: textBoxData.alignment === 'center',
               inputHandler: (e) => updateValue(e, 'alignment')
             },
             {
-              path: '../../../icons/template.png',
+              path: rightAlignIcon,
               value: 'right',
               isActive: textBoxData.alignment === 'right',
               inputHandler: (e) => updateValue(e, 'alignment')
@@ -190,14 +197,6 @@ export default function useDropDownData(selectedIndex, image) {
           ]
         }
       ]
-    },
-
-    reset: {
-      confirm: {
-        label: 'Are you sure you want to reset all the changes?',
-        buttonText: 'Confirm'
-        // inputHandler: (e) =>
-      }
     }
   };
 }

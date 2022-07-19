@@ -1,0 +1,121 @@
+@use '../../../App/main.scss' as m;
+
+.drop-down-menu__range {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-grow: 1;
+
+  label:first-of-type {
+    margin-right: 10px;
+  }
+}
+
+.drop-down-menu__range-input {
+  margin-right: 10px;
+  height: 35px;
+  -webkit-appearance: none;
+  width: 90%;
+  max-width: 200px;
+  background-color: darken(m.$SecondaryColor, 10%);
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: m.$MainColor;
+    border-radius: 5px;
+    border: 1px solid #000000;
+  }
+
+  &::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -11px;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: m.$MainColor;
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: m.$MainColor;
+    border-radius: 5px;
+    border: 1px solid #000000;
+  }
+
+  &::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+
+  &:-ms-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: m.$MainColor;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+
+  &::-ms-fill-upper {
+    background: m.$MainColor;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #000000;
+  }
+
+  &::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    cursor: pointer;
+  }
+
+  &:focus::-ms-fill-lower {
+    background: m.$MainColor;
+  }
+
+  &:focus::-ms-fill-upper {
+    background: m.$MainColor;
+  }
+}
+
+.drop-down-menu__range-input-number {
+  width: 35px;
+  border: none;
+}

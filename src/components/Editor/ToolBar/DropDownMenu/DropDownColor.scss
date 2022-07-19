@@ -1,0 +1,22 @@
+@use '../../../App/main.scss' as m;
+
+.drop-down-menu__color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  @media (min-width: 450px) {}
+
+  label {
+    display: inline-block;
+    min-width: 110px;
+    margin-right: 10px;
+  }
+
+
+}
+
+.drop-down-menu__color-input {
+  border: 1px solid m.$ThirdColor;
+}
