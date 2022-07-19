@@ -1,6 +1,16 @@
 import React, { useContext } from 'react';
 import { TextBoxContext } from '../Editor/TemplateEditor';
 import { DEFAULT_TEXT_BOXES_DATA } from '../Editor/TemplateEditor';
+import returnIcon from '../../icons/return.png';
+import addIcon from '../../icons/add.png';
+import fontFamilyIcon from '../../icons/font-family.png';
+import textModsIcon from '../../icons/text-mods.jpg';
+import textColorIcon from '../../icons/text-color.png';
+import bgColorIcon from '../../icons/bg-color.png';
+import opacityIcon from '../../icons/opacity.png';
+import alignmentIcon from '../../icons/alignment.png';
+import deleteIcon from '../../icons/delete.png';
+
 import './ToolTextBar.scss';
 
 export default function ToolTextBar({
@@ -33,7 +43,7 @@ export default function ToolTextBar({
 
   const handleSetDropMenuProps = (e) => {
     if (selectedIndex === undefined) return;
-    setDropMenuType(e.target.dataset.type);
+    setDropMenuType(e.currentTarget.dataset.type);
   };
 
   return (
@@ -41,14 +51,14 @@ export default function ToolTextBar({
       <div className="tool-bar-row">
         <li className="tool-li">
           <button className="tool tool--return" onClick={returnToNav}>
-            <span className="tool-icon return__icon"></span>
+            <img src={returnIcon} alt="" className="tool-icon return__icon" />
             <span className="tool-title return__title">Back</span>
           </button>
         </li>
 
         <li className="tool-li">
           <button className="tool text-bar__add" onClick={addtext}>
-            <span className="tool-icon add__icon"></span>
+            <img src={addIcon} alt="" className="tool-icon add__icon" />
             <span className="tool-title add__title">Add</span>
           </button>
         </li>
@@ -59,7 +69,7 @@ export default function ToolTextBar({
             data-type="font"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon font__icon"></span>
+            <img src={fontFamilyIcon} alt="" className="tool-icon font__icon" />
             <span className="tool-title font__title">Font</span>
           </button>
         </li>
@@ -70,7 +80,11 @@ export default function ToolTextBar({
             data-type="mods"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon text-modifiers__icon"></span>
+            <img
+              src={textModsIcon}
+              alt=""
+              className="tool-icon text-modifiers__icon"
+            />
             <span className="tool-title text-modifiers__title">Mods</span>
           </button>
         </li>
@@ -81,7 +95,11 @@ export default function ToolTextBar({
             data-type="color"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon text-color__icon"></span>
+            <img
+              src={textColorIcon}
+              alt=""
+              className="tool-icon text-color__icon"
+            />
             <span className="tool-title text-color__title">Color</span>
           </button>
         </li>
@@ -94,7 +112,11 @@ export default function ToolTextBar({
             data-type="background"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon background__icon"></span>
+            <img
+              src={bgColorIcon}
+              alt=""
+              className="tool-icon background__icon"
+            />
             <span className="tool-title background__title">Background</span>
           </button>
         </li>
@@ -105,7 +127,7 @@ export default function ToolTextBar({
             data-type="opacity"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon opacity__icon"></span>
+            <img src={opacityIcon} alt="" className="tool-icon opacity__icon" />
             <span className="tool-title opacity__title">Opacity</span>
           </button>
         </li>
@@ -116,7 +138,11 @@ export default function ToolTextBar({
             data-type="alignment"
             onClick={handleSetDropMenuProps}
           >
-            <span className="tool-icon alignment__icon"></span>
+            <img
+              src={alignmentIcon}
+              alt=""
+              className="tool-icon alignment__icon"
+            />
             <span className="tool-title alignment__title">Alignment</span>
           </button>
         </li>
@@ -127,7 +153,7 @@ export default function ToolTextBar({
             data-type="delete"
             onClick={deleteText}
           >
-            <span className="tool-icon delete__icon"></span>
+            <img src={deleteIcon} alt="" className="tool-icon delete__icon" />
             <span className="tool-title delete__title">Delete</span>
           </button>
         </li>

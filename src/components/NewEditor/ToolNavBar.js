@@ -1,4 +1,7 @@
 import React from 'react';
+import homeIcon from '../../icons/home.png';
+import imageFilterIcon from '../../icons/image-filter.png';
+import textIcon from '../../icons/text.png';
 
 export default function ToolNavBar({ setChosenBar }) {
   return (
@@ -8,7 +11,7 @@ export default function ToolNavBar({ setChosenBar }) {
           className="tool nav-bar__home"
           onClick={() => setChosenBar('home')}
         >
-          <span className="tool-icon home__icon"></span>
+          <img src={homeIcon} alt="" className="tool-icon home__icon" />
           <span className="tool-title home__title">Home</span>
         </button>
       </li>
@@ -18,7 +21,11 @@ export default function ToolNavBar({ setChosenBar }) {
           className="tool nav-bar__image"
           onClick={() => setChosenBar('image')}
         >
-          <span className="tool-icon image__icon"></span>
+          <img
+            src={imageFilterIcon}
+            alt=""
+            className="tool-icon image__icon"
+          ></img>
           <span className="tool-title image__title">Image</span>
         </button>
       </li>
@@ -28,7 +35,7 @@ export default function ToolNavBar({ setChosenBar }) {
           className="tool nav-bar__text"
           onClick={() => setChosenBar('text')}
         >
-          <span className="tool-icon text__icon"></span>
+          <img src={textIcon} alt="" className="tool-icon text__icon"></img>
           <span className="tool-title text__title">Text</span>
         </button>
       </li>

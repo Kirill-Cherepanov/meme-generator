@@ -1,7 +1,7 @@
 @use '../App/main.scss' as m;
 
-$j: m.$SecondaryColor;
-$i: m.$ThirdColor;
+$j: m.$MainColor;
+$i: #000;
 $transitionTime: 0.25s;
 $shadowColor: rgba(0, 0, 0, 1);
 
@@ -113,7 +113,6 @@ $shadowColor: rgba(0, 0, 0, 1);
     .tool-icon {
       transform: scale(0);
       color: m.$SecondaryColor;
-      transition-delay: 0.25s;
     }
 
     .tool-title {
@@ -173,14 +172,24 @@ $shadowColor: rgba(0, 0, 0, 1);
 .tool-icon {
   color: m.$SecondaryColor;
   transition: $transitionTime;
-  transition-delay: 0.25s;
-  font-size: 1.75em;
+  max-width: 19px;
+  max-height: 19px;
 
-  @media (min-width: 450px) {}
+  @media (min-width: 450px) {
+    max-width: 21px;
+    max-height: 21px;
 
-  @media (min-width: 600px) {}
+  }
 
-  @media (min-width: 900px) {}
+  @media (min-width: 600px) {
+    max-width: 23px;
+    max-height: 23px;
+  }
+
+  @media (min-width: 900px) {
+    max-width: 28px;
+    max-height: 28px;
+  }
 }
 
 .tool-title {
@@ -189,7 +198,6 @@ $shadowColor: rgba(0, 0, 0, 1);
   text-transform: uppercase;
   transform: scale(0);
   transition: $transitionTime;
-  transition-delay: 0s;
   letter-spacing: 0.1em;
   font-size: 0.65em;
 
