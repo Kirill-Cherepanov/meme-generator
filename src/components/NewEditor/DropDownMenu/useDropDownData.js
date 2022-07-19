@@ -9,7 +9,6 @@ function isNumeric(str) {
 export default function useDropDownData(selectedIndex, image) {
   const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
   const textBoxData = textBoxesData[selectedIndex];
-  // console.log(textBoxData);
 
   const [maxValues, setMaxValues] = useState();
   useEffect(() => {
@@ -62,6 +61,8 @@ export default function useDropDownData(selectedIndex, image) {
       !textBoxData.textMods[type];
     setTextBoxesData(newTextBoxesData);
   };
+
+  if (textBoxData === null || textBoxData === undefined) return;
 
   return {
     font: {

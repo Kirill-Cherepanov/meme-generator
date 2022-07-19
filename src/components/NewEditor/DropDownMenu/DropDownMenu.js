@@ -21,7 +21,6 @@ const createDropDownComponent = (el, index, props) => {
       return <DropDownList key={index} {...props}></DropDownList>;
     default:
       return 'Nothing found';
-    // throw Error('No drop down component by name: ' + el);
   }
 };
 

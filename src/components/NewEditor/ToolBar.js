@@ -33,7 +33,7 @@ export default function ToolSidebar({
           setChosenBar('nav');
           if (dropMenuType !== undefined) setDropMenuType(undefined);
         }}
-        selectedIndex={selectedTextBoxIndex}
+        selectedTextBoxIndexState={selectedTextBoxIndexState}
         setDropMenuType={setDropMenuType}
       />
     )

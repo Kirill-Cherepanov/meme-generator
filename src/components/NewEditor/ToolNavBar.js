@@ -8,8 +8,8 @@ export default function ToolNavBar({ setChosenBar }) {
           className="tool nav-bar__home"
           onClick={() => setChosenBar('home')}
         >
-          <span className="tool-icon nav-bar__icon"></span>
-          <span className="tool-title nav-bar__title">Home</span>
+          <span className="tool-icon home__icon"></span>
+          <span className="tool-title home__title">Home</span>
         </button>
       </li>
 

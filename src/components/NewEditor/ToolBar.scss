@@ -1,7 +1,9 @@
 @use '../App/main.scss' as m;
 
-$i: #000;
-$j: #999;
+$j: m.$SecondaryColor;
+$i: m.$ThirdColor;
+$transitionTime: 0.25s;
+$shadowColor: rgba(0, 0, 0, 1);
 
 .tool-bar,
 .tool-bar * {
@@ -14,25 +16,91 @@ $j: #999;
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   list-style: none;
-  gap: 25px;
+  padding: 10px 10px 0;
+  gap: 10px;
+
+  @media (min-width: 450px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 25px;
+  }
+}
+
+.tool-bar-row {
+  display: flex;
+  gap: 10px;
+
+  @media (min-width: 450px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 25px;
+  }
 }
 
 .tool {
   position: relative;
   list-style: none;
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border-radius: 60px;
+  background: lighten(m.$SecondaryColor, 5%);
+  display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: 0.4s;
+  transition: $transitionTime;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: 3px 3px 0 $shadowColor;
+
+  @media (min-width: 450px) {
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    box-shadow: 5px 5px 0 $shadowColor;
+  }
+
+  @media (min-width: 600px) {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+  }
+
+  @media (min-width: 900px) {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+  }
 
   &:hover {
-    width: 180px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+    box-shadow: 3px 3px 0 $shadowColor;
+    width: 110px;
+
+    @media (min-width: 450px) {
+      width: 150px;
+      box-shadow: 5px 5px 0 $shadowColor;
+    }
+
+    @media (min-width: 600px) {
+      width: 120px;
+    }
+
+    @media (min-width: 900px) {
+      width: 180px;
+    }
 
     &::before {
       opacity: 1;
@@ -57,10 +125,22 @@ $j: #999;
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 60px;
     background: linear-gradient(45deg, $i, $j);
     opacity: 0;
-    transition: 0.5s;
+    transition: $transitionTime;
+    border-radius: 40px;
+
+    @media (min-width: 450px) {
+      border-radius: 45px;
+    }
+
+    @media (min-width: 600px) {
+      border-radius: 50px;
+    }
+
+    @media (min-width: 900px) {
+      border-radius: 60px;
+    }
   }
 
   &::after {
@@ -68,30 +148,56 @@ $j: #999;
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 60px;
     background: linear-gradient(45deg, $i, $j);
-    transition: 0.5s;
+    transition: $transitionTime;
     filter: bluer(15px);
     z-index: -1;
     opacity: 0;
+    top: 10px;
+    border-radius: 40px;
+
+    @media (min-width: 450px) {
+      border-radius: 45px;
+    }
+
+    @media (min-width: 600px) {
+      border-radius: 50px;
+    }
+
+    @media (min-width: 900px) {
+      border-radius: 60px;
+    }
   }
 }
 
 .tool-icon {
-  color: m.$ThirdColor;
-  font-size: 1.75em;
-  transition: 0.5s;
+  color: m.$SecondaryColor;
+  transition: $transitionTime;
   transition-delay: 0.25s;
-  ;
+  font-size: 1.75em;
+
+  @media (min-width: 450px) {}
+
+  @media (min-width: 600px) {}
+
+  @media (min-width: 900px) {}
 }
 
 .tool-title {
   position: absolute;
-  color: m.$ThirdColor;
-  font-size: 1.25em;
+  color: m.$SecondaryColor;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
   transform: scale(0);
-  transition: 0.5s;
+  transition: $transitionTime;
   transition-delay: 0s;
+  letter-spacing: 0.1em;
+  font-size: 0.65em;
+
+  @media (min-width: 450px) {
+    font-size: 0.8em;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 1.1em;
+  }
 }
