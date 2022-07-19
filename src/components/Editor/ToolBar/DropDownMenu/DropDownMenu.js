@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Rnd } from 'react-rnd';
 import DropDownColor from './DropDownColor';
 import DropDownButtons from './DropDownButtons';
 import DropDownRange from './DropDownRange';
-import useDropDownData from './useDropDownData';
+import getDropDownTextBoxData from './getDropDownTextBoxData';
+import getDropDownImageData from './getDropDownImageData';
 import DropDownList from './DropDownList';
 import './DropDownMenu.scss';
+import { TextBoxContext } from '../../TemplateEditor';
 
 const createDropDownComponent = (el, index, props) => {
   switch (el) {
@@ -26,11 +28,21 @@ export default function DropDownMenu({
   dropMenuState,
   selectedIndex,
   image,
-  dropDownMenuPosState
+  dropDownMenuPosState,
+  templateStylesState
 }) {
   const [dropDownMenuPos, setDropDownMenuPos] = dropDownMenuPosState;
   const [dropMenuType, setDropMenuType] = dropMenuState;
-  const dropDownData = useDropDownData(selectedIndex, image)[dropMenuType];
+  const textBoxContext = useContext(TextBoxContext);
+
+  let dropDownData;
+  if (dropMenuType === 'filters') {
+    dropDownData = getDropDownImageData(templateStylesState);
+  } else {
+    dropDownData = getDropDownTextBoxData(selectedIndex, textBoxContext)[
+      dropMenuType
+    ];
+  }
 
   const dropDownComponents = [].concat(
     ...Object.keys(dropDownData).map((componentType, index1) => {

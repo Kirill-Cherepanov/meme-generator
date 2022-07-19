@@ -3,7 +3,7 @@ import { TextBoxContext, DEFAULT_TEXT_BOXES_DATA } from '../TemplateEditor';
 import returnIcon from '../../../icons/return.png';
 import addIcon from '../../../icons/add.png';
 import fontFamilyIcon from '../../../icons/font-family.png';
-import textModsIcon from '../../../icons/text-mods.jpg';
+import textModsIcon from '../../../icons/text-mods.png';
 import textColorIcon from '../../../icons/text-color.png';
 import bgColorIcon from '../../../icons/bg-color.png';
 import opacityIcon from '../../../icons/opacity.png';

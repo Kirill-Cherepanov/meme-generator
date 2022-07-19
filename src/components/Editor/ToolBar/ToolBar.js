@@ -5,8 +5,9 @@ import ToolNavBar from './ToolNavBar';
 import ToolDownloadBar from './ToolDownloadBar';
 import './ToolBar.scss';
 
-export default function ToolSidebar({
+export default function ToolBar({
   selectedTextBoxIndexState,
+  templateStylesState,
   generateMeme: generateMeme_,
   closeEditor,
   image,
@@ -17,7 +18,10 @@ export default function ToolSidebar({
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
     selectedTextBoxIndexState;
   const [dropMenuType, setDropMenuType] = useState();
-  const dropDownMenuPosState = useState({ x: 0, y: 0 });
+  const dropDownMenuPosState = useState({
+    x: window.innerWidth / 2 - 100,
+    y: 120
+  });
   const generateMeme = () => {
     setChosenBar('download');
     return generateMeme_();
@@ -30,14 +34,7 @@ export default function ToolSidebar({
         setSelectedTextBoxIndex={setSelectedTextBoxIndex}
         generateMeme={generateMeme}
         setChosenBar={setChosenBar}
-      />
-    ),
-    image: (
-      <ToolNavBar
-        closeEditor={closeEditor}
-        setSelectedTextBoxIndex={setSelectedTextBoxIndex}
-        generateMeme={generateMeme}
-        setChosenBar={setChosenBar}
+        setDropMenuType={setDropMenuType}
       />
     ),
     text: (
@@ -71,6 +68,7 @@ export default function ToolSidebar({
           selectedIndex={selectedTextBoxIndex}
           image={image}
           dropDownMenuPosState={dropDownMenuPosState}
+          templateStylesState={templateStylesState}
         ></DropDownMenu>
       )}
     </>

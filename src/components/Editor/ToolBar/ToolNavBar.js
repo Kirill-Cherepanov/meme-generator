@@ -10,7 +10,8 @@ export default function ToolHomeBar({
   closeEditor,
   setSelectedTextBoxIndex,
   generateMeme,
-  setChosenBar
+  setChosenBar,
+  setDropMenuType
 }) {
   const { setTextBoxesData } = useContext(TextBoxContext);
   const resetData = () => {
@@ -30,7 +31,7 @@ export default function ToolHomeBar({
       <li className="tool-li">
         <button
           className="tool nav-bar__image"
-          onClick={() => setChosenBar('image')}
+          onClick={() => setDropMenuType('filters')}
         >
           <img
             src={imageFilterIcon}

@@ -1,5 +1,3 @@
-import { useContext, useState, useEffect } from 'react';
-import { TextBoxContext } from '../../TemplateEditor';
 import boldIcon from '../../../../icons/bold.png';
 import italicIcon from '../../../../icons/italic.png';
 import underlinedIcon from '../../../../icons/underlined.png';
@@ -13,45 +11,31 @@ function isNumeric(str) {
   return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
-export default function useDropDownData(selectedIndex, image) {
-  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+const MAX_VALUES = {
+  fontSize: 100,
+  opacity: 100,
+  backgroundOpacity: 100
+};
+
+export default function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
+  const { textBoxesData, setTextBoxesData } = TextBoxContext;
   const textBoxData = textBoxesData[selectedIndex];
-
-  const [maxValues, setMaxValues] = useState();
-  useEffect(() => {
-    const updateMaxValues = () => {
-      const imageWidth = image.getBoundingClientRect().width;
-      const imageHeight = image.getBoundingClientRect().height;
-      setMaxValues({
-        x: imageWidth,
-        y: imageHeight,
-        width: imageWidth,
-        height: imageHeight,
-        fontSize: imageWidth / 4,
-        opacity: 100,
-        backgroundOpacity: 100
-      });
-    };
-    updateMaxValues();
-
-    window.addEventListener('resize', updateMaxValues);
-
-    return () => window.removeEventListener('resize', updateMaxValues);
-  }, [image]);
 
   const updateValue = (e, type) => {
     const value = isNumeric(e.currentTarget.value)
       ? Number(e.currentTarget.value)
       : e.currentTarget.value;
 
-    if (maxValues[type] !== undefined && maxValues[type] < value) {
+    if (MAX_VALUES[type] !== undefined && MAX_VALUES[type] < value) {
       e.currentTarget.value = textBoxData[type];
       return;
     }
 
-    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-    newTextBoxesData[selectedIndex][type] = value;
-    setTextBoxesData(newTextBoxesData);
+    setTextBoxesData((textBoxesData) => {
+      const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+      newTextBoxesData[selectedIndex][type] = value;
+      return newTextBoxesData;
+    });
   };
 
   const toggleTextModifiers = (type) => {
@@ -69,15 +53,13 @@ export default function useDropDownData(selectedIndex, image) {
     setTextBoxesData(newTextBoxesData);
   };
 
-  if (textBoxData === null || textBoxData === undefined) return;
-
   return {
     font: {
       range: [
         {
           label: 'Font Size',
           min: 0,
-          max: maxValues ? maxValues.fontSize : 128,
+          max: MAX_VALUES.fontSize,
           numberLabel: 'px',
           value: textBoxData.fontSize,
           inputHandler: (e) => updateValue(e, 'fontSize')
@@ -86,7 +68,16 @@ export default function useDropDownData(selectedIndex, image) {
       list: [
         {
           label: 'Font Family',
-          items: ['sans-serif', 'serif', 'Roboto', 'Will add later!'],
+          items: [
+            'Roboto',
+            'Arial',
+            'Impact',
+            'Courier',
+            'Comic',
+            'Times new roman',
+            'sans-serif',
+            'serif'
+          ],
           value: textBoxData.fontFamily,
           inputHandler: (e) => updateValue(e, 'fontFamily')
         }
@@ -197,6 +188,8 @@ export default function useDropDownData(selectedIndex, image) {
           ]
         }
       ]
-    }
+    },
+
+    filters: {}
   };
 }

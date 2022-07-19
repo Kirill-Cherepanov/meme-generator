@@ -11,6 +11,9 @@ export default function DropDownList({ label, items, value, inputHandler }) {
         className={
           'drop-down-menu__list-option' + (value === item ? ' active' : '')
         }
+        style={{
+          fontFamily: item
+        }}
       >
         {item}
       </button>
