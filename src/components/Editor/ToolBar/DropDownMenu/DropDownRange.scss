@@ -6,8 +6,17 @@
   align-items: center;
   flex-grow: 1;
 
-  label:first-of-type {
+  &.drop-down-menu__element label {
+    min-width: 30px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  &.drop-down-menu__element label:first-of-type {
     margin-right: 10px;
+    min-width: 90px;
+    text-align: left;
+    font-weight: bold;
   }
 }
 
@@ -16,7 +25,7 @@
   height: 25px;
   -webkit-appearance: none;
   width: 90%;
-  max-width: 200px;
+  max-width: 150px;
   background-color: darken(m.$SecondaryColor, 10%);
 
   &:focus {

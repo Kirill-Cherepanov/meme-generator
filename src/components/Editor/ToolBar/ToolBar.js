@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { TextBoxContext } from '../TemplateEditor';
 import ToolTextBar from './ToolTextBar';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 import ToolNavBar from './ToolNavBar';
@@ -8,12 +9,12 @@ import './ToolBar.scss';
 export default function ToolBar({
   selectedTextBoxIndexState,
   templateStylesState,
-  generateMeme: generateMeme_,
+  togglePopUp,
   closeEditor,
-  image,
-  downloadMeme,
-  closePopUp
+  downloadMeme
 }) {
+  const { setTextBoxesData } = useContext(TextBoxContext);
+  const setTemplateStyles = templateStylesState[1];
   const [chosenBar, setChosenBar] = useState('nav');
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
     selectedTextBoxIndexState;
@@ -22,9 +23,16 @@ export default function ToolBar({
     x: window.innerWidth / 2 - 100,
     y: 120
   });
-  const generateMeme = () => {
-    setChosenBar('download');
-    return generateMeme_();
+  const resetData = () => {
+    setTemplateStyles({
+      hueRotate: 0,
+      saturation: 100,
+      brightness: 100,
+      blur: 0,
+      sepia: 0
+    });
+    setTextBoxesData([]);
+    setSelectedTextBoxIndex(undefined);
   };
 
   const switchBar = {
@@ -32,7 +40,11 @@ export default function ToolBar({
       <ToolNavBar
         closeEditor={closeEditor}
         setSelectedTextBoxIndex={setSelectedTextBoxIndex}
-        generateMeme={generateMeme}
+        resetData={resetData}
+        togglePopUp={() => {
+          setDropMenuType(undefined);
+          togglePopUp();
+        }}
         setChosenBar={setChosenBar}
         setDropMenuType={setDropMenuType}
       />
@@ -50,9 +62,8 @@ export default function ToolBar({
     download: (
       <ToolDownloadBar
         returnToNav={() => {
-          closePopUp();
+          togglePopUp();
           setChosenBar('nav');
-          if (dropMenuType !== undefined) setDropMenuType(undefined);
         }}
         downloadMeme={downloadMeme}
       ></ToolDownloadBar>
@@ -66,7 +77,6 @@ export default function ToolBar({
         <DropDownMenu
           dropMenuState={[dropMenuType, setDropMenuType]}
           selectedIndex={selectedTextBoxIndex}
-          image={image}
           dropDownMenuPosState={dropDownMenuPosState}
           templateStylesState={templateStylesState}
         ></DropDownMenu>

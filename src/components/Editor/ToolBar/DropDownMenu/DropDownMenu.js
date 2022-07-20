@@ -3,8 +3,10 @@ import { Rnd } from 'react-rnd';
 import DropDownColor from './DropDownColor';
 import DropDownButtons from './DropDownButtons';
 import DropDownRange from './DropDownRange';
-import getDropDownTextBoxData from './getDropDownTextBoxData';
-import getDropDownImageData from './getDropDownImageData';
+import {
+  getDropDownTextBoxData,
+  getDropDownImageData
+} from './getDropDownData';
 import DropDownList from './DropDownList';
 import './DropDownMenu.scss';
 import { TextBoxContext } from '../../TemplateEditor';
@@ -27,7 +29,6 @@ const createDropDownComponent = (el, index, props) => {
 export default function DropDownMenu({
   dropMenuState,
   selectedIndex,
-  image,
   dropDownMenuPosState,
   templateStylesState
 }) {
@@ -65,7 +66,7 @@ export default function DropDownMenu({
       bounds="window"
       className="drop-down-menu"
       enableResizing={false}
-      cancel='input[type="range"]'
+      cancel="input, .drop-down-menu__close-btn, .drop-down-menu__list-option, .drop-down-menu__buttons-btn"
       style={{ display: 'flex' }}
     >
       {dropDownComponents}

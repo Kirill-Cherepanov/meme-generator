@@ -2,7 +2,7 @@
 
 .drop-down-menu {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   background-color: darken(m.$SecondaryColor, 10%);
   border-radius: 5px;
   padding: 15px;
@@ -12,6 +12,10 @@
   box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
 
   @media (min-width: 450px) {
     height: 115px;

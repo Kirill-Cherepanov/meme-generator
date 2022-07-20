@@ -49,9 +49,6 @@ export default function TemplateEditor({
 }) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
-
-  // We need to update imageRef when component is rendered
-  // This is the first solution I came up with
   const [templateStyles, setTemplateStyles] = useState({
     hueRotate: 0,
     saturation: 100,
@@ -59,22 +56,19 @@ export default function TemplateEditor({
     blur: 0,
     sepia: 0
   });
-  const imageRef = useRef(null);
-  const image = (
-    <img
-      src={template.url}
-      crossOrigin="anonymous"
-      ref={(ref) => {
-        imageRef.current = ref;
-      }}
-      style={{
-        filter: `hue-rotate(${templateStyles.hueRotate}deg) saturate(${templateStyles.saturation}%) brightness(${templateStyles.brightness}%) blur(${templateStyles.blur}px) sepia(${templateStyles.sepia}%)`
-        // filter: 'blur(10px)'
-      }}
-      alt="Template"
-      className="canvas__img"
-    />
+  const [textBoxesData, setTextBoxesData] = useState(
+    JSON.parse(sessionStorage.getItem(template.url)) || [
+      DEFAULT_TEXT_BOXES_DATA
+    ]
   );
+  const [downloadMeme, setDownloadMeme] = useState(() => () => {});
+
+  const imageRef = useRef(null);
+
+  const closeEditor = () => {
+    sessionStorage.setItem(template.url, JSON.stringify(textBoxesData));
+    closeEditor_();
+  };
 
   // For testing
   // useEffect(() => {
@@ -90,19 +84,6 @@ export default function TemplateEditor({
   //   return () => window.removeEventListener('keydown', test);
   // }, [setTemplateStyles]);
 
-  const [downloadMeme, setDownloadMeme] = useState(() => () => {});
-
-  const [textBoxesData, setTextBoxesData] = useState(
-    JSON.parse(sessionStorage.getItem(template.url)) || [
-      DEFAULT_TEXT_BOXES_DATA
-    ]
-  );
-
-  const closeEditor = () => {
-    sessionStorage.setItem(template.url, JSON.stringify(textBoxesData));
-    closeEditor_();
-  };
-
   return (
     <TextBoxContext.Provider value={{ textBoxesData, setTextBoxesData }}>
       <div className="template-editor">
@@ -112,24 +93,26 @@ export default function TemplateEditor({
             setSelectedTextBoxIndex
           ]}
           templateStylesState={[templateStyles, setTemplateStyles]}
-          image={imageRef.current}
-          generateMeme={() => setMemeGenerated(true)}
+          togglePopUp={() => setMemeGenerated((memeGenerate) => !memeGenerate)}
           closeEditor={closeEditor}
-          closePopUp={() => setMemeGenerated(false)}
           downloadMeme={downloadMeme}
         />
         <Canvas
-          image={image}
+          imgData={{
+            ref: imageRef,
+            src: template.url,
+            filters: templateStyles
+          }}
           selectedTextBoxIndexState={[
             selectedTextBoxIndex,
             setSelectedTextBoxIndex
           ]}
-          handleModifySidebarParams={() => {}}
         />
         {memeGenerated && (
           <MemePopUp
             image={imageRef.current}
             setDownloadMeme={setDownloadMeme}
+            filters={templateStyles}
           />
         )}
       </div>

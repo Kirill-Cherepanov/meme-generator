@@ -10,7 +10,7 @@
 
     @media (min-width: 600px) {
       display: block;
-      margin-bottom: 5px;
+      padding-bottom: 5px;
     }
   }
 }
@@ -19,27 +19,26 @@
   display: flex;
   overflow-x: scroll;
   height: 100%;
-
-  @media (min-width: 600px) {
-    overflow-x: auto;
-    flex-direction: column;
-  }
+  overflow-x: auto;
+  flex-direction: column;
+  border: 1px solid m.$ThirdColor;
 }
 
 .drop-down-menu__list-option {
   cursor: pointer;
   font-size: 14px;
-  flex-basis: 30%;
+  flex-basis: 25px;
   border: 1px solid m.$ThirdColor;
   flex-shrink: 0;
-  background-color: #fff;
+  background-color: darken(m.$SecondaryColor, 10%);
+  border: none;
 
   @media (min-width: 450px) {
     font-size: 16px;
   }
 
   @media (min-width: 600px) {
-    flex-basis: 40px;
+    flex-basis: 30px;
   }
 
   &.active {

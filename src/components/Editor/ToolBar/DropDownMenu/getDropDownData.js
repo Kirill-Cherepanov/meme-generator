@@ -11,13 +11,13 @@ function isNumeric(str) {
   return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
-const MAX_VALUES = {
+const TEXT_MAX_VALUES = {
   fontSize: 100,
   opacity: 100,
   backgroundOpacity: 100
 };
 
-export default function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
+export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
   const { textBoxesData, setTextBoxesData } = TextBoxContext;
   const textBoxData = textBoxesData[selectedIndex];
 
@@ -26,7 +26,7 @@ export default function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
       ? Number(e.currentTarget.value)
       : e.currentTarget.value;
 
-    if (MAX_VALUES[type] !== undefined && MAX_VALUES[type] < value) {
+    if (TEXT_MAX_VALUES[type] !== undefined && TEXT_MAX_VALUES[type] < value) {
       e.currentTarget.value = textBoxData[type];
       return;
     }
@@ -59,7 +59,7 @@ export default function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
         {
           label: 'Font Size',
           min: 0,
-          max: MAX_VALUES.fontSize,
+          max: TEXT_MAX_VALUES.fontSize,
           numberLabel: 'px',
           value: textBoxData.fontSize,
           inputHandler: (e) => updateValue(e, 'fontSize')
@@ -191,5 +191,75 @@ export default function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
     },
 
     filters: {}
+  };
+}
+
+const IMAGE_MAX_VALUES = {
+  hueRotate: 360,
+  saturation: 100,
+  brightness: 100,
+  blur: 100,
+  sepia: 100
+};
+
+export function getDropDownImageData(templateStylesState) {
+  const [templateStyles, setTemplateStyles] = templateStylesState;
+
+  const updateImageFilters = (e, type) => {
+    const value = Number(e.currentTarget.value);
+
+    setTemplateStyles((templateStyles) => {
+      if (IMAGE_MAX_VALUES[type] < value) {
+        e.currentTarget.value = templateStyles[type];
+        return templateStyles;
+      }
+
+      return { ...templateStyles, ...{ [type]: value } };
+    });
+  };
+
+  return {
+    range: [
+      {
+        label: 'Hue Rotate',
+        min: 0,
+        max: 360,
+        numberLabel: 'deg',
+        value: templateStyles.hueRotate,
+        inputHandler: (e) => updateImageFilters(e, 'hueRotate')
+      },
+      {
+        label: 'Saturation',
+        min: 0,
+        max: 100,
+        numberLabel: '%',
+        value: templateStyles.saturation,
+        inputHandler: (e) => updateImageFilters(e, 'saturation')
+      },
+      {
+        label: 'Brightness',
+        min: 0,
+        max: 100,
+        numberLabel: '%',
+        value: templateStyles.brightness,
+        inputHandler: (e) => updateImageFilters(e, 'brightness')
+      },
+      {
+        label: 'Blur',
+        min: 0,
+        max: 100,
+        numberLabel: 'px',
+        value: templateStyles.blur,
+        inputHandler: (e) => updateImageFilters(e, 'blur')
+      },
+      {
+        label: 'Sepia',
+        min: 0,
+        max: 100,
+        numberLabel: '%',
+        value: templateStyles.sepia,
+        inputHandler: (e) => updateImageFilters(e, 'sepia')
+      }
+    ]
   };
 }

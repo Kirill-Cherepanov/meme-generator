@@ -111,9 +111,8 @@ const fillTextIntoCanvas = (context, boxData, text, y) => {
   }
 };
 
-export default function MemePage({ image, setDownloadMeme }) {
-  const { textBoxesData: textBoxesData_ } = useContext(TextBoxContext);
-  const textBoxesData = JSON.parse(JSON.stringify(textBoxesData_));
+export default function MemePopUp({ image, setDownloadMeme, filters }) {
+  const { textBoxesData } = useContext(TextBoxContext);
 
   const imageSize = {
     width: image.getBoundingClientRect().width,
@@ -124,25 +123,31 @@ export default function MemePage({ image, setDownloadMeme }) {
 
   useEffect(() => {
     const context = canvas.current.getContext('2d');
-    context.drawImage(image, 0, 0, imageSize.width, imageSize.height);
 
-    textBoxesData.forEach((textBoxData) => {
+    context.filter = `hue-rotate(${filters.hueRotate}deg) saturate(${filters.saturation}%) brightness(${filters.brightness}%) blur(${filters.blur}px) sepia(${filters.sepia}%)`;
+    context.drawImage(image, 0, 0, imageSize.width, imageSize.height);
+    context.filter = 'none';
+
+    textBoxesData.forEach((textBoxData_) => {
+      const textBoxData = JSON.parse(JSON.stringify(textBoxData_));
       if (textBoxData === null) return;
 
-      const boxData = {
-        x: textBoxData.x,
-        width: textBoxData.width,
-        height: textBoxData.height,
-        color: textBoxData.color,
-        outlineColor: textBoxData.outlineColor,
-        fontSize: textBoxData.fontSize,
-        fontFamily: textBoxData.fontFamily,
-        backgroundOpacity: textBoxData.backgroundOpacity,
-        backgroundColor: textBoxData.backgroundColor,
-        textMods: textBoxData.textMods,
-        opacity: textBoxData.opacity,
-        alignment: textBoxData.alignment
-      };
+      let boxData = {};
+      const keys = [
+        'x',
+        'width',
+        'height',
+        'color',
+        'outlineColor',
+        'fontSize',
+        'fontFamily',
+        'backgroundOpacity',
+        'backgroundColor',
+        'textMods',
+        'opacity',
+        'alignment'
+      ];
+      keys.forEach((key) => (boxData[key] = textBoxData[key]));
 
       fillBackgroundIntoCanvas(context, textBoxData);
 
@@ -163,6 +168,7 @@ export default function MemePage({ image, setDownloadMeme }) {
       };
     });
   }, [
+    filters,
     image,
     imageSize.height,
     imageSize.width,

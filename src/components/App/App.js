@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import TemplateChoose from '../StartingPage/TemplateChoose';
 import Footer from '../StartingPage/Footer';
-import PopularMemes from '../StartingPage/PopularMemes';
 import TemplateEditor from '../Editor/TemplateEditor';
 import './App.scss';
 import 'normalize.css';
+const PopularMemes = React.lazy(() => import('../StartingPage/PopularMemes'));
 
-const AMOUNT_OF_FETCHED_MEMES = 10;
+const AMOUNT_OF_FETCHED_MEMES = 100;
 const API_URL = 'https://api.imgflip.com/get_memes';
 
 function App() {
   const [isPopularMemesOpen, setPopularsMemesOpen] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [template, setTemplate] = useState();
-  const [memes, setMemes] = useState(getTemplatesExample());
+  const [memes, setMemes] = useState();
 
   const openPopularMemes = () => setPopularsMemesOpen(true);
   const closePopularMemes = () => setPopularsMemesOpen(false);
@@ -27,17 +27,17 @@ function App() {
     setIsEditorOpen(false);
   };
 
-  // useEffect(() => {
-  //   const fetchMemes = async () => {
-  //     const memesData = await (await fetch(API_URL)).json();
-  //     if (!memesData.success) throw Error("Couldn't access api.imgflip.com !");
-  //     setMemes(memesData.data.memes.slice(0, AMOUNT_OF_FETCHED_MEMES));
-  //   };
-  //   fetchMemes();
-  // }, []);
+  useEffect(() => {
+    const fetchMemes = async () => {
+      const memesData = await (await fetch(API_URL)).json();
+      if (!memesData.success) throw Error("Couldn't access api.imgflip.com !");
+      setMemes(memesData.data.memes.slice(0, AMOUNT_OF_FETCHED_MEMES));
+    };
+    fetchMemes();
+  }, []);
 
   return (
-    <>
+    <React.StrictMode>
       {isEditorOpen ? (
         <TemplateEditor template={template} closeEditor={closeEditor} />
       ) : (
@@ -48,13 +48,21 @@ function App() {
       )}
 
       {isPopularMemesOpen ? (
-        <PopularMemes
-          memes={memes}
-          chooseMemesHandler={chooseMemesHandler}
-          closeMenuHandler={closePopularMemes}
-        />
+        <React.Suspense
+          fallback={
+            <div>
+              FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!FUCKED!!
+            </div>
+          }
+        >
+          <PopularMemes
+            memes={memes}
+            chooseMemesHandler={chooseMemesHandler}
+            closeMenuHandler={closePopularMemes}
+          />
+        </React.Suspense>
       ) : undefined}
-    </>
+    </React.StrictMode>
   );
 }
 

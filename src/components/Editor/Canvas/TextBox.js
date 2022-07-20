@@ -3,6 +3,8 @@ import { Rnd } from 'react-rnd';
 import { TextBoxContext } from '../TemplateEditor';
 import './TextBox.scss';
 
+let timesMoved = 0;
+
 export default function TextBox({ index, selectedTextBoxIndexState }) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
     selectedTextBoxIndexState;
@@ -62,26 +64,43 @@ export default function TextBox({ index, selectedTextBoxIndexState }) {
       onResizeStart={() => {
         setSelectedTextBoxIndex(index);
       }}
-      onDrag={(e, d) => {
-        const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-        newTextBoxesData[index].x = d.x;
-        newTextBoxesData[index].y = d.y;
-        setTextBoxesData(newTextBoxesData);
+      onDragStop={(e, d) => {
+        setTextBoxesData((textBoxesData) => {
+          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+          newTextBoxesData[index].x = d.x;
+          newTextBoxesData[index].y = d.y;
+          return newTextBoxesData;
+        });
       }}
-      onResize={(e, direction, ref, delta, position) => {
-        const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-        newTextBoxesData[index].width = ref.offsetWidth;
-        newTextBoxesData[index].height = ref.offsetHeight;
-        newTextBoxesData[index].x = position.x;
-        newTextBoxesData[index].y = position.y;
-        setTextBoxesData(newTextBoxesData);
+      onResizeStop={(e, direction, ref, delta, position) => {
+        setTextBoxesData((textBoxesData) => {
+          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
+          newTextBoxesData[index].width = ref.offsetWidth;
+          newTextBoxesData[index].height = ref.offsetHeight;
+          newTextBoxesData[index].x = position.x;
+          newTextBoxesData[index].y = position.y;
+          return newTextBoxesData;
+        });
       }}
+      allowAnyClick={true}
     >
       <span
         ref={contentRef}
         className="canvas__editable-text"
         contentEditable={true}
         suppressContentEditableWarning={true}
+        onTouchStart={() => {
+          timesMoved = 0;
+        }}
+        onTouchMove={() => {
+          timesMoved++;
+        }}
+        onTouchEnd={(e) => {
+          if (timesMoved > 7) return true;
+          caretPos.current = e.target.childNodes[0].length;
+          e.target.focus();
+          setCaret(e.target, caretPos.current);
+        }}
         onInput={(e) => {
           caretPos.current = getCaret(contentRef.current);
 
