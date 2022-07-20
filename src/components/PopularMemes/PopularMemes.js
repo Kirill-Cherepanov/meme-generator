@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GlowingButton from '../GlowingButton/GlowingButton';
 import './PopularMemes.scss';
+
+const AMOUNT_OF_FETCHED_MEMES = 100;
+const API_URL = 'https://api.imgflip.com/get_memes';
+
+const fetchMemes = async () => {
+  const memesData = await (await fetch(API_URL)).json();
+  if (!memesData.success) throw Error("Couldn't access api.imgflip.com !");
+  return memesData.data.memes.slice(0, AMOUNT_OF_FETCHED_MEMES);
+};
 
 export default function PopularMemes({
   memes,
   chooseMemesHandler,
   closeMenuHandler
 }) {
-  const memeElements = memes.map((meme, index) => {
+  const [memeData, setMemeData] = useState([]);
+
+  useEffect(() => {
+    let isUnmounted = false;
+
+    fetchMemes().then((memes) => !isUnmounted && setMemeData(memes));
+
+    return () => (isUnmounted = true);
+  }, []);
+
+  const memeElements = memeData.map((meme, index) => {
     return (
       <figure className="template-menu__meme" key={index}>
         <figcaption className="template-menu__caption">{meme.name}</figcaption>
@@ -34,7 +53,24 @@ export default function PopularMemes({
         </button>
       </div>
 
-      <div className="template-menu__meme-container">{memeElements}</div>
+      <div className="template-menu__meme-container">
+        {memeData.length !== 0 ? (
+          memeElements
+        ) : (
+          <div className="template-menu__loading">
+            <div class="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

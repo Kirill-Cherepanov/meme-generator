@@ -5,6 +5,7 @@ import TemplateEditor from '../TemplateEditor/TemplateEditor';
 import './App.scss';
 import 'normalize.css';
 const PopularMemes = React.lazy(() => import('../PopularMemes/PopularMemes'));
+// import PopularMemes from '../PopularMemes/PopularMemes';
 
 const AMOUNT_OF_FETCHED_MEMES = 100;
 const API_URL = 'https://api.imgflip.com/get_memes';
