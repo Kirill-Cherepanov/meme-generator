@@ -8,15 +8,12 @@ const API_URL = 'https://api.imgflip.com/get_memes';
 const fetchMemes = async () => {
   const memesData = await (await fetch(API_URL)).json();
   if (!memesData.success) throw Error("Couldn't access api.imgflip.com !");
-  return memesData.data.memes.slice(0, AMOUNT_OF_FETCHED_MEMES);
+  return memesData.data.memes;
 };
 
-export default function PopularMemes({
-  memes,
-  chooseMemesHandler,
-  closeMenuHandler
-}) {
+export default function PopularMemes({ chooseMemesHandler, closeMenuHandler }) {
   const [memeData, setMemeData] = useState([]);
+  const [memeAmount, setMemeAmount] = useState(9);
 
   useEffect(() => {
     let isUnmounted = false;
@@ -26,7 +23,7 @@ export default function PopularMemes({
     return () => (isUnmounted = true);
   }, []);
 
-  const memeElements = memeData.map((meme, index) => {
+  const memeElements = memeData.slice(0, memeAmount).map((meme, index) => {
     return (
       <figure className="template-menu__meme" key={index}>
         <figcaption className="template-menu__caption">{meme.name}</figcaption>
@@ -42,7 +39,26 @@ export default function PopularMemes({
   });
 
   return (
-    <div className="template-menu">
+    <div
+      className="template-menu"
+      onScroll={function loadMemes(e) {
+        if (memeAmount === AMOUNT_OF_FETCHED_MEMES) return;
+
+        const scrollBottom =
+          e.target.scrollHeight -
+          e.target.scrollTop -
+          e.target.getBoundingClientRect().height;
+
+        if (scrollBottom < 200) {
+          setMemeAmount((memeAmount) => {
+            if (memeAmount + 9 < AMOUNT_OF_FETCHED_MEMES) {
+              return memeAmount + 9;
+            }
+            return AMOUNT_OF_FETCHED_MEMES;
+          });
+        }
+      }}
+    >
       <div className="template-menu__header">
         <h2 className="template-menu__title">Select meme template</h2>
         <button
@@ -58,7 +74,7 @@ export default function PopularMemes({
           memeElements
         ) : (
           <div className="template-menu__loading">
-            <div class="lds-roller">
+            <div className="lds-roller">
               <div></div>
               <div></div>
               <div></div>
