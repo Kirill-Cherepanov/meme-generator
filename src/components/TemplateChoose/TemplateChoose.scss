@@ -1,0 +1,68 @@
+@use '../../index.scss' as m;
+
+.starting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.starting__title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  margin-top: 112px;
+
+  @media (min-width: 420px) {
+    margin-bottom: 10px;
+    font-size: 36px;
+  }
+
+  @media (min-width: 600px) {
+    margin-bottom: 20px;
+    font-size: 48px;
+  }
+
+  @media (min-width: 768px) {}
+}
+
+.starting__desc {
+  font-weight: 300;
+  margin-block: 0px;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+
+  @media (min-width: 420px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 600px) {
+    margin-bottom: 35px;
+    font-size: 20px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+.starting__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 0 24px;
+
+  @media (min-width: 600px) {
+    justify-content: center;
+    gap: 50px;
+  }
+}
+
+.starting__popular-memes-btn {
+  min-width: 0;
+}

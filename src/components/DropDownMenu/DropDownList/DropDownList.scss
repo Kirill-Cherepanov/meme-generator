@@ -1,0 +1,48 @@
+@use '../../../index.scss' as m;
+
+.drop-down-menu__list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+
+  label {
+    display: none;
+
+    @media (min-width: 600px) {
+      display: block;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.drop-down-menu__list-options {
+  display: flex;
+  overflow-x: scroll;
+  height: 100%;
+  overflow-x: auto;
+  flex-direction: column;
+  border: 1px solid m.$ThirdColor;
+}
+
+.drop-down-menu__list-option {
+  cursor: pointer;
+  font-size: 14px;
+  flex-basis: 25px;
+  border: 1px solid m.$ThirdColor;
+  flex-shrink: 0;
+  background-color: darken(m.$SecondaryColor, 10%);
+  border: none;
+
+  @media (min-width: 450px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 600px) {
+    flex-basis: 30px;
+  }
+
+  &.active {
+    color: #fff;
+    background-color: desaturate(m.$MainColor, 40%);
+  }
+}

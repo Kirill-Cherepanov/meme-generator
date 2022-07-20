@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import TemplateChoose from '../StartingPage/TemplateChoose';
-import Footer from '../StartingPage/Footer';
-import TemplateEditor from '../Editor/TemplateEditor';
+import TemplateChoose from '../TemplateChoose/TemplateChoose';
+import Footer from '../Footer/Footer';
+import TemplateEditor from '../TemplateEditor/TemplateEditor';
 import './App.scss';
 import 'normalize.css';
-const PopularMemes = React.lazy(() => import('../StartingPage/PopularMemes'));
+const PopularMemes = React.lazy(() => import('../PopularMemes/PopularMemes'));
 
 const AMOUNT_OF_FETCHED_MEMES = 100;
 const API_URL = 'https://api.imgflip.com/get_memes';

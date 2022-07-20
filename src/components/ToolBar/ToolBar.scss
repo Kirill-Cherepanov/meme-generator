@@ -1,0 +1,217 @@
+@use '../../index.scss' as m;
+
+$j: m.$MainColor;
+$i: #000;
+$transitionTime: 0.25s;
+$shadowColor: rgba(0, 0, 0, 1);
+
+.tool-bar,
+.tool-bar * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tool-bar {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 10px 10px 0;
+  gap: 10px;
+  flex-basis: 100px;
+  flex-shrink: 0;
+
+  @media (min-width: 450px) {
+    flex-basis: 110px;
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) {
+    flex-basis: auto;
+    flex-shrink: 1;
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 25px;
+  }
+}
+
+.tool-bar-row {
+  display: flex;
+  gap: 10px;
+
+  @media (min-width: 450px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) {
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 25px;
+  }
+}
+
+.tool {
+  position: relative;
+  list-style: none;
+  background: lighten(m.$SecondaryColor, 5%);
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: $transitionTime;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: 3px 3px 0 $shadowColor;
+
+  @media (min-width: 450px) {
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    box-shadow: 5px 5px 0 $shadowColor;
+  }
+
+  @media (min-width: 600px) {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+  }
+
+  @media (min-width: 900px) {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+  }
+
+  &:hover {
+    box-shadow: 3px 3px 0 $shadowColor;
+    width: 110px;
+
+    @media (min-width: 450px) {
+      width: 150px;
+      box-shadow: 5px 5px 0 $shadowColor;
+    }
+
+    @media (min-width: 600px) {
+      width: 120px;
+    }
+
+    @media (min-width: 900px) {
+      width: 180px;
+    }
+
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      opacity: 0.5;
+    }
+
+    .tool-icon {
+      transform: scale(0);
+      color: m.$SecondaryColor;
+    }
+
+    .tool-title {
+      transform: scale(1);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, $i, $j);
+    opacity: 0;
+    transition: $transitionTime;
+    border-radius: 40px;
+
+    @media (min-width: 450px) {
+      border-radius: 45px;
+    }
+
+    @media (min-width: 600px) {
+      border-radius: 50px;
+    }
+
+    @media (min-width: 900px) {
+      border-radius: 60px;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, $i, $j);
+    transition: $transitionTime;
+    filter: bluer(15px);
+    z-index: -1;
+    opacity: 0;
+    top: 10px;
+    border-radius: 40px;
+
+    @media (min-width: 450px) {
+      border-radius: 45px;
+    }
+
+    @media (min-width: 600px) {
+      border-radius: 50px;
+    }
+
+    @media (min-width: 900px) {
+      border-radius: 60px;
+    }
+  }
+}
+
+.tool-icon {
+  color: m.$SecondaryColor;
+  transition: $transitionTime;
+  max-width: 19px;
+  max-height: 19px;
+
+  @media (min-width: 450px) {
+    max-width: 21px;
+    max-height: 21px;
+
+  }
+
+  @media (min-width: 600px) {
+    max-width: 23px;
+    max-height: 23px;
+  }
+
+  @media (min-width: 900px) {
+    max-width: 28px;
+    max-height: 28px;
+  }
+}
+
+.tool-title {
+  position: absolute;
+  color: m.$SecondaryColor;
+  text-transform: uppercase;
+  transform: scale(0);
+  transition: $transitionTime;
+  letter-spacing: 0.1em;
+  font-size: 0.65em;
+
+  @media (min-width: 450px) {
+    font-size: 0.8em;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 1.1em;
+  }
+}

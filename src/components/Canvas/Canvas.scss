@@ -1,0 +1,31 @@
+@use '../../index.scss' as m;
+
+.canvas {
+  padding: 15px 10px 10px;
+
+  padding-inline: 20px;
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: auto;
+
+  overflow: hidden;
+}
+
+.canvas__container {
+  display: flex;
+  position: relative;
+  width: max-content;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas__img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-user-drag: none;
+}
