@@ -3,10 +3,7 @@ import BlobButton from '../BlobButton/BlobButton';
 import AnimatedButton from '../AnimatedButton/AnimatedButton';
 import './TemplateChoose.scss';
 
-export default function TemplateChoose({
-  openPopularMemes,
-  uploadImageHandler
-}) {
+export default function TemplateChoose({ openPopularMemes, uploadImage }) {
   return (
     <div className="starting">
       <h1 className="starting__title">MEME GENERATOR</h1>
@@ -24,7 +21,7 @@ export default function TemplateChoose({
         </BlobButton>
         <AnimatedButton
           className="starting__upload-btn"
-          clickHandler={uploadImageHandler}
+          clickHandler={uploadImage}
         >
           Upload image
         </AnimatedButton>
