@@ -5,53 +5,35 @@ import crossedIcon from '../../icons/crossed.png';
 import leftAlignIcon from '../../icons/left-align.png';
 import centerAlignIcon from '../../icons/center-align.png';
 import rightAlignIcon from '../../icons/right-align.png';
-
-function isNumeric(str) {
-  if (typeof str != 'string') return false;
-  return !isNaN(str) && !isNaN(parseFloat(str));
-}
-
-const TEXT_MAX_VALUES = {
-  fontSize: 100,
-  opacity: 100,
-  backgroundOpacity: 100
-};
+import TEXT_MAX_VALUES from '../../hooks/useTextBoxData';
 
 export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
-  const { textBoxesData, setTextBoxesData } = TextBoxContext;
+  const { textBoxesData, dispatchTextData } = TextBoxContext;
   const textBoxData = textBoxesData[selectedIndex];
 
   const updateValue = (e, type) => {
-    const value = isNumeric(e.currentTarget.value)
-      ? Number(e.currentTarget.value)
-      : e.currentTarget.value;
-
-    if (TEXT_MAX_VALUES[type] !== undefined && TEXT_MAX_VALUES[type] < value) {
-      e.currentTarget.value = textBoxData[type];
-      return;
-    }
-
-    setTextBoxesData((textBoxesData) => {
-      const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-      newTextBoxesData[selectedIndex][type] = value;
-      return newTextBoxesData;
+    dispatchTextData({
+      type: 'check',
+      payload: {
+        index: selectedIndex,
+        target: e.currentTarget,
+        values: {
+          [type]: e.currentTarget.value
+        }
+      }
     });
   };
-
-  const toggleTextModifiers = (type) => {
-    const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-
-    if (type === 'underlined' && !textBoxData.textMods.underlined) {
-      newTextBoxesData[selectedIndex].textMods.crossed = false;
-    }
-    if (type === 'crossed' && !textBoxData.textMods.crossed) {
-      newTextBoxesData[selectedIndex].textMods.underlined = false;
-    }
-
-    newTextBoxesData[selectedIndex].textMods[type] =
-      !textBoxData.textMods[type];
-    setTextBoxesData(newTextBoxesData);
-  };
+  // const updateTextMods = (type) => {
+  //   dispatchTextData({
+  //     type: 'update',
+  //     payload: {
+  //       index: selectedIndex,
+  //       payload: {
+  //         [type]: !textBoxData.textMods[type]
+  //       }
+  //     }
+  //   })
+  // }
 
   return {
     font: {
@@ -92,22 +74,22 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
             {
               path: boldIcon,
               isActive: textBoxData.textMods.bold,
-              inputHandler: () => toggleTextModifiers('bold')
+              inputHandler: (e) => updateValue(e, 'bold')
             },
             {
               path: italicIcon,
               isActive: textBoxData.textMods.italic,
-              inputHandler: () => toggleTextModifiers('italic')
+              inputHandler: (e) => updateValue(e, 'italic')
             },
             {
               path: underlinedIcon,
               isActive: textBoxData.textMods.underlined,
-              inputHandler: () => toggleTextModifiers('underlined')
+              inputHandler: (e) => updateValue(e, 'underlined')
             },
             {
               path: crossedIcon,
               isActive: textBoxData.textMods.crossed,
-              inputHandler: () => toggleTextModifiers('crossed')
+              inputHandler: (e) => updateValue(e, 'crossed')
             }
           ]
         }

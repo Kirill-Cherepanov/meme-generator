@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { DEFAULT_TEXT_BOXES_DATA } from '../../TemplateEditor/TemplateEditor';
 import { TextBoxContext } from '../../../context/TextBoxContext';
 import returnIcon from '../../../icons/return.png';
 import addIcon from '../../../icons/add.png';
@@ -18,26 +17,28 @@ export default function ToolTextBar({
   selectedTextBoxIndexState
 }) {
   const [selectedIndex, setSelectedIndex] = selectedTextBoxIndexState;
-  const { setTextBoxesData } = useContext(TextBoxContext);
+  const { textBoxesData, dispatchTextData } = useContext(TextBoxContext);
 
   const deleteText = () => {
     if (selectedIndex === undefined) return;
 
     setDropMenuType(undefined);
     setSelectedIndex(undefined);
-    setTextBoxesData((textBoxesData) => {
-      return [
-        ...textBoxesData.slice(0, selectedIndex),
-        null,
-        ...textBoxesData.slice(selectedIndex + 1)
-      ];
+    dispatchTextData({
+      type: 'delete',
+      payload: {
+        index: selectedIndex
+      }
     });
   };
 
   const addtext = () => {
-    setTextBoxesData((textBoxesData) => {
-      setSelectedIndex(textBoxesData.length);
-      return [...textBoxesData, DEFAULT_TEXT_BOXES_DATA];
+    setSelectedIndex(textBoxesData.length);
+    dispatchTextData({
+      type: 'add',
+      payload: {
+        index: selectedIndex
+      }
     });
   };
 

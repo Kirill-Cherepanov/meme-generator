@@ -8,7 +8,7 @@ let timesMoved = 0;
 export default function TextBox({ index, selectedTextBoxIndexState }) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
     selectedTextBoxIndexState;
-  const { textBoxesData, setTextBoxesData } = useContext(TextBoxContext);
+  const { textBoxesData, dispatchTextData } = useContext(TextBoxContext);
   const textBoxData = textBoxesData[index];
 
   const contentRef = useRef();
@@ -65,21 +65,29 @@ export default function TextBox({ index, selectedTextBoxIndexState }) {
         setSelectedTextBoxIndex(index);
       }}
       onDragStop={(e, d) => {
-        setTextBoxesData((textBoxesData) => {
-          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-          newTextBoxesData[index].x = d.x;
-          newTextBoxesData[index].y = d.y;
-          return newTextBoxesData;
+        dispatchTextData({
+          type: 'update',
+          payload: {
+            index: index,
+            values: {
+              x: d.x,
+              y: d.y
+            }
+          }
         });
       }}
-      onResizeStop={(e, direction, ref, delta, position) => {
-        setTextBoxesData((textBoxesData) => {
-          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
-          newTextBoxesData[index].width = ref.offsetWidth;
-          newTextBoxesData[index].height = ref.offsetHeight;
-          newTextBoxesData[index].x = position.x;
-          newTextBoxesData[index].y = position.y;
-          return newTextBoxesData;
+      onResizeStop={(e, direction, ref, delta, d) => {
+        dispatchTextData({
+          type: 'update',
+          payload: {
+            index: index,
+            values: {
+              x: d.x,
+              y: d.y,
+              width: ref.offsetWidth,
+              height: ref.offsetHeight
+            }
+          }
         });
       }}
       allowAnyClick={true}
@@ -104,12 +112,19 @@ export default function TextBox({ index, selectedTextBoxIndexState }) {
         onInput={(e) => {
           caretPos.current = getCaret(contentRef.current);
 
-          const newTextBoxesData = JSON.parse(JSON.stringify(textBoxesData));
           if (!e.target.innerText) {
             e.target.innerText = ' ';
           }
-          newTextBoxesData[index].text = e.target.innerText;
-          setTextBoxesData(newTextBoxesData);
+
+          dispatchTextData({
+            type: 'update',
+            payload: {
+              index: index,
+              values: {
+                text: e.target.innerText
+              }
+            }
+          });
         }}
       >
         {textBoxData.text}

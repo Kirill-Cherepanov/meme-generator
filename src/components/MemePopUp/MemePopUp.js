@@ -3,6 +3,80 @@ import { createPortal } from 'react-dom';
 import { TextBoxContext } from '../../context/TextBoxContext';
 import './MemePopUp.scss';
 
+function addText(context, textBoxData, fillTextIntoCanvas) {
+  let { text, y, width, fontSize, fontFamily } = textBoxData;
+
+  context.font = fontSize + 'px ' + fontFamily;
+
+  const metrics = context.measureText(' ');
+  const lineHeight =
+    metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+
+  const lines = text.split('\n');
+
+  for (let line of lines) {
+    const words = line.split(' ');
+    let isFirstInLine = true;
+    let currentLine = '';
+
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      currentLine += word;
+
+      if (isFirstInLine && context.measureText(currentLine).width > width) {
+        const { newY, newLine } = printHugeWord(
+          context,
+          word,
+          width,
+          y,
+          lineHeight,
+          fillTextIntoCanvas
+        );
+
+        y = newY;
+        currentLine = newLine ? newLine + ' ' : '';
+        isFirstInLine = !newLine;
+      } else if (context.measureText(currentLine + ' ' + word).width > width) {
+        fillTextIntoCanvas(currentLine, y);
+        y += lineHeight;
+        currentLine = '';
+        isFirstInLine = true;
+      } else {
+        currentLine += ' ';
+        isFirstInLine = false;
+      }
+    }
+
+    fillTextIntoCanvas(currentLine, y);
+    y += lineHeight;
+  }
+}
+
+function printHugeWord(
+  context,
+  word,
+  width,
+  y,
+  lineHeight,
+  fillTextIntoCanvas
+) {
+  for (let i = 1; i <= word.length; i++) {
+    if (context.measureText(word.slice(0, i)).width > width) {
+      fillTextIntoCanvas(word.slice(0, i - 1), y);
+      return printHugeWord(
+        context,
+        word.slice(i - 1),
+        width,
+        y + lineHeight,
+        lineHeight,
+        fillTextIntoCanvas
+      );
+    }
+  }
+
+  return { newY: y, newLine: word };
+}
+
 const fillBackgroundIntoCanvas = (context, textBoxData) => {
   let { x, y, width, height, backgroundColor, backgroundOpacity, opacity } =
     textBoxData;
@@ -189,78 +263,4 @@ export default function MemePopUp({ image, setDownloadMeme, filters }) {
     </div>,
     document.getElementById('meme')
   );
-}
-
-function addText(context, textBoxData, fillTextIntoCanvas) {
-  let { text, y, width, fontSize, fontFamily } = textBoxData;
-
-  context.font = fontSize + 'px ' + fontFamily;
-
-  const metrics = context.measureText(' ');
-  const lineHeight =
-    metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
-
-  const lines = text.split('\n');
-
-  for (let line of lines) {
-    const words = line.split(' ');
-    let isFirstInLine = true;
-    let currentLine = '';
-
-    for (let i = 0; i < words.length; i++) {
-      const word = words[i];
-      currentLine += word;
-
-      if (isFirstInLine && context.measureText(currentLine).width > width) {
-        const { newY, newLine } = printHugeWord(
-          context,
-          word,
-          width,
-          y,
-          lineHeight,
-          fillTextIntoCanvas
-        );
-
-        y = newY;
-        currentLine = newLine ? newLine + ' ' : '';
-        isFirstInLine = !newLine;
-      } else if (context.measureText(currentLine + ' ' + word).width > width) {
-        fillTextIntoCanvas(currentLine, y);
-        y += lineHeight;
-        currentLine = '';
-        isFirstInLine = true;
-      } else {
-        currentLine += ' ';
-        isFirstInLine = false;
-      }
-    }
-
-    fillTextIntoCanvas(currentLine, y);
-    y += lineHeight;
-  }
-}
-
-function printHugeWord(
-  context,
-  word,
-  width,
-  y,
-  lineHeight,
-  fillTextIntoCanvas
-) {
-  for (let i = 1; i <= word.length; i++) {
-    if (context.measureText(word.slice(0, i)).width > width) {
-      fillTextIntoCanvas(word.slice(0, i - 1), y);
-      return printHugeWord(
-        context,
-        word.slice(i - 1),
-        width,
-        y + lineHeight,
-        lineHeight,
-        fillTextIntoCanvas
-      );
-    }
-  }
-
-  return { newY: y, newLine: word };
 }

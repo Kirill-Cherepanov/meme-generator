@@ -13,7 +13,7 @@ export default function ToolBar({
   closeEditor,
   downloadMeme
 }) {
-  const { setTextBoxesData } = useContext(TextBoxContext);
+  const { dispatchTextData } = useContext(TextBoxContext);
   const setTemplateStyles = templateStylesState[1];
   const [chosenBar, setChosenBar] = useState('nav');
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] =
@@ -31,7 +31,10 @@ export default function ToolBar({
       blur: 0,
       sepia: 0
     });
-    setTextBoxesData([]);
+    dispatchTextData({
+      type: 'reset',
+      payload: {}
+    });
     setSelectedTextBoxIndex(undefined);
   };
 
