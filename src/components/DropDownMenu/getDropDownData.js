@@ -51,14 +51,13 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
         {
           label: 'Font Family',
           items: [
-            'Roboto',
             'Arial',
-            'Impact',
+            'cursive',
             'Courier',
-            'Comic',
-            'Times new roman',
-            'sans-serif',
-            'serif'
+            'Impact',
+            'Josefin Sans',
+            'Roboto',
+            'Times new roman'
           ],
           value: textBoxData.fontFamily,
           inputHandler: (e) => updateValue(e, 'fontFamily')

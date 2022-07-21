@@ -90,7 +90,7 @@ const reducer = (textBoxesData, action) => {
     case 'add':
       return [...textBoxesData, DEFAULT_TEXT_BOXES_DATA];
     case 'check':
-      if (!checkValue(textBoxData, values, target)) return;
+      if (!checkValue(textBoxData, values, target)) return textBoxesData;
       return updateValues(textBoxesData, values, index);
     case 'update':
       return updateValues(textBoxesData, values, index);

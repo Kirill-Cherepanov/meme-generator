@@ -5,7 +5,6 @@ import './Canvas.scss';
 
 export default function Canvas({ selectedTextBoxIndexState, imgData }) {
   const { textBoxesData } = useContext(TextBoxContext);
-  console.log(textBoxesData);
 
   const textBoxes = textBoxesData.map((textBoxData, index) => {
     return (
