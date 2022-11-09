@@ -94,7 +94,6 @@
   font-family: sans-serif;
   background-color: m.$SecondaryColor;
 
-
   @media (min-width: 420px) {
     font-size: 30px;
     width: 35px;
@@ -110,7 +109,6 @@
     background-color: m.$ThirdColor;
     color: m.$SecondaryColor;
   }
-
 }
 
 .template-menu__meme-container {
@@ -151,7 +149,6 @@
   &:hover {
     background-color: lighten(m.$ThirdColor, 10%);
     box-shadow: 6px 6px 6px 0 darken(m.$ThirdColor, 5%);
-    // border: 3px solid darken(m.$ThirdColor, 10%);
     transform: scale(1.05);
   }
 }
@@ -194,7 +191,7 @@
   }
 
   .lds-roller div:after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     width: 7px;
@@ -285,5 +282,4 @@
       transform: rotate(360deg);
     }
   }
-
 }

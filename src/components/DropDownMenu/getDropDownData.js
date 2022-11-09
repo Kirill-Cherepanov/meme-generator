@@ -18,22 +18,11 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
         index: selectedIndex,
         target: e.currentTarget,
         values: {
-          [type]: e.currentTarget.value
-        }
-      }
+          [type]: e.currentTarget.value,
+        },
+      },
     });
   };
-  // const updateTextMods = (type) => {
-  //   dispatchTextData({
-  //     type: 'update',
-  //     payload: {
-  //       index: selectedIndex,
-  //       payload: {
-  //         [type]: !textBoxData.textMods[type]
-  //       }
-  //     }
-  //   })
-  // }
 
   return {
     font: {
@@ -44,8 +33,8 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
           max: TEXT_MAX_VALUES.fontSize,
           numberLabel: 'px',
           value: textBoxData.fontSize,
-          inputHandler: (e) => updateValue(e, 'fontSize')
-        }
+          inputHandler: (e) => updateValue(e, 'fontSize'),
+        },
       ],
       list: [
         {
@@ -57,12 +46,12 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
             'Impact',
             'Josefin Sans',
             'Roboto',
-            'Times new roman'
+            'Times new roman',
           ],
           value: textBoxData.fontFamily,
-          inputHandler: (e) => updateValue(e, 'fontFamily')
-        }
-      ]
+          inputHandler: (e) => updateValue(e, 'fontFamily'),
+        },
+      ],
     },
 
     mods: {
@@ -73,26 +62,26 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
             {
               path: boldIcon,
               isActive: textBoxData.textMods.bold,
-              inputHandler: (e) => updateValue(e, 'bold')
+              inputHandler: (e) => updateValue(e, 'bold'),
             },
             {
               path: italicIcon,
               isActive: textBoxData.textMods.italic,
-              inputHandler: (e) => updateValue(e, 'italic')
+              inputHandler: (e) => updateValue(e, 'italic'),
             },
             {
               path: underlinedIcon,
               isActive: textBoxData.textMods.underlined,
-              inputHandler: (e) => updateValue(e, 'underlined')
+              inputHandler: (e) => updateValue(e, 'underlined'),
             },
             {
               path: crossedIcon,
               isActive: textBoxData.textMods.crossed,
-              inputHandler: (e) => updateValue(e, 'crossed')
-            }
-          ]
-        }
-      ]
+              inputHandler: (e) => updateValue(e, 'crossed'),
+            },
+          ],
+        },
+      ],
     },
 
     color: {
@@ -100,14 +89,14 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
         {
           label: 'Text Color',
           value: textBoxData.color,
-          inputHandler: (e) => updateValue(e, 'color')
+          inputHandler: (e) => updateValue(e, 'color'),
         },
         {
           label: 'Outline Color',
           value: textBoxData.outlineColor,
-          inputHandler: (e) => updateValue(e, 'outlineColor')
-        }
-      ]
+          inputHandler: (e) => updateValue(e, 'outlineColor'),
+        },
+      ],
     },
 
     background: {
@@ -115,8 +104,8 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
         {
           label: 'Background Color',
           value: textBoxData.backgroundColor,
-          inputHandler: (e) => updateValue(e, 'backgroundColor')
-        }
+          inputHandler: (e) => updateValue(e, 'backgroundColor'),
+        },
       ],
       range: [
         {
@@ -125,9 +114,9 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
           max: 100,
           numberLabel: '%',
           value: textBoxData.backgroundOpacity,
-          inputHandler: (e) => updateValue(e, 'backgroundOpacity')
-        }
-      ]
+          inputHandler: (e) => updateValue(e, 'backgroundOpacity'),
+        },
+      ],
     },
 
     opacity: {
@@ -138,9 +127,9 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
           max: 100,
           numberLabel: '%',
           value: textBoxData.opacity,
-          inputHandler: (e) => updateValue(e, 'opacity')
-        }
-      ]
+          inputHandler: (e) => updateValue(e, 'opacity'),
+        },
+      ],
     },
 
     alignment: {
@@ -152,26 +141,26 @@ export function getDropDownTextBoxData(selectedIndex, TextBoxContext) {
               path: leftAlignIcon,
               value: 'left',
               isActive: textBoxData.alignment === 'left',
-              inputHandler: (e) => updateValue(e, 'alignment')
+              inputHandler: (e) => updateValue(e, 'alignment'),
             },
             {
               path: centerAlignIcon,
               value: 'center',
               isActive: textBoxData.alignment === 'center',
-              inputHandler: (e) => updateValue(e, 'alignment')
+              inputHandler: (e) => updateValue(e, 'alignment'),
             },
             {
               path: rightAlignIcon,
               value: 'right',
               isActive: textBoxData.alignment === 'right',
-              inputHandler: (e) => updateValue(e, 'alignment')
-            }
-          ]
-        }
-      ]
+              inputHandler: (e) => updateValue(e, 'alignment'),
+            },
+          ],
+        },
+      ],
     },
 
-    filters: {}
+    filters: {},
   };
 }
 
@@ -180,7 +169,7 @@ const IMAGE_MAX_VALUES = {
   saturation: 100,
   brightness: 100,
   blur: 100,
-  sepia: 100
+  sepia: 100,
 };
 
 export function getDropDownImageData(templateStylesState) {
@@ -207,7 +196,7 @@ export function getDropDownImageData(templateStylesState) {
         max: 360,
         numberLabel: 'deg',
         value: templateStyles.hueRotate,
-        inputHandler: (e) => updateImageFilters(e, 'hueRotate')
+        inputHandler: (e) => updateImageFilters(e, 'hueRotate'),
       },
       {
         label: 'Saturation',
@@ -215,7 +204,7 @@ export function getDropDownImageData(templateStylesState) {
         max: 100,
         numberLabel: '%',
         value: templateStyles.saturation,
-        inputHandler: (e) => updateImageFilters(e, 'saturation')
+        inputHandler: (e) => updateImageFilters(e, 'saturation'),
       },
       {
         label: 'Brightness',
@@ -223,7 +212,7 @@ export function getDropDownImageData(templateStylesState) {
         max: 100,
         numberLabel: '%',
         value: templateStyles.brightness,
-        inputHandler: (e) => updateImageFilters(e, 'brightness')
+        inputHandler: (e) => updateImageFilters(e, 'brightness'),
       },
       {
         label: 'Blur',
@@ -231,7 +220,7 @@ export function getDropDownImageData(templateStylesState) {
         max: 100,
         numberLabel: 'px',
         value: templateStyles.blur,
-        inputHandler: (e) => updateImageFilters(e, 'blur')
+        inputHandler: (e) => updateImageFilters(e, 'blur'),
       },
       {
         label: 'Sepia',
@@ -239,8 +228,8 @@ export function getDropDownImageData(templateStylesState) {
         max: 100,
         numberLabel: '%',
         value: templateStyles.sepia,
-        inputHandler: (e) => updateImageFilters(e, 'sepia')
-      }
-    ]
+        inputHandler: (e) => updateImageFilters(e, 'sepia'),
+      },
+    ],
   };
 }

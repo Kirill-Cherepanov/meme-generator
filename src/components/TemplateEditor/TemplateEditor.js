@@ -8,7 +8,7 @@ import './TemplateEditor.scss';
 
 export default function TemplateEditor({
   template,
-  closeEditor: closeEditor_
+  closeEditor: closeEditor_,
 }) {
   const [selectedTextBoxIndex, setSelectedTextBoxIndex] = useState();
   const [memeGenerated, setMemeGenerated] = useState(false);
@@ -17,7 +17,7 @@ export default function TemplateEditor({
     saturation: 100,
     brightness: 100,
     blur: 0,
-    sepia: 0
+    sepia: 0,
   });
   const [textBoxesData, dispatchTextData] = useTextBoxData(
     JSON.parse(sessionStorage.getItem(template.url))
@@ -30,27 +30,13 @@ export default function TemplateEditor({
     closeEditor_();
   };
 
-  // For testing
-  // useEffect(() => {
-  //   const test = () => {
-  //     console.log('here');
-  //     setTemplateStyles((styles) => {
-  //       return { ...styles, ...{ blur: 10 } };
-  //     });
-  //   };
-
-  //   window.addEventListener('keydown', test);
-
-  //   return () => window.removeEventListener('keydown', test);
-  // }, [setTemplateStyles]);
-
   return (
     <TextBoxContext.Provider value={{ textBoxesData, dispatchTextData }}>
       <div className="template-editor">
         <ToolBar
           selectedTextBoxIndexState={[
             selectedTextBoxIndex,
-            setSelectedTextBoxIndex
+            setSelectedTextBoxIndex,
           ]}
           templateStylesState={[templateStyles, setTemplateStyles]}
           togglePopUp={() => setMemeGenerated((memeGenerate) => !memeGenerate)}
@@ -61,11 +47,11 @@ export default function TemplateEditor({
           imgData={{
             ref: imageRef,
             src: template.url,
-            filters: templateStyles
+            filters: templateStyles,
           }}
           selectedTextBoxIndexState={[
             selectedTextBoxIndex,
-            setSelectedTextBoxIndex
+            setSelectedTextBoxIndex,
           ]}
         />
         {memeGenerated && (
