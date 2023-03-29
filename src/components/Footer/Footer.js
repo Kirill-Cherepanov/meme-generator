@@ -32,7 +32,7 @@ export default function Footer() {
           <span className="footer__icon">
             <a
               className="footer__gh"
-              href="https://github.com/kissMyUSSR/"
+              href="https://github.com/Kirill-Cherepanov/"
               target="_blank"
               rel="noreferrer"
             >

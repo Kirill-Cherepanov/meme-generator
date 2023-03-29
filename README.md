@@ -4,9 +4,9 @@
 
 **Technologies used:** React, Sass, Canvas API, Imgflip API
 
-**Deploy:** https://kissmyussr.github.io/meme-generator/
+**Deploy:** https://Kirill-Cherepanov.github.io/meme-generator/
 
-**Repository:** https://github.com/KissMyUSSR/meme-generator
+**Repository:** https://github.com/Kirill-Cherepanov/meme-generator
 
 ## What I've built and have learned
 
