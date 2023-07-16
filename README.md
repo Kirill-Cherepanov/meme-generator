@@ -8,6 +8,8 @@
 
 **Repository:** https://github.com/Kirill-Cherepanov/meme-generator
 
+![image](https://github.com/Kirill-Cherepanov/meme-generator/assets/52123816/f404b026-f95b-4d7b-9dd7-830e5a943cc1)
+
 ## What I've built and have learned
 
 - Created a fully responsive web application to edit images, mostly focused on adding text to them, as well as applying basic image filters.
